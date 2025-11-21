@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Table } from 'reactstrap';
-import { JhiItemCount, JhiPagination, TextFormat, Translate, getPaginationState } from 'react-jhipster';
+import { JhiItemCount, TextFormat, Translate, getPaginationState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSort, faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
+import { Button, Pagination } from 'app/shared/components';
 import { APP_DATE_FORMAT } from 'app/config/constants';
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/shared/util/pagination.constants';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
@@ -93,89 +93,112 @@ export const Todo = () => {
     <div>
       <h2 id="todo-heading" data-cy="TodoHeading">
         <Translate contentKey="myTailwindJhipsterApp.todo.home.title">Todos</Translate>
-        <div className="d-flex justify-content-end">
-          <Button className="me-2" color="info" onClick={handleSyncList} disabled={loading}>
+        <div className="flex justify-end">
+          <Button className="mr-2" variant="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="myTailwindJhipsterApp.todo.home.refreshListLabel">Refresh List</Translate>
           </Button>
-          <Link to="/todo/new" className="btn btn-primary jh-create-entity" id="jh-create-entity" data-cy="entityCreateButton">
+          <Button tag={Link} to="/todo/new" variant="primary" id="jh-create-entity" data-cy="entityCreateButton">
             <FontAwesomeIcon icon="plus" />
             &nbsp;
             <Translate contentKey="myTailwindJhipsterApp.todo.home.createLabel">Create new Todo</Translate>
-          </Link>
+          </Button>
         </div>
       </h2>
-      <div className="table-responsive">
+      <div className="overflow-x-auto">
         {todoList && todoList.length > 0 ? (
-          <Table responsive>
-            <thead>
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
               <tr>
-                <th className="hand" onClick={sort('id')}>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={sort('id')}
+                >
                   <Translate contentKey="myTailwindJhipsterApp.todo.id">ID</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
-                <th className="hand" onClick={sort('title')}>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={sort('title')}
+                >
                   <Translate contentKey="myTailwindJhipsterApp.todo.title">Title</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('title')} />
                 </th>
-                <th className="hand" onClick={sort('description')}>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={sort('description')}
+                >
                   <Translate contentKey="myTailwindJhipsterApp.todo.description">Description</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('description')} />
                 </th>
-                <th className="hand" onClick={sort('status')}>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={sort('status')}
+                >
                   <Translate contentKey="myTailwindJhipsterApp.todo.status">Status</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('status')} />
                 </th>
-                <th className="hand" onClick={sort('priority')}>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={sort('priority')}
+                >
                   <Translate contentKey="myTailwindJhipsterApp.todo.priority">Priority</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('priority')} />
                 </th>
-                <th className="hand" onClick={sort('dueDate')}>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={sort('dueDate')}
+                >
                   <Translate contentKey="myTailwindJhipsterApp.todo.dueDate">Due Date</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('dueDate')} />
                 </th>
-                <th className="hand" onClick={sort('completed')}>
+                <th
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  onClick={sort('completed')}
+                >
                   <Translate contentKey="myTailwindJhipsterApp.todo.completed">Completed</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('completed')} />
                 </th>
-                <th />
+                <th className="px-6 py-3"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="bg-white divide-y divide-gray-200">
               {todoList.map((todo, i) => (
                 <tr key={`entity-${i}`} data-cy="entityTable">
-                  <td>
-                    <Button tag={Link} to={`/todo/${todo.id}`} color="link" size="sm">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <Button tag={Link} to={`/todo/${todo.id}`} variant="link" size="sm">
                       {todo.id}
                     </Button>
                   </td>
-                  <td>{todo.title}</td>
-                  <td>{todo.description}</td>
-                  <td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{todo.title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{todo.description}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <Translate contentKey={`myTailwindJhipsterApp.TodoStatus.${todo.status}`} />
                   </td>
-                  <td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <Translate contentKey={`myTailwindJhipsterApp.Priority.${todo.priority}`} />
                   </td>
-                  <td>{todo.dueDate ? <TextFormat type="date" value={todo.dueDate} format={APP_DATE_FORMAT} /> : null}</td>
-                  <td>{todo.completed ? 'true' : 'false'}</td>
-                  <td className="text-end">
-                    <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`/todo/${todo.id}`} color="info" size="sm" data-cy="entityDetailsButton">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {todo.dueDate ? <TextFormat type="date" value={todo.dueDate} format={APP_DATE_FORMAT} /> : null}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">{todo.completed ? 'true' : 'false'}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-right">
+                    <div className="inline-flex space-x-2">
+                      <Button tag={Link} to={`/todo/${todo.id}`} variant="info" size="sm" data-cy="entityDetailsButton">
                         <FontAwesomeIcon icon="eye" />{' '}
-                        <span className="d-none d-md-inline">
+                        <span className="hidden md:inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
                       <Button
                         tag={Link}
                         to={`/todo/${todo.id}/edit?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`}
-                        color="primary"
+                        variant="primary"
                         size="sm"
                         data-cy="entityEditButton"
                       >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
-                        <span className="d-none d-md-inline">
+                        <span className="hidden md:inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
@@ -183,12 +206,12 @@ export const Todo = () => {
                         onClick={() =>
                           (window.location.href = `/todo/${todo.id}/delete?page=${paginationState.activePage}&sort=${paginationState.sort},${paginationState.order}`)
                         }
-                        color="danger"
+                        variant="danger"
                         size="sm"
                         data-cy="entityDeleteButton"
                       >
                         <FontAwesomeIcon icon="trash" />{' '}
-                        <span className="d-none d-md-inline">
+                        <span className="hidden md:inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
                         </span>
                       </Button>
@@ -197,22 +220,22 @@ export const Todo = () => {
                 </tr>
               ))}
             </tbody>
-          </Table>
+          </table>
         ) : (
           !loading && (
-            <div className="alert alert-warning">
+            <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 px-4 py-3 rounded">
               <Translate contentKey="myTailwindJhipsterApp.todo.home.notFound">No Todos found</Translate>
             </div>
           )
         )}
       </div>
       {totalItems ? (
-        <div className={todoList && todoList.length > 0 ? '' : 'd-none'}>
-          <div className="justify-content-center d-flex">
+        <div className={todoList && todoList.length > 0 ? 'mt-4 space-y-4' : 'hidden'}>
+          <div className="flex justify-center text-sm text-gray-600">
             <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
           </div>
-          <div className="justify-content-center d-flex">
-            <JhiPagination
+          <div className="flex justify-center">
+            <Pagination
               activePage={paginationState.activePage}
               onSelect={handlePagination}
               maxButtons={5}

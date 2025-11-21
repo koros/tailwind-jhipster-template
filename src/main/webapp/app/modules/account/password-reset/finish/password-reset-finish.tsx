@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Row } from 'reactstrap';
 import { Translate, ValidatedField, ValidatedForm, translate } from 'react-jhipster';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Button } from 'app/shared/components';
 
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -57,7 +57,7 @@ export const PasswordResetFinishPage = () => {
           }}
           data-cy="confirmResetPassword"
         />
-        <Button color="success" type="submit" data-cy="submit">
+        <Button variant="success" type="submit" data-cy="submit">
           <Translate contentKey="reset.finish.form.button">Validate new password</Translate>
         </Button>
       </ValidatedForm>
@@ -73,15 +73,13 @@ export const PasswordResetFinishPage = () => {
   }, [successMessage]);
 
   return (
-    <div>
-      <Row className="justify-content-center">
-        <Col md="4">
-          <h1>
-            <Translate contentKey="reset.finish.title">Reset password</Translate>
-          </h1>
-          <div>{key ? getResetForm() : null}</div>
-        </Col>
-      </Row>
+    <div className="max-w-2xl mx-auto px-4 py-6">
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-900">
+          <Translate contentKey="reset.finish.title">Reset password</Translate>
+        </h1>
+      </div>
+      <div className="bg-white shadow-md rounded-lg p-6">{key ? getResetForm() : null}</div>
     </div>
   );
 };

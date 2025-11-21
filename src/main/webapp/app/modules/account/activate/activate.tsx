@@ -1,29 +1,28 @@
 import React, { useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Alert, Col, Row } from 'reactstrap';
 import { Translate } from 'react-jhipster';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { activateAction, reset } from './activate.reducer';
 
 const successAlert = (
-  <Alert color="success">
+  <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
     <Translate contentKey="activate.messages.success">
       <strong>Your user account has been activated.</strong> Please
     </Translate>
-    <Link to="/login" className="alert-link">
+    <Link to="/login" className="text-green-700 underline hover:text-green-800">
       <Translate contentKey="global.messages.info.authenticated.link">sign in</Translate>
     </Link>
     .
-  </Alert>
+  </div>
 );
 
 const failureAlert = (
-  <Alert color="danger">
+  <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
     <Translate contentKey="activate.messages.error">
       <strong>Your user could not be activated.</strong> Please use the registration form to sign up.
     </Translate>
-  </Alert>
+  </div>
 );
 
 export const ActivatePage = () => {
@@ -43,16 +42,14 @@ export const ActivatePage = () => {
   const { activationSuccess, activationFailure } = useAppSelector(state => state.activate);
 
   return (
-    <div>
-      <Row className="justify-content-center">
-        <Col md="8">
-          <h1>
-            <Translate contentKey="activate.title">Activation</Translate>
-          </h1>
-          {activationSuccess ? successAlert : undefined}
-          {activationFailure ? failureAlert : undefined}
-        </Col>
-      </Row>
+    <div className="max-w-2xl mx-auto px-4 py-6">
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-900">
+          <Translate contentKey="activate.title">Activation</Translate>
+        </h1>
+      </div>
+      <div>{activationSuccess ? successAlert : undefined}</div>
+      <div>{activationFailure ? failureAlert : undefined}</div>
     </div>
   );
 };

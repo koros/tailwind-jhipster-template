@@ -1,7 +1,6 @@
 import React from 'react';
 import { Translate } from 'react-jhipster';
 
-import { NavItem, NavLink, NavbarBrand } from 'reactstrap';
 import { NavLink as Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -12,22 +11,22 @@ export const BrandIcon = props => (
 );
 
 export const Brand = () => (
-  <NavbarBrand tag={Link} to="/" className="brand-logo">
+  <Link to="/" className="brand-logo flex items-center space-x-2 text-white no-underline hover:opacity-80">
     <BrandIcon />
-    <span className="brand-title">
+    <span className="brand-title font-semibold">
       <Translate contentKey="global.title">MyTailwindJhipster</Translate>
     </span>
-    <span className="navbar-version">{VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`}</span>
-  </NavbarBrand>
+    <span className="navbar-version text-sm opacity-75">{VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`}</span>
+  </Link>
 );
 
 export const Home = () => (
-  <NavItem>
-    <NavLink tag={Link} to="/" className="d-flex align-items-center">
+  <li>
+    <Link to="/" className="flex items-center space-x-2 px-3 py-2 rounded text-white hover:bg-gray-700 no-underline">
       <FontAwesomeIcon icon="home" />
       <span>
         <Translate contentKey="global.menu.home">Home</Translate>
       </span>
-    </NavLink>
-  </NavItem>
+    </Link>
+  </li>
 );

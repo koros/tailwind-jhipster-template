@@ -41,6 +41,73 @@ auto-refreshes when files change on your hard drive.
 ./npmw start
 ```
 
+### Tailwind CSS Migration
+
+This project has successfully migrated from Bootstrap/Reactstrap to Tailwind CSS.
+
+**Completed:**
+
+- ✅ Bootstrap and Reactstrap dependencies removed from `package.json`
+- ✅ Bootstrap imports removed from `src/main/webapp/app/app.scss`
+- ✅ Tailwind CSS configured with extended theme (colors: brand #533f03, navbar #353d47, accent #009cd8)
+- ✅ Tailwind preflight enabled for consistent base styles
+- ✅ Custom component library created (`Button`, `Badge`, `Card`, `Modal` with subcomponents)
+- ✅ Core components migrated (11 files including user-management, todo entities, health, login)
+- ✅ RTL support preserved via `postcss-rtlcss` and `setTextDirection` locale handling
+
+**Component Library:**
+
+Custom Tailwind components are available in `app/shared/components/`:
+
+- `Button`: Supports 9 variants (primary, secondary, info, success, warning, danger, light, dark, link), multiple sizes, and router integration
+- `Badge`: Pill-shaped badges with 7 color variants
+- `Card`: Simple container with consistent styling
+- `Modal`: Full-featured modal with Header/Body/Footer subcomponents
+
+**Usage:**
+
+```tsx
+import { Button, Badge, Card, Modal, ModalHeader, ModalBody, ModalFooter } from 'app/shared/components';
+
+// Button example
+<Button variant="primary" size="lg">Click me</Button>
+<Button tag={Link} to="/path" variant="info">Navigate</Button>
+
+// Badge example
+<Badge variant="success">Active</Badge>
+
+// Modal example
+<Modal isOpen={isOpen} toggle={handleClose}>
+  <ModalHeader toggle={handleClose}>Title</ModalHeader>
+  <ModalBody>Content</ModalBody>
+  <ModalFooter>
+    <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+  </ModalFooter>
+</Modal>
+```
+
+**RTL Support:**
+
+- Locale toggle sets `<html dir="rtl"|"ltr">`
+- `postcss-rtlcss` automatically transforms directional utilities (e.g., `ml-4` becomes `mr-4` in RTL)
+- Supports 50+ locales including `ar-ly` for Arabic
+
+**Remaining Work:**
+
+Some files still contain Reactstrap imports and need migration:
+
+- Navigation components (header, menus) - using `Navbar`, `Nav`, `DropdownMenu`
+- Account pages - using `Row`, `Col`, `Alert`, `Form`
+- Admin pages - using `Table`, `Input`, `FormText`
+- Footer component
+
+These will cause runtime errors if accessed. Migration pattern:
+
+- Replace `Row`/`Col` with Tailwind flex/grid utilities
+- Replace `Alert` with custom Tailwind alert component or toast notifications
+- Replace `Form` with standard HTML forms
+- Replace `Table` with Tailwind table structure
+
 Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
 specifying a newer version in [package.json](package.json). You can also run `./npmw update` and `./npmw install` to manage dependencies.
 Add the `help` flag on any command to see how you can use it. For example, `./npmw help update`.

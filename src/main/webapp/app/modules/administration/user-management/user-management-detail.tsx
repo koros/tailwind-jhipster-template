@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Badge, Button, Row } from 'reactstrap';
 import { TextFormat, Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { Button, Badge } from 'app/shared/components';
 
 import { APP_DATE_FORMAT } from 'app/config/constants';
 import { languages } from 'app/config/translation';
@@ -25,7 +26,7 @@ export const UserManagementDetail = () => {
       <h2>
         <Translate contentKey="userManagement.detail.title">User</Translate> [<strong>{user.login}</strong>]
       </h2>
-      <Row size="md">
+      <div>
         <dl className="jh-entity-details">
           <dt>
             <Translate contentKey="userManagement.login">Login</Translate>
@@ -33,11 +34,11 @@ export const UserManagementDetail = () => {
           <dd>
             <span>{user.login}</span>&nbsp;
             {user.activated ? (
-              <Badge color="success">
+              <Badge variant="success">
                 <Translate contentKey="userManagement.activated">Activated</Translate>
               </Badge>
             ) : (
-              <Badge color="danger">
+              <Badge variant="danger">
                 <Translate contentKey="userManagement.deactivated">Deactivated</Translate>
               </Badge>
             )}
@@ -86,17 +87,17 @@ export const UserManagementDetail = () => {
               {user.authorities
                 ? user.authorities.map((authority, i) => (
                     <li key={`user-auth-${i}`}>
-                      <Badge color="info">{authority}</Badge>
+                      <Badge variant="info">{authority}</Badge>
                     </li>
                   ))
                 : null}
             </ul>
           </dd>
         </dl>
-      </Row>
-      <Button tag={Link} to="/admin/user-management" replace color="info">
+      </div>
+      <Button tag={Link} to="/admin/user-management" variant="info">
         <FontAwesomeIcon icon="arrow-left" />{' '}
-        <span className="d-none d-md-inline">
+        <span className="hidden md:inline">
           <Translate contentKey="entity.action.back">Back</Translate>
         </span>
       </Button>

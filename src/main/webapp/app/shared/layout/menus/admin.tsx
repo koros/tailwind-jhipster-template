@@ -1,6 +1,5 @@
 import React from 'react';
 import MenuItem from 'app/shared/layout/menus/menu-item';
-import { DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Translate, translate } from 'react-jhipster';
 import { NavDropdown } from './menu-components';
@@ -33,9 +32,16 @@ const openAPIItem = () => (
 );
 
 const databaseItem = () => (
-  <DropdownItem tag="a" href="./h2-console/" target="_tab">
-    <FontAwesomeIcon icon="database" fixedWidth /> <Translate contentKey="global.menu.admin.database">Database</Translate>
-  </DropdownItem>
+  <li>
+    <a
+      href="./h2-console/"
+      target="_tab"
+      className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors"
+    >
+      <FontAwesomeIcon icon="database" fixedWidth />
+      <Translate contentKey="global.menu.admin.database">Database</Translate>
+    </a>
+  </li>
 );
 
 export const AdminMenu = ({ showOpenAPI, showDatabase }) => (

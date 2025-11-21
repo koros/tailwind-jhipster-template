@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'app/shared/components';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { deleteUser, getUser } from './user-management.reducer';
@@ -40,12 +40,12 @@ export const UserManagementDeleteDialog = () => {
         </Translate>
       </ModalBody>
       <ModalFooter>
-        <Button color="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={handleClose}>
           <FontAwesomeIcon icon="ban" />
           &nbsp;
           <Translate contentKey="entity.action.cancel">Cancel</Translate>
         </Button>
-        <Button color="danger" onClick={confirmDelete}>
+        <Button variant="danger" onClick={confirmDelete}>
           <FontAwesomeIcon icon="trash" />
           &nbsp;
           <Translate contentKey="entity.action.delete">Delete</Translate>

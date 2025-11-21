@@ -1,7 +1,82 @@
-// Override Bootstrap variables
-@import 'bootstrap-variables';
-// Import Bootstrap source files from node_modules
-@import 'bootstrap/scss/bootstrap';
+// Tailwind CSS directives
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Custom form styles layer
+@layer components {
+  /* Form input fields */
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='number'],
+  input[type='tel'],
+  input[type='url'],
+  input[type='search'],
+  input[type='date'],
+  input[type='datetime-local'],
+  input[type='time'],
+  select,
+  textarea {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+    @apply disabled:bg-gray-100 disabled:cursor-not-allowed;
+    @apply transition-colors duration-200;
+  }
+
+  /* Textarea specific */
+  textarea {
+    @apply min-h-[100px] resize-y;
+  }
+
+  /* Select dropdown */
+  select {
+    @apply bg-white cursor-pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+  }
+
+  /* Checkbox and Radio */
+  input[type='checkbox'],
+  input[type='radio'] {
+    @apply w-4 h-4 text-blue-600 border-gray-300 rounded;
+    @apply focus:ring-2 focus:ring-blue-500;
+    @apply cursor-pointer;
+  }
+
+  /* Form labels */
+  label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+
+  /* Validation error text */
+  .invalid-feedback {
+    @apply text-red-600 text-sm mt-1;
+    display: block;
+  }
+
+  /* Valid field styling */
+  .is-valid {
+    @apply border-green-500 focus:ring-green-500 focus:border-green-500;
+  }
+
+  /* Invalid field styling */
+  .is-invalid {
+    @apply border-red-500 focus:ring-red-500 focus:border-red-500;
+  }
+
+  /* Form group spacing */
+  .form-group {
+    @apply mb-4;
+  }
+}
+
 body {
   background: #fafafa;
   margin: 0;
@@ -130,129 +205,6 @@ Generic styles
   white-space: pre-wrap;
 }
 
-/* padding helpers */
-
-@mixin pad($size, $side) {
-  @if $size== '' {
-    @if $side== '' {
-      .pad {
-        padding: 10px !important;
-      }
-    } @else {
-      .pad {
-        padding-#{$side}: 10px !important;
-      }
-    }
-  } @else {
-    @if $side== '' {
-      .pad-#{$size} {
-        padding: #{$size}px !important;
-      }
-    } @else {
-      .pad-#{$side}-#{$size} {
-        padding-#{$side}: #{$size}px !important;
-      }
-    }
-  }
-}
-
-@include pad('', '');
-@include pad('2', '');
-@include pad('3', '');
-@include pad('5', '');
-@include pad('10', '');
-@include pad('20', '');
-@include pad('25', '');
-@include pad('30', '');
-@include pad('50', '');
-@include pad('75', '');
-@include pad('100', '');
-@include pad('4', 'top');
-@include pad('5', 'top');
-@include pad('10', 'top');
-@include pad('20', 'top');
-@include pad('25', 'top');
-@include pad('30', 'top');
-@include pad('50', 'top');
-@include pad('75', 'top');
-@include pad('100', 'top');
-@include pad('4', 'bottom');
-@include pad('5', 'bottom');
-@include pad('10', 'bottom');
-@include pad('20', 'bottom');
-@include pad('25', 'bottom');
-@include pad('30', 'bottom');
-@include pad('50', 'bottom');
-@include pad('75', 'bottom');
-@include pad('100', 'bottom');
-@include pad('5', 'right');
-@include pad('10', 'right');
-@include pad('20', 'right');
-@include pad('25', 'right');
-@include pad('30', 'right');
-@include pad('50', 'right');
-@include pad('75', 'right');
-@include pad('100', 'right');
-@include pad('5', 'left');
-@include pad('10', 'left');
-@include pad('20', 'left');
-@include pad('25', 'left');
-@include pad('30', 'left');
-@include pad('50', 'left');
-@include pad('75', 'left');
-@include pad('100', 'left');
-
-@mixin no-padding($side) {
-  @if $side== 'all' {
-    .no-padding {
-      padding: 0 !important;
-    }
-  } @else {
-    .no-padding-#{$side} {
-      padding-#{$side}: 0 !important;
-    }
-  }
-}
-
-@include no-padding('left');
-@include no-padding('right');
-@include no-padding('top');
-@include no-padding('bottom');
-@include no-padding('all');
-
-/* end of padding helpers */
-
-.no-margin {
-  margin: 0;
-}
-@mixin voffset($size) {
-  @if $size== '' {
-    .voffset {
-      margin-top: 2px !important;
-    }
-  } @else {
-    .voffset-#{$size} {
-      margin-top: #{$size}px !important;
-    }
-  }
-}
-
-@include voffset('');
-@include voffset('5');
-@include voffset('10');
-@include voffset('15');
-@include voffset('30');
-@include voffset('40');
-@include voffset('60');
-@include voffset('80');
-@include voffset('100');
-@include voffset('150');
-
-.readonly {
-  background-color: #eee;
-  opacity: 1;
-}
-
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
 ========================================================================== */
@@ -276,6 +228,11 @@ button.anchor-btn {
 
 a.anchor-btn:hover {
   text-decoration: none;
+}
+
+.readonly {
+  background-color: #eee;
+  opacity: 1;
 }
 
 /* ==========================================================================

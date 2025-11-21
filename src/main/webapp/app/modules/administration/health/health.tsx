@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Translate } from 'react-jhipster';
-import { Badge, Button, Col, Row, Table } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Badge } from 'app/shared/components';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getSystemHealth } from '../administration.reducer';
@@ -30,7 +30,7 @@ export const HealthPage = () => {
     setHealthObject({ ...healthObj, name });
   };
 
-  const getBadgeType = (status: string) => (status !== 'UP' ? 'danger' : 'success');
+  const getBadgeVariant = (status: string) => (status !== 'UP' ? 'danger' : 'success');
 
   const handleClose = () => setShowModal(false);
 
@@ -44,7 +44,7 @@ export const HealthPage = () => {
         <Translate contentKey="health.title">Health Checks</Translate>
       </h2>
       <p>
-        <Button onClick={fetchSystemHealth} color={isFetching ? 'btn btn-danger' : 'btn btn-primary'} disabled={isFetching}>
+        <Button onClick={fetchSystemHealth} variant={isFetching ? 'danger' : 'primary'} disabled={isFetching}>
           <FontAwesomeIcon icon="sync" />
           &nbsp;
           <Translate component="span" contentKey="health.refresh.button">
@@ -52,44 +52,49 @@ export const HealthPage = () => {
           </Translate>
         </Button>
       </p>
-      <Row>
-        <Col md="12">
-          <Table bordered aria-describedby="health-page-heading">
-            <thead>
-              <tr>
-                <th>
-                  <Translate contentKey="health.table.service">Service Name</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="health.table.status">Status</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="health.details.details">Details</Translate>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {Object.keys(data).map((configPropKey, configPropIndex) =>
-                configPropKey !== 'status' ? (
-                  <tr key={configPropIndex}>
-                    <td>{configPropKey}</td>
-                    <td>
-                      <Badge color={getBadgeType(data[configPropKey].status)}>{data[configPropKey].status}</Badge>
-                    </td>
-                    <td>
-                      {data[configPropKey].details ? (
-                        <a onClick={getSystemHealthInfo(configPropKey, data[configPropKey])}>
-                          <FontAwesomeIcon icon="eye" />
-                        </a>
-                      ) : null}
-                    </td>
-                  </tr>
-                ) : null,
-              )}
-            </tbody>
-          </Table>
-        </Col>
-      </Row>
+      <div>
+        <div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200 border border-gray-200" aria-describedby="health-page-heading">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <Translate contentKey="health.table.service">Service Name</Translate>
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <Translate contentKey="health.table.status">Status</Translate>
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <Translate contentKey="health.details.details">Details</Translate>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {Object.keys(data).map((configPropKey, configPropIndex) =>
+                  configPropKey !== 'status' ? (
+                    <tr key={configPropIndex}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">{configPropKey}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <Badge variant={getBadgeVariant(data[configPropKey].status)}>{data[configPropKey].status}</Badge>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        {data[configPropKey].details ? (
+                          <button
+                            onClick={getSystemHealthInfo(configPropKey, data[configPropKey])}
+                            className="text-blue-600 hover:text-blue-800"
+                          >
+                            <FontAwesomeIcon icon="eye" />
+                          </button>
+                        ) : null}
+                      </td>
+                    </tr>
+                  ) : null,
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
       {renderModal()}
     </div>
   );

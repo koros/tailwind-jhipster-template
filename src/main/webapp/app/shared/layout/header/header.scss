@@ -14,11 +14,11 @@ Development Ribbon
   -webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   top: 40px;
   white-space: nowrap;
   width: 15em;
-  z-index: 99999;
+  z-index: 9999;
   pointer-events: none;
   opacity: 0.75;
   a {

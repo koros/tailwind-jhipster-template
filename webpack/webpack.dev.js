@@ -5,6 +5,8 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const path = require('path');
 const sass = require('sass');
 const postcssRTLCSS = require('postcss-rtlcss');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
@@ -38,7 +40,7 @@ module.exports = async options =>
               loader: 'postcss-loader',
               options: {
                 postcssOptions: {
-                  plugins: [postcssRTLCSS()],
+                  plugins: [tailwindcss, postcssRTLCSS(), autoprefixer],
                 },
               },
             },

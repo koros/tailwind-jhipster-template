@@ -6,6 +6,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const sass = require('sass');
 const postcssRTLCSS = require('postcss-rtlcss');
+const tailwindcss = require('tailwindcss');
+const autoprefixer = require('autoprefixer');
 
 const utils = require('./utils.js');
 const commonConfig = require('./webpack.common.js');
@@ -43,7 +45,7 @@ module.exports = async () =>
               loader: 'postcss-loader',
               options: {
                 postcssOptions: {
-                  plugins: [postcssRTLCSS()],
+                  plugins: [tailwindcss, postcssRTLCSS(), autoprefixer],
                 },
               },
             },

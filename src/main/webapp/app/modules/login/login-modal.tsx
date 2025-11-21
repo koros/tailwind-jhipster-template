@@ -1,8 +1,8 @@
 import React from 'react';
 import { Translate, ValidatedField, translate } from 'react-jhipster';
-import { Alert, Button, Col, Form, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { type FieldError, useForm } from 'react-hook-form';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'app/shared/components';
 
 export interface ILoginModalProps {
   showModal: boolean;
@@ -30,22 +30,20 @@ const LoginModal = (props: ILoginModalProps) => {
 
   return (
     <Modal isOpen={props.showModal} toggle={handleClose} backdrop="static" id="login-page" autoFocus={false}>
-      <Form onSubmit={handleLoginSubmit}>
+      <form onSubmit={handleLoginSubmit}>
         <ModalHeader id="login-title" data-cy="loginTitle" toggle={handleClose}>
           <Translate contentKey="login.title">Sign in</Translate>
         </ModalHeader>
         <ModalBody>
-          <Row>
-            <Col md="12">
-              {loginError ? (
-                <Alert color="danger" data-cy="loginError">
-                  <Translate contentKey="login.messages.error.authentication">
-                    <strong>Failed to sign in!</strong> Please check your credentials and try again.
-                  </Translate>
-                </Alert>
-              ) : null}
-            </Col>
-            <Col md="12">
+          <div className="space-y-4">
+            {loginError ? (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-4" data-cy="loginError">
+                <Translate contentKey="login.messages.error.authentication">
+                  <strong>Failed to sign in!</strong> Please check your credentials and try again.
+                </Translate>
+              </div>
+            ) : null}
+            <div className="space-y-4">
               <ValidatedField
                 name="username"
                 label={translate('global.form.username.label')}
@@ -78,32 +76,33 @@ const LoginModal = (props: ILoginModalProps) => {
                 value={true}
                 register={register}
               />
-            </Col>
-          </Row>
-          <div className="mt-1">&nbsp;</div>
-          <Alert color="warning">
-            <Link to="/account/reset/request" data-cy="forgetYourPasswordSelector">
-              <Translate contentKey="login.password.forgot">Did you forget your password?</Translate>
-            </Link>
-          </Alert>
-          <Alert color="warning">
-            <span>
-              <Translate contentKey="global.messages.info.register.noaccount">You don&apos;t have an account yet?</Translate>
-            </span>{' '}
-            <Link to="/account/register">
-              <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
-            </Link>
-          </Alert>
+            </div>
+          </div>
+          <div className="mt-4 space-y-2">
+            <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+              <Link to="/account/reset/request" data-cy="forgetYourPasswordSelector" className="font-semibold underline">
+                <Translate contentKey="login.password.forgot">Did you forget your password?</Translate>
+              </Link>
+            </div>
+            <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+              <span>
+                <Translate contentKey="global.messages.info.register.noaccount">You don&apos;t have an account yet?</Translate>
+              </span>{' '}
+              <Link to="/account/register" className="font-semibold underline">
+                <Translate contentKey="global.messages.info.register.link">Register a new account</Translate>
+              </Link>
+            </div>
+          </div>
         </ModalBody>
         <ModalFooter>
-          <Button color="secondary" onClick={handleClose} tabIndex={1}>
+          <Button variant="secondary" onClick={handleClose} tabIndex={1}>
             <Translate contentKey="entity.action.cancel">Cancel</Translate>
           </Button>{' '}
-          <Button color="primary" type="submit" data-cy="submit">
+          <Button variant="primary" type="submit" data-cy="submit">
             <Translate contentKey="login.form.button">Sign in</Translate>
           </Button>
         </ModalFooter>
-      </Form>
+      </form>
     </Modal>
   );
 };

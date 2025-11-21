@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Button, Col, Row } from 'reactstrap';
 import {
   CacheMetrics,
   DatasourceMetrics,
@@ -12,6 +11,7 @@ import {
   Translate,
 } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from 'app/shared/components';
 
 import { APP_TIMESTAMP_FORMAT, APP_TWO_DIGITS_AFTER_POINT_NUMBER_FORMAT, APP_WHOLE_NUMBER_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -41,7 +41,7 @@ export const MetricsPage = () => {
         <Translate contentKey="metrics.title">Application Metrics</Translate>
       </h2>
       <p>
-        <Button onClick={getMetrics} color={isFetching ? 'btn btn-danger' : 'btn btn-primary'} disabled={isFetching}>
+        <Button onClick={getMetrics} variant={isFetching ? 'danger' : 'primary'} disabled={isFetching}>
           <FontAwesomeIcon icon="sync" />
           &nbsp;
           <Translate component="span" contentKey="health.refresh.button">
@@ -51,15 +51,19 @@ export const MetricsPage = () => {
       </p>
       <hr />
 
-      <Row>
-        <Col sm="12">
+      <div className="grid md:grid-cols-12 gap-4">
+        <div className="md:col-span-12">
           <h3>
             <Translate contentKey="metrics.jvm.title">JVM Metrics</Translate>
           </h3>
-          <Row>
-            <Col md="4">{metrics?.jvm ? <JvmMemory jvmMetrics={metrics.jvm} wholeNumberFormat={APP_WHOLE_NUMBER_FORMAT} /> : ''}</Col>
-            <Col md="4">{threadDump ? <JvmThreads jvmThreads={threadDump} wholeNumberFormat={APP_WHOLE_NUMBER_FORMAT} /> : ''}</Col>
-            <Col md="4">
+          <div className="grid md:grid-cols-12 gap-4">
+            <div className="md:col-span-4">
+              {metrics?.jvm ? <JvmMemory jvmMetrics={metrics.jvm} wholeNumberFormat={APP_WHOLE_NUMBER_FORMAT} /> : ''}
+            </div>
+            <div className="md:col-span-4">
+              {threadDump ? <JvmThreads jvmThreads={threadDump} wholeNumberFormat={APP_WHOLE_NUMBER_FORMAT} /> : ''}
+            </div>
+            <div className="md:col-span-4">
               {metrics?.processMetrics ? (
                 <SystemMetrics
                   systemMetrics={metrics.processMetrics}
@@ -69,10 +73,10 @@ export const MetricsPage = () => {
               ) : (
                 ''
               )}
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {metrics?.garbageCollector ? (
         <GarbageCollectorMetrics garbageCollectorMetrics={metrics.garbageCollector} wholeNumberFormat={APP_WHOLE_NUMBER_FORMAT} />
@@ -95,21 +99,21 @@ export const MetricsPage = () => {
       )}
 
       {metrics?.cache ? (
-        <Row>
-          <Col sm="12">
+        <div className="grid md:grid-cols-12 gap-4">
+          <div className="md:col-span-12">
             <CacheMetrics cacheMetrics={metrics.cache} twoDigitAfterPointFormat={APP_TWO_DIGITS_AFTER_POINT_NUMBER_FORMAT} />
-          </Col>
-        </Row>
+          </div>
+        </div>
       ) : (
         ''
       )}
 
       {metrics?.databases && JSON.stringify(metrics.databases) !== '{}' ? (
-        <Row>
-          <Col sm="12">
+        <div className="grid md:grid-cols-12 gap-4">
+          <div className="md:col-span-12">
             <DatasourceMetrics datasourceMetrics={metrics.databases} twoDigitAfterPointFormat={APP_TWO_DIGITS_AFTER_POINT_NUMBER_FORMAT} />
-          </Col>
-        </Row>
+          </div>
+        </div>
       ) : (
         ''
       )}
