@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Egy új Todo létrehozása",
+        "createOrEditLabel": "Hozzon létre, vagy módosítson Todot",
+        "notFound": "No Todos found"
+      },
+      "created": "Egy új Todo lett létrehozva {{ param }} azonosítóval",
+      "updated": "A Todo módosítva lett {{ param }} azonosítóval",
+      "deleted": "A Todo törölve lett {{ param }} azonosítóval",
+      "delete": {
+        "question": "Biztos benne, hogy törölni szeretné az Todot {{ id }} azonosítóval?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

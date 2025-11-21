@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Crear novo Todo",
+        "createOrEditLabel": "Crear ou editar Todo",
+        "notFound": "No Todos found"
+      },
+      "created": "Un novo Todo foi creado co identificador {{ param }}",
+      "updated": "Un Todo foi actualizado co identificador {{ param }}",
+      "deleted": "Un Todo foi eliminado co identificador {{ param }}",
+      "delete": {
+        "question": "Seguro que desexa eliminar Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

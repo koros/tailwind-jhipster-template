@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Skapa en ny Todo",
+        "createOrEditLabel": "Skapa eller ändra en Todo",
+        "notFound": "No Todos found"
+      },
+      "created": "En ny Todo är skapad med id {{ param }}",
+      "updated": "En Todo är uppdaterad med id  {{ param }}",
+      "deleted": "En Todo är borttagen med id  {{ param }}",
+      "delete": {
+        "question": "Är du säker på att du vill ta bort Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

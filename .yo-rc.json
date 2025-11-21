@@ -13,7 +13,7 @@
     "devDatabaseType": "h2Disk",
     "enableHibernateCache": false,
     "enableTranslation": true,
-    "entities": [],
+    "entities": ["Todo"],
     "feignClient": null,
     "jhipsterVersion": "8.11.0",
     "jwtSecretKey": "ZjY3N2ZkOTY3MGM1YWNjMTE4NThmYWViOTU3ZGE1ZWYwNWI1NDQ3ZTczNWNhMDE2YjMzZjJjMDA0OWQ1Y2E2MDRjMzYxZDU0OGI2Y2VjMzM5NTE0OTcyNDJiYTIwZGFjZmE3ZjI3ODM5YzM1ZjdiNTc5MjI2YTFjODI5MDliNjM=",
@@ -70,6 +70,7 @@
       "vi",
       "kr-Latn-kr"
     ],
+    "lastLiquibaseTimestamp": 1762891485000,
     "microfrontend": null,
     "microfrontends": [],
     "nativeLanguage": "en",

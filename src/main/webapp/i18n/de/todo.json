@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Liste aktualisieren",
+        "createLabel": "Todo erstellen",
+        "createOrEditLabel": "Todo erstellen oder bearbeiten",
+        "notFound": "Keine Todos gefunden"
+      },
+      "created": "Todo erstellt mit ID {{ param }}",
+      "updated": "Todo aktualisiert mit ID {{ param }}",
+      "deleted": "Todo gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Todo {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

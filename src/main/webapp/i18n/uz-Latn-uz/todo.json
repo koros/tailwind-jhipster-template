@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Yangi Todo qo`shish",
+        "createOrEditLabel": "Todoni tahrirlash",
+        "notFound": "No Todos found"
+      },
+      "created": "Todo {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Todo saqlandi",
+      "deleted": "{{ param }}- Todo o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Todoni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

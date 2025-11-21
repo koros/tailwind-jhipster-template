@@ -1,0 +1,19 @@
+// Enums
+enum TodoStatus { PENDING, IN_PROGRESS, DONE }
+enum Priority   { LOW, MEDIUM, HIGH }
+
+// Entity
+entity Todo {
+  title        String required minlength(1) maxlength(140)
+  description  TextBlob
+  status       TodoStatus required
+  priority     Priority required
+  dueDate      Instant
+  completed    Boolean required
+}
+
+// Options (backend & frontend scaffolding)
+dto       Todo with mapstruct
+service   Todo with serviceClass
+paginate  Todo with pagination
+filter    Todo

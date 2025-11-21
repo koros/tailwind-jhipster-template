@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "רענן רשימה",
+        "createLabel": "צור חדש Todo",
+        "createOrEditLabel": "צור או ערוך Todo",
+        "notFound": "לא נמצאו Todos"
+      },
+      "created": "Todo חדש נוצר עם מזהה {{ param }}",
+      "updated": "Todo עודכן עם מזהה {{ param }}",
+      "deleted": "Todo נמחק עם מזהה {{ param }}",
+      "delete": {
+        "question": "האם אתה בטוח שברצונך למחוק את Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

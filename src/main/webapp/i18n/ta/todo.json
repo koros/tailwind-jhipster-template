@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Todo-ஐ உருவாக்கு",
+        "createOrEditLabel": "Todo -ஐ மாற்று (அ) உருவாக்கு",
+        "notFound": "No Todos found"
+      },
+      "created": "Todo புதிதாக உருவாக்கப்பட்டது, அடையாளம் {{ param }}",
+      "updated": "Todo மாற்றப்பட்டது, அடையாளம்  {{ param }}",
+      "deleted": "A Todo நீக்கப்பட்டது, அடையாளம {{ param }}",
+      "delete": {
+        "question": "நீக்குவதற்கு உறுதி செய் Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

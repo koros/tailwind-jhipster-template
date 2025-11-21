@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Creeare o nouă entitate Todo",
+        "createOrEditLabel": "Creeare sau editare Todo",
+        "notFound": "No Todos found"
+      },
+      "created": "A fost creată o nouă entitate Todo cu identificatorul {{ param }}",
+      "updated": "Todo cu identificatorul {{ param }} a fost actualizată",
+      "deleted": "Todo cu identificatorul {{ param }} a fost ștearsă",
+      "delete": {
+        "question": "Sunteți sigur că doriți să ștergeți Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

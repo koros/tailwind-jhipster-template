@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "สร้าง Todo",
+        "createOrEditLabel": "สร้างหรือแก้ไข Todo",
+        "notFound": "No Todos found"
+      },
+      "created": "Todo ถูกสร้างด้วย {{ param }}",
+      "updated": "Todo ถูกแก้ไขด้วย {{ param }}",
+      "deleted": "Todo ถูกลบด้วย {{ param }}",
+      "delete": {
+        "question": "คุณต้องการที่จะลบ Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Todo बनाएँ",
+        "createOrEditLabel": "Todo बनाएँ या संपादित करें",
+        "notFound": "No Todos found"
+      },
+      "created": "एक नया Todo [identifier: {{ param }}] तैयार है",
+      "updated": "एक Todo [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Todo [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Todo [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

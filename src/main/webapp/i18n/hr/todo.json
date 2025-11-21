@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Kreirati Todo",
+        "createOrEditLabel": "Kreirati ili urediti Todo",
+        "notFound": "Nije nađeno Todos"
+      },
+      "created": "Kreiran je Todo sa identifikatorom {{ param }}",
+      "updated": "Ažuriran je Todo sa identifikatorom {{ param }}",
+      "deleted": "Obrisan je Todo sa identifikatorom {{ param }}",
+      "delete": {
+        "question": "Da li ste sigurni da želite obrisati Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

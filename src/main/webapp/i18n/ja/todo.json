@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "リストの更新",
+        "createLabel": "Todo の作成",
+        "createOrEditLabel": "Todoの作成または編集",
+        "notFound": "Todos が見つかりません。"
+      },
+      "created": "新しい Todo がID {{ param }} で作成されました。",
+      "updated": "ID {{ param }} の Todo が更新されました。",
+      "deleted": "ID {{ param }} の Todo が削除されました。",
+      "delete": {
+        "question": "Todo {{ id }}を削除してもよろしいですか？"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

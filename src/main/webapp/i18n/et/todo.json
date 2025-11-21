@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Värskenda nimekirja",
+        "createLabel": "Lisa uus Todo",
+        "createOrEditLabel": "Lisa või muuda Todo",
+        "notFound": "Ei leitud ühtegi Todos"
+      },
+      "created": "Uus Todo on loodud identifikaatoriga {{ param }}",
+      "updated": "Todo identifikaatoriga {{ param }} on muudetud",
+      "deleted": "Todo identifikaatoriga {{ param }} on kustutatud",
+      "delete": {
+        "question": "Kas olete kindel, et soovite kustutada Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

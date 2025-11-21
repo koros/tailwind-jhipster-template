@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Pridať Todo",
+        "createOrEditLabel": "Pridať alebo upraviť Todo",
+        "notFound": "No Todos found"
+      },
+      "created": "Bol vytvorený potomok entity Todo s identifikátorom {{ param }}",
+      "updated": "Potomok entity Todo s identifikátorom {{ param }} bol upravený.",
+      "deleted": "Potomok entity Todo s identifikátorom {{ param }} bol vymazaný.",
+      "delete": {
+        "question": "Ste si istý, že chcete vymazať Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

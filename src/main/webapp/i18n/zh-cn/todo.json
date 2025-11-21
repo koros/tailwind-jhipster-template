@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Todo",
+        "createOrEditLabel": "创建或编辑 Todo",
+        "notFound": "No Todos found"
+      },
+      "created": "Todo {{ param }} 创建成功",
+      "updated": "Todo {{ param }} 更新成功",
+      "deleted": "Todo {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Todo {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

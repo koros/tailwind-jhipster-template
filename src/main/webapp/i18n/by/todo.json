@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Стварыць новы Todo",
+        "createOrEditLabel": "Стварыць або адрэдагаваць Todo",
+        "notFound": "No Todos found"
+      },
+      "created": "Новы Todo створан з ідэнтыфікатарам {{ param }}",
+      "updated": "Todo абноўлен з ідэнтыфікатарам {{ param }}",
+      "deleted": "Todo выдален з ідэнтыфікатарам {{ param }}",
+      "delete": {
+        "question": "Вы ўпэўнены, што жадаеце выдаліць Todo {{ id }}?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}

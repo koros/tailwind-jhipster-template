@@ -1,0 +1,29 @@
+{
+  "myTailwindJhipsterApp": {
+    "todo": {
+      "home": {
+        "title": "Todos",
+        "refreshListLabel": "Siyahını yenilə",
+        "createLabel": "Yeni Todo əlavə et",
+        "createOrEditLabel": "Yeni Todo əlavə et və ya yenilə",
+        "notFound": "Todos məlumatı tapılmadı"
+      },
+      "created": "{{ param }} ID ilə bir Todo əlavə edildi",
+      "updated": "{{ param }} nolu Todo dəyişildi",
+      "deleted": "{{ param }} nolu Todo silindi",
+      "delete": {
+        "question": "{{ id }} nolu Todo silinəcək. Davam etmək istəyirsiniz?"
+      },
+      "detail": {
+        "title": "Todo"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "status": "Status",
+      "priority": "Priority",
+      "dueDate": "Due Date",
+      "completed": "Completed"
+    }
+  }
+}
