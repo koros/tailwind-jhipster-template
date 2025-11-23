@@ -18,7 +18,13 @@ export const Login = () => {
     setShowModal(true);
   }, []);
 
-  const handleLogin = (username, password, rememberMe = false) => dispatch(login(username, password, rememberMe));
+  interface LoginCredentials {
+    username: string;
+    password: string;
+    rememberMe: boolean;
+  }
+
+  const handleLogin = (username: string, password: string, rememberMe: boolean = false) => dispatch(login(username, password, rememberMe));
 
   const handleClose = () => {
     setShowModal(false);

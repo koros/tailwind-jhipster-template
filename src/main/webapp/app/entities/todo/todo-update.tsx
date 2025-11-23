@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Translate, ValidatedField, ValidatedForm, translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { TodoStatus } from 'app/shared/model/enumerations/todo-status.model';
 import { Priority } from 'app/shared/model/enumerations/priority.model';
 import { createEntity, getEntity, reset, updateEntity } from './todo.reducer';
+import { toast } from 'react-toastify';
 
 export const TodoUpdate = () => {
   const dispatch = useAppDispatch();
@@ -23,6 +24,7 @@ export const TodoUpdate = () => {
   const loading = useAppSelector(state => state.todo.loading);
   const updating = useAppSelector(state => state.todo.updating);
   const updateSuccess = useAppSelector(state => state.todo.updateSuccess);
+  const errorMessage = useAppSelector(state => state.todo.errorMessage);
   const todoStatusValues = Object.keys(TodoStatus);
   const priorityValues = Object.keys(Priority);
 
@@ -38,11 +40,38 @@ export const TodoUpdate = () => {
     }
   }, []);
 
+  const pendingToastId = useRef<string | number | null>(null);
+
   useEffect(() => {
     if (updateSuccess) {
+      if (pendingToastId.current) {
+        toast.update(pendingToastId.current, {
+          render: isNew ? 'Todo created successfully' : 'Todo updated successfully',
+          type: 'success',
+          isLoading: false,
+          autoClose: 3000,
+        });
+        pendingToastId.current = null;
+      } else {
+        toast.success(isNew ? 'Todo created successfully' : 'Todo updated successfully');
+      }
       handleClose();
     }
   }, [updateSuccess]);
+
+  useEffect(() => {
+    if (errorMessage && pendingToastId.current) {
+      toast.update(pendingToastId.current, {
+        render: errorMessage,
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+      });
+      pendingToastId.current = null;
+    } else if (errorMessage) {
+      toast.error(errorMessage);
+    }
+  }, [errorMessage]);
 
   const saveEntity = values => {
     if (values.id !== undefined && typeof values.id !== 'number') {
@@ -55,6 +84,8 @@ export const TodoUpdate = () => {
       ...values,
     };
 
+    // Optimistic toast: show saving immediately
+    pendingToastId.current = toast.loading(isNew ? 'Creating todo...' : 'Updating todo...');
     if (isNew) {
       dispatch(createEntity(entity));
     } else {
