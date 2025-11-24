@@ -20,7 +20,6 @@ export const HealthPage = () => {
 
   useEffect(() => {
     performFetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const performFetch = () => {
@@ -127,12 +126,12 @@ export const HealthPage = () => {
                 <tr key={configPropIndex}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">{configPropKey}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <Badge variant={getBadgeVariant((data as any)[configPropKey].status)}>{(data as any)[configPropKey].status}</Badge>
+                    <Badge variant={getBadgeVariant(data[configPropKey].status)}>{data[configPropKey].status}</Badge>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    {(data as any)[configPropKey].details ? (
+                    {data[configPropKey].details ? (
                       <button
-                        onClick={getSystemHealthInfo(configPropKey, (data as any)[configPropKey])}
+                        onClick={getSystemHealthInfo(configPropKey, data[configPropKey])}
                         className="text-blue-600 hover:text-blue-800"
                         aria-label={`View details for ${configPropKey}`}
                       >
