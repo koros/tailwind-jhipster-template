@@ -10,6 +10,7 @@ import userRoutes from './routes/user.routes';
 import todoRoutes from './routes/todo.routes';
 import { errorHandler } from './middleware/error.middleware';
 import { openApiSpec } from './config/openapi.config';
+import { AppDataSource } from './config/database';
 
 const app: Application = express();
 
@@ -37,9 +38,50 @@ if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('combined'));
 }
 
-// Health check endpoint
-app.get('/management/health', (req, res) => {
-  res.json({ status: 'UP' });
+// Health check endpoint with basic process and DB metrics
+app.get('/management/health', async (req, res) => {
+  const mem = process.memoryUsage();
+  const toMb = (b: number) => Math.round((b / (1024 * 1024)) * 10) / 10;
+
+  const components: any = {
+    process: {
+      status: 'UP',
+      details: {
+        pid: process.pid,
+        nodeVersion: process.version,
+        uptimeMs: Math.round(process.uptime() * 1000),
+        rssMb: toMb(mem.rss),
+        heapUsedMb: toMb(mem.heapUsed),
+        heapTotalMb: toMb(mem.heapTotal),
+        externalMb: toMb(mem.external || 0),
+        arrayBuffersMb: toMb((mem as any).arrayBuffers || 0),
+      },
+    },
+  };
+
+  // Optional DB ping if TypeORM is initialized
+  let dbStatus: 'UP' | 'DOWN' | 'UNKNOWN' = 'UNKNOWN';
+  try {
+    const initialized = AppDataSource?.isInitialized;
+    const start = Date.now();
+    if (initialized) {
+      await AppDataSource.query('SELECT 1');
+      const pingMs = Date.now() - start;
+      dbStatus = 'UP';
+      components.db = { status: 'UP', details: { initialized, pingMs } };
+    } else {
+      dbStatus = 'DOWN';
+      components.db = { status: 'DOWN', details: { initialized: false, error: 'DataSource not initialized' } };
+    }
+  } catch (e: any) {
+    dbStatus = 'DOWN';
+    components.db = { status: 'DOWN', details: { error: e?.message || 'DB ping failed' } };
+  }
+
+  const statuses = Object.values(components).map((c: any) => c.status);
+  const overall = statuses.every(s => s === 'UP') ? 'UP' : 'DOWN';
+
+  res.json({ status: overall, components });
 });
 
 app.get('/management/info', (req, res) => {
