@@ -9,17 +9,8 @@ const adminMenuItems = () => (
     <MenuItem icon="users" to="/admin/user-management">
       <Translate contentKey="global.menu.admin.userManagement">User management</Translate>
     </MenuItem>
-    <MenuItem icon="tachometer-alt" to="/admin/metrics">
-      <Translate contentKey="global.menu.admin.metrics">Metrics</Translate>
-    </MenuItem>
     <MenuItem icon="heart" to="/admin/health">
       <Translate contentKey="global.menu.admin.health">Health</Translate>
-    </MenuItem>
-    <MenuItem icon="cogs" to="/admin/configuration">
-      <Translate contentKey="global.menu.admin.configuration">Configuration</Translate>
-    </MenuItem>
-    <MenuItem icon="tasks" to="/admin/logs">
-      <Translate contentKey="global.menu.admin.logs">Logs</Translate>
     </MenuItem>
     {/* jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here */}
   </>
@@ -31,25 +22,10 @@ const openAPIItem = () => (
   </MenuItem>
 );
 
-const databaseItem = () => (
-  <li>
-    <a
-      href="./h2-console/"
-      target="_tab"
-      className="flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors"
-    >
-      <FontAwesomeIcon icon="database" fixedWidth />
-      <Translate contentKey="global.menu.admin.database">Database</Translate>
-    </a>
-  </li>
-);
-
-export const AdminMenu = ({ showOpenAPI, showDatabase }) => (
+export const AdminMenu = ({ showOpenAPI }) => (
   <NavDropdown icon="users-cog" name={translate('global.menu.admin.main')} id="admin-menu" data-cy="adminMenu">
     {adminMenuItems()}
     {showOpenAPI && openAPIItem()}
-
-    {showDatabase && databaseItem()}
   </NavDropdown>
 );
 

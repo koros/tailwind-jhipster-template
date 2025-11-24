@@ -182,6 +182,31 @@ Add the `help` flag on any command to see how you can use it. For example, `./np
 
 The `./npmw run` command will list all the scripts available to run for this project.
 
+### Administration Menu (Customized)
+
+This Node.js adaptation removes Java/Spring-specific administration features that relied on endpoints not implemented in this backend.
+
+Active administration items:
+
+- User Management – manage users and authorities
+- Health – system health check via `/management/health`
+- API – embedded Swagger UI via `/admin/docs`
+
+Removed legacy items (Spring Boot specific):
+
+- Metrics (Spring Actuator metrics)
+- Configuration (Spring environment/config props)
+- Logs (dynamic log level management)
+- Database (H2 console)
+
+Potential future equivalents:
+
+- Process metrics (Node memory, uptime)
+- Sanitized environment inspection
+- Dynamic logger level controls
+
+Currently only actively supported features are shown to keep the UI clean.
+
 ### PWA Support
 
 JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
