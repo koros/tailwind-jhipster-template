@@ -60,6 +60,23 @@ app.get('/v3/api-docs', (req, res) => {
   res.json(openApiSpec);
 });
 
+// OpenAPI documentation endpoint with group parameter
+app.get('/v3/api-docs/:group', (req, res) => {
+  // For now, return the same spec regardless of group
+  // In the future, you could have different specs for different groups
+  res.json(openApiSpec);
+});
+
+// JHipster OpenAPI groups endpoint for Swagger UI
+app.get('/management/jhiopenapigroups', (req, res) => {
+  res.json([
+    {
+      group: 'default',
+      description: 'default',
+    },
+  ]);
+});
+
 // API routes
 app.use('/api', authRoutes);
 app.use('/api', accountRoutes);
