@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button, Badge } from 'app/shared/components';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getSystemHealth } from '../administration.reducer';
@@ -19,6 +20,7 @@ export const HealthPage = () => {
 
   const health = useAppSelector(state => state.administration.health);
   const isFetching = useAppSelector(state => state.administration.loading);
+  const prevStatusRef = useRef<string | null>(null);
 
   useEffect(() => {
     performFetch();
@@ -43,6 +45,36 @@ export const HealthPage = () => {
     // Intentionally not including performFetch in deps to avoid resetting timer each fetch
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshInterval, isFetching]);
+
+  // Notify on status changes (degraded/recovered)
+  useEffect(() => {
+    const current = health?.status;
+    const prev = prevStatusRef.current;
+    if (current) {
+      if (prev && current !== prev) {
+        if (current !== 'UP') {
+          toast.error(
+            // i18n note: Using English strings for now; can be replaced with <Translate> if we move to a banner
+            `Health degraded: overall status is ${current}`,
+          );
+        } else {
+          toast.success('Health recovered: overall status is UP');
+        }
+      }
+      prevStatusRef.current = current;
+    }
+  }, [health?.status]);
+
+  // Re-fetch when tab gains visibility
+  useEffect(() => {
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible' && !isFetching) {
+        performFetch();
+      }
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => document.removeEventListener('visibilitychange', onVisibility);
+  }, [isFetching]);
 
   const performFetch = () => {
     const start = performance.now();

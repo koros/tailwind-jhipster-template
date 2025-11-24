@@ -11,6 +11,10 @@
       "15s": "15s",
       "60s": "60s"
     },
+    "notify": {
+      "down": "Health degraded: overall status is {{status}}",
+      "recovered": "Health recovered: overall status is UP"
+    },
     "stacktrace": "Stacktrace",
     "details": {
       "details": "Details",
