@@ -2,6 +2,9 @@
   "health": {
     "title": "Health Checks",
     "refresh.button": "Refresh",
+    "overall": "Overall Status",
+    "lastUpdated": "Last Updated",
+    "never": "Not yet fetched",
     "stacktrace": "Stacktrace",
     "details": {
       "details": "Details",
@@ -9,6 +12,10 @@
       "name": "Name",
       "value": "Value",
       "error": "Error"
+    },
+    "empty": {
+      "message": "No component breakdown available for this runtime.",
+      "hint": "Add extended health details in the backend to populate this table."
     },
     "indicator": {
       "diskSpace": "Disk space",
