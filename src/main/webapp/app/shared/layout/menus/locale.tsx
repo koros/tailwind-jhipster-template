@@ -7,7 +7,7 @@ export const LocaleMenu = ({ currentLocale, onClick }: { currentLocale: string; 
     <NavDropdown
       icon="language"
       name={currentLocale ? `${languages[currentLocale]?.flag || ''} ${currentLocale.toUpperCase()}` : undefined}
-      style={{ maxHeight: '80vh', overflowY: 'auto' }}
+      style={{ maxHeight: '90vh', overflowY: 'auto' }}
     >
       {locales.map(locale => (
         <li key={locale}>
