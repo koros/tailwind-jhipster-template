@@ -1,17 +1,29 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const NavDropdown = props => {
   const [isOpen, setIsOpen] = useState(false);
   const iconOnly = !props.name;
+  const containerRef = useRef<HTMLLIElement>(null);
 
   return (
-    <li className="relative" id={props.id} data-cy={props['data-cy']}>
+    <li
+      ref={containerRef}
+      className="relative"
+      id={props.id}
+      data-cy={props['data-cy']}
+      tabIndex={-1}
+      onBlur={e => {
+        const next = e.relatedTarget as Node | null;
+        if (!next || !e.currentTarget.contains(next)) {
+          setIsOpen(false);
+        }
+      }}
+    >
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        onBlur={() => setTimeout(() => setIsOpen(false), 200)}
         aria-label={props.ariaLabel || props.name}
         className={
           iconOnly
@@ -26,6 +38,12 @@ export const NavDropdown = props => {
         <ul
           className="absolute right-0 mt-2 bg-white rounded-md shadow-xl border border-gray-200 py-1 z-50 min-w-[200px]"
           style={props.style}
+          onClick={e => {
+            const btn = (e.target as HTMLElement).closest('button[data-close-dropdown="true"]');
+            if (btn) {
+              setIsOpen(false);
+            }
+          }}
         >
           {props.children}
         </ul>
