@@ -4,11 +4,17 @@ This application was generated using JHipster 8.11.0, you can find documentation
 
 ## Project Structure
 
+This application uses a Node.js/Express backend with TypeORM instead of the traditional Java/Spring Boot backend.
+
 Node is required for generation and recommended for development. `package.json` is always generated for a better development experience with prettier, commit hooks, scripts and so on.
 
 In the project root, JHipster generates configuration files for tools like git, prettier, eslint, husky, and others that are well known and you can find references in the web.
 
-`/src/*` structure follows default Java structure.
+**Directory Structure:**
+
+- `/src/main/webapp` - React frontend application
+- `/src/main/server` - Node.js/Express backend with TypeORM
+- `/src/main/docker` - Docker configurations for the application and services
 
 - `.yo-rc.json` - Yeoman configuration file
   JHipster configuration is stored in this file at `generator-jhipster` key. You may find `generator-jhipster-*` for specific blueprints configuration.
@@ -22,23 +28,85 @@ In the project root, JHipster generates configuration files for tools like git, 
 
 ## Development
 
-The build system will install automatically the recommended version of Node and npm.
+### Prerequisites
 
-We provide a wrapper to launch npm.
-You will only need to run this command when dependencies change in [package.json](package.json).
+- Node.js >= 22.15.0
+- npm
+- PostgreSQL database
 
+### Setup
+
+1. Install dependencies for both frontend and backend:
+
+```bash
+npm install
+cd src/main/server && npm install
 ```
-./npmw install
+
+2. Set up your database connection in `src/main/server/.env`:
+
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+JWT_SECRET=your-secret-key
+JWT_REFRESH_SECRET=your-refresh-secret-key
 ```
 
-We use npm scripts and [Webpack][] as our build system.
+3. Run database migrations:
 
-Run the following commands in two separate terminals to create a blissful development experience where your browser
-auto-refreshes when files change on your hard drive.
-
+```bash
+npm run migration:run
 ```
-./mvnw
-./npmw start
+
+### Running the Application
+
+Run the following commands to start the development servers:
+
+```bash
+# Terminal 1 - Start the Node.js backend (port 8080)
+npm run server:dev
+
+# Terminal 2 - Start the React frontend (port 9000)
+npm start
+```
+
+The application will be available at `http://localhost:9000`
+
+### Available Commands
+
+**Backend (Node.js/Express) - Run from root:**
+
+```bash
+npm run server:build          # Build TypeScript
+npm run server:dev            # Start development server with hot reload
+npm run server:start          # Start production server
+npm run server:seed           # Seed database with initial data
+npm run server:lint           # Run ESLint on backend code
+
+# Database migrations
+npm run migration:generate    # Generate migration from entity changes
+npm run migration:create      # Create empty migration file
+npm run migration:run         # Run pending migrations
+npm run migration:revert      # Rollback last migration
+npm run migration:show        # Show migration status
+```
+
+**Frontend (React) - Run from root:**
+
+```bash
+npm start                     # Start development server
+npm run build                 # Build for production
+npm run lint                  # Run ESLint
+npm run lint:fix              # Fix ESLint errors
+npm test                      # Run tests
+npm run prettier:format       # Format code
+```
+
+**Legacy commands (still available):**
+
+```bash
+npm run backend:start         # Same as server:dev
+npm run backend:build         # Same as server:build
+npm run backend:seed          # Same as server:seed
 ```
 
 ### Tailwind CSS Migration

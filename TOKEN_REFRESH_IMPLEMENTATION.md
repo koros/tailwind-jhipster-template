@@ -8,8 +8,8 @@ Successfully implemented automatic JWT token refresh mechanism and proper TypeOR
 
 ### 1. Database Migrations Setup
 
-- **Created** `server/src/config/migration-data-source.ts` - Separate DataSource for migrations CLI
-- **Updated** `server/src/config/database.ts`:
+- **Created** `src/main/server/src/config/migration-data-source.ts` - Separate DataSource for migrations CLI
+- **Updated** `src/main/server/src/config/database.ts`:
   - Disabled `synchronize` (was dangerous in production)
   - Enabled `migrationsRun: true` for automatic migration execution
   - Pointed to compiled migrations in `dist/migrations/**/*.js`
@@ -23,29 +23,29 @@ Successfully implemented automatic JWT token refresh mechanism and proper TypeOR
 
 ### 2. JWT Token Refresh System
 
-**Configuration** (`server/src/config/jwt.ts`):
+**Configuration** (`src/main/server/src/config/jwt.ts`):
 
 - Access token: 15 minutes (down from 24 hours)
 - Refresh token: 7 days (new)
 - Separate secrets for access and refresh tokens
 
-**Database** (`server/src/entities/User.ts`):
+**Database** (`src/main/server/src/entities/User.ts`):
 
 - Added `refreshToken` field (text, nullable) to store active refresh tokens
 
-**Auth Service** (`server/src/services/auth.service.ts`):
+**Auth Service** (`src/main/server/src/services/auth.service.ts`):
 
 - `login()` now returns both `id_token` and `refresh_token`
 - New `refreshAccessToken()` method validates refresh token and issues new access token
 - New `logout()` method invalidates refresh token in database
 - Refresh tokens are validated against database (prevents token reuse after logout)
 
-**Auth Controller** (`server/src/controllers/auth.controller.ts`):
+**Auth Controller** (`src/main/server/src/controllers/auth.controller.ts`):
 
 - Added `refreshToken` endpoint handler
 - Added `logout` endpoint handler
 
-**Routes** (`server/src/routes/auth.routes.ts`):
+**Routes** (`src/main/server/src/routes/auth.routes.ts`):
 
 - `POST /api/refresh-token` - Exchange refresh token for new access token
 - `POST /api/logout` - Invalidate refresh token
@@ -200,21 +200,21 @@ npx typeorm-ts-node-commonjs migration:create src/migrations/MigrationName
 
 ## Files Modified
 
-- server/src/config/database.ts
-- server/src/config/jwt.ts
-- server/src/entities/User.ts
-- server/src/services/auth.service.ts
-- server/src/controllers/auth.controller.ts
-- server/src/routes/auth.routes.ts
-- server/package.json
+- src/main/server/src/config/database.ts
+- src/main/server/src/config/jwt.ts
+- src/main/server/src/entities/User.ts
+- src/main/server/src/services/auth.service.ts
+- src/main/server/src/controllers/auth.controller.ts
+- src/main/server/src/routes/auth.routes.ts
+- src/main/server/package.json
 - src/main/webapp/app/config/axios-interceptor.ts
 - src/main/webapp/app/shared/reducers/authentication.ts
 
 ## Files Created
 
-- server/src/config/migration-data-source.ts
-- server/src/migrations/1763987331984-InitialSchema.ts
-- server/src/migrations/ (directory)
+- src/main/server/src/config/migration-data-source.ts
+- src/main/server/src/migrations/1763987331984-InitialSchema.ts
+- src/main/server/src/migrations/ (directory)
 
 ## Next Steps (Optional Enhancements)
 

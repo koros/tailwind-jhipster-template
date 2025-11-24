@@ -207,7 +207,7 @@ The React frontend at http://localhost:9000 remains **100% unchanged** and will 
 
 ### Production Preparation
 
-1. Build TypeScript: `cd server && npm run build`
+1. Build TypeScript: `cd src/main/server && npm run build`
 2. Set `NODE_ENV=production` in .env
 3. Use strong JWT_SECRET (generate with `openssl rand -base64 32`)
 4. Set `DATABASE_URL` to production PostgreSQL
