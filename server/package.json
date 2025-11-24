@@ -7,9 +7,14 @@
     "build": "tsc",
     "dev": "tsx watch src/index.ts",
     "lint": "eslint src --ext .ts",
+    "migration:create": "npm run typeorm -- migration:create",
+    "migration:generate": "npm run typeorm -- migration:generate",
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "migration:run": "npm run typeorm -- migration:run",
+    "migration:show": "npm run typeorm -- migration:show",
     "seed": "tsx src/scripts/seed.ts",
     "start": "node dist/index.js",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs -d src/config/migration-data-source.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -35,6 +40,7 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^20.11.25",
     "eslint": "^9.0.0",
+    "ts-node": "^10.9.2",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },

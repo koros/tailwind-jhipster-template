@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import authService from '../services/auth.service';
+import { AuthRequest } from '../middleware/auth.middleware';
 
 export class AuthController {
   async login(req: Request, res: Response, next: NextFunction) {
@@ -14,6 +15,32 @@ export class AuthController {
       // Set token in Authorization header for JHipster frontend
       res.setHeader('Authorization', `Bearer ${result.id_token}`);
       res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async refreshToken(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { refresh_token } = req.body;
+
+      if (!refresh_token) {
+        return res.status(400).json({ message: 'Refresh token required' });
+      }
+
+      const result = await authService.refreshAccessToken(refresh_token);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async logout(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      if (req.user) {
+        await authService.logout(req.user.id);
+      }
+      res.status(204).send();
     } catch (error) {
       next(error);
     }

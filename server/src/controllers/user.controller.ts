@@ -29,7 +29,10 @@ export class UserController {
 
   async createUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const user = await userService.createUser(req.body);
+      // Remove empty string values that should be null or undefined
+      const sanitizedBody = Object.fromEntries(Object.entries(req.body).filter(([_, value]) => value !== ''));
+
+      const user = await userService.createUser(sanitizedBody as any);
       res.status(201).json(user);
     } catch (error) {
       next(error);
@@ -45,7 +48,10 @@ export class UserController {
         throw new Error('User login is required');
       }
 
-      const user = await userService.updateUser(login, req.body);
+      // Remove empty string values that should be null or undefined
+      const sanitizedBody = Object.fromEntries(Object.entries(req.body).filter(([_, value]) => value !== ''));
+
+      const user = await userService.updateUser(login, sanitizedBody as any);
       res.json(user);
     } catch (error) {
       next(error);

@@ -8,7 +8,8 @@ import { AppError } from '../middleware/error.middleware';
 const userRepository = AppDataSource.getRepository(User);
 
 const formatUser = (user: User) => {
-  const { password, ...userWithoutPassword } = user;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { password: _password, ...userWithoutPassword } = user;
   return {
     ...userWithoutPassword,
     authorities: typeof user.authorities === 'string' ? user.authorities.split(',').filter(a => a.trim()) : user.authorities,
@@ -103,9 +104,9 @@ export class AccountController {
     }
   }
 
-  async requestPasswordReset(req: Request, res: Response, next: NextFunction) {
+  requestPasswordReset = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { email } = req.body;
+      const { email } = req.body as unknown as { email: string };
 
       if (!email) {
         return res.status(400).json({ message: 'Email required' });
@@ -117,11 +118,11 @@ export class AccountController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 
-  async finishPasswordReset(req: Request, res: Response, next: NextFunction) {
+  finishPasswordReset = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { key, newPassword } = req.body;
+      const { key, newPassword } = req.body as unknown as { key: string; newPassword: string };
 
       if (!key || !newPassword) {
         return res.status(400).json({ message: 'Reset key and new password required' });
@@ -156,7 +157,7 @@ export class AccountController {
     } catch (error) {
       next(error);
     }
-  }
+  };
 }
 
 export default new AccountController();

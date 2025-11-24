@@ -6,9 +6,10 @@ import { Todo } from '../entities/Todo';
 export const AppDataSource = new DataSource({
   type: 'postgres',
   url: process.env.DATABASE_URL,
-  synchronize: process.env.NODE_ENV === 'development',
+  synchronize: false, // Disabled - use migrations instead
   logging: process.env.NODE_ENV === 'development',
   entities: [User, Todo],
-  migrations: [],
+  migrations: ['dist/migrations/**/*.js'],
   subscribers: [],
+  migrationsRun: true, // Auto-run pending migrations on startup
 });

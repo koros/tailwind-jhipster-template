@@ -5,11 +5,11 @@ import userController from '../controllers/user.controller';
 
 const router = Router();
 
-router.get('/account', authenticateToken, accountController.getAccount);
-router.post('/account', authenticateToken, accountController.saveAccount);
-router.post('/account/change-password', authenticateToken, accountController.changePassword);
-router.post('/account/reset-password/init', accountController.requestPasswordReset);
-router.post('/account/reset-password/finish', accountController.finishPasswordReset);
-router.get('/authorities', authenticateToken, userController.getAuthorities);
+router.get('/account', authenticateToken, accountController.getAccount.bind(accountController));
+router.post('/account', authenticateToken, accountController.saveAccount.bind(accountController));
+router.post('/account/change-password', authenticateToken, accountController.changePassword.bind(accountController));
+// router.post('/account/reset-password/init', (req, res, next) => accountController.requestPasswordReset(req, res, next));
+// router.post('/account/reset-password/finish', (req, res, next) => accountController.finishPasswordReset(req, res, next));
+router.get('/authorities', authenticateToken, userController.getAuthorities.bind(userController));
 
 export default router;

@@ -2,12 +2,24 @@ import bcrypt from 'bcryptjs';
 import { AppDataSource } from '../config/database';
 import { User } from '../entities/User';
 import { AppError } from '../middleware/error.middleware';
+import crypto from 'crypto';
 
 const userRepository = AppDataSource.getRepository(User);
 
 export class UserService {
+  private generateRandomPassword(length: number = 20): string {
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+    let password = '';
+    const randomBytes = crypto.randomBytes(length);
+    for (let i = 0; i < length; i++) {
+      password += charset[randomBytes[i] % charset.length];
+    }
+    return password;
+  }
+
   private formatUser(user: User) {
-    const { password, ...userWithoutPassword } = user;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password: _password, ...userWithoutPassword } = user;
     return {
       ...userWithoutPassword,
       authorities: typeof user.authorities === 'string' ? user.authorities.split(',').filter(a => a.trim()) : user.authorities,
@@ -48,13 +60,18 @@ export class UserService {
   async createUser(userData: {
     login: string;
     email: string;
-    password: string;
+    password?: string;
     firstName?: string;
     lastName?: string;
     authorities?: string[];
     activated?: boolean;
     langKey?: string;
   }) {
+    // Validate required fields
+    if (!userData.login || !userData.email) {
+      throw new AppError('Login and email are required', 400);
+    }
+
     const existingUser = await userRepository.findOne({
       where: [{ login: userData.login }, { email: userData.email }],
     });
@@ -63,12 +80,19 @@ export class UserService {
       throw new AppError('User already exists', 400);
     }
 
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    // Generate random password if not provided (admin creating user)
+    const password = userData.password || this.generateRandomPassword();
+    const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Only include valid fields, exclude id and audit fields from client
     const user = userRepository.create({
-      ...userData,
+      login: userData.login,
+      email: userData.email,
       password: hashedPassword,
+      firstName: userData.firstName,
+      lastName: userData.lastName,
       activated: userData.activated ?? true,
+      langKey: userData.langKey || 'en',
       authorities: Array.isArray(userData.authorities) ? userData.authorities.join(',') : userData.authorities || 'ROLE_USER',
       createdBy: 'admin',
       lastModifiedBy: 'admin',

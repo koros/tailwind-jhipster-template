@@ -49,7 +49,7 @@ export class TodoController {
   async deleteTodo(req: Request, res: Response, next: NextFunction) {
     try {
       const id = parseInt(req.params.id);
-      const result = await todoService.deleteTodo(id);
+      await todoService.deleteTodo(id);
       res.status(204).send();
     } catch (error) {
       next(error);

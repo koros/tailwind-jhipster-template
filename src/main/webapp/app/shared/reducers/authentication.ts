@@ -7,6 +7,7 @@ import { setLocale } from 'app/shared/reducers/locale';
 import { serializeAxiosError } from './reducer.utils';
 
 const AUTH_TOKEN_KEY = 'jhi-authenticationToken';
+const REFRESH_TOKEN_KEY = 'jhi-refreshToken';
 
 export const initialState = {
   loading: false,
@@ -67,6 +68,15 @@ export const login: (username: string, password: string, rememberMe?: boolean) =
         Storage.session.set(AUTH_TOKEN_KEY, jwt);
       }
     }
+    // Store refresh token from response body
+    const refreshToken = response?.data?.refresh_token;
+    if (refreshToken) {
+      if (rememberMe) {
+        Storage.local.set(REFRESH_TOKEN_KEY, refreshToken);
+      } else {
+        Storage.session.set(REFRESH_TOKEN_KEY, refreshToken);
+      }
+    }
     dispatch(getSession());
   };
 
@@ -76,6 +86,12 @@ export const clearAuthToken = () => {
   }
   if (Storage.session.get(AUTH_TOKEN_KEY)) {
     Storage.session.remove(AUTH_TOKEN_KEY);
+  }
+  if (Storage.local.get(REFRESH_TOKEN_KEY)) {
+    Storage.local.remove(REFRESH_TOKEN_KEY);
+  }
+  if (Storage.session.get(REFRESH_TOKEN_KEY)) {
+    Storage.session.remove(REFRESH_TOKEN_KEY);
   }
 };
 
