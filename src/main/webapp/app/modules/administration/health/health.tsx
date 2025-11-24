@@ -42,8 +42,6 @@ export const HealthPage = () => {
       return () => window.clearInterval(id);
     }
     return undefined;
-    // Intentionally not including performFetch in deps to avoid resetting timer each fetch
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refreshInterval, isFetching]);
 
   // Notify on status changes (degraded/recovered)
