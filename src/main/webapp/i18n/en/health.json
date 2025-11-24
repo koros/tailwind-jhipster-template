@@ -5,6 +5,12 @@
     "overall": "Overall Status",
     "lastUpdated": "Last Updated",
     "never": "Not yet fetched",
+    "autoRefresh": "Auto-refresh",
+    "interval": {
+      "off": "Off",
+      "15s": "15s",
+      "60s": "60s"
+    },
     "stacktrace": "Stacktrace",
     "details": {
       "details": "Details",

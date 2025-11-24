@@ -13,6 +13,8 @@ export const HealthPage = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [fetchDuration, setFetchDuration] = useState<number | null>(null);
   const [announce, setAnnounce] = useState('');
+  const [refreshInterval, setRefreshInterval] = useState<number>(0);
+  const [intervalId, setIntervalId] = useState<number | null>(null);
   const dispatch = useAppDispatch();
 
   const health = useAppSelector(state => state.administration.health);
@@ -21,6 +23,26 @@ export const HealthPage = () => {
   useEffect(() => {
     performFetch();
   }, []);
+
+  // Auto-refresh handler
+  useEffect(() => {
+    if (intervalId) {
+      window.clearInterval(intervalId);
+      setIntervalId(null);
+    }
+    if (refreshInterval > 0) {
+      const id = window.setInterval(() => {
+        if (!isFetching) {
+          performFetch();
+        }
+      }, refreshInterval);
+      setIntervalId(id);
+      return () => window.clearInterval(id);
+    }
+    return undefined;
+    // Intentionally not including performFetch in deps to avoid resetting timer each fetch
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refreshInterval, isFetching]);
 
   const performFetch = () => {
     const start = performance.now();
@@ -100,6 +122,27 @@ export const HealthPage = () => {
             <Translate contentKey="health.refresh.button">Refresh</Translate>
           </span>
         </Button>
+        <div className="ml-3 flex items-center text-sm">
+          <label htmlFor="auto-refresh" className="mr-2">
+            <Translate contentKey="health.autoRefresh">Auto-refresh</Translate>
+          </label>
+          <select
+            id="auto-refresh"
+            className="border border-gray-300 rounded px-2 py-1 bg-white text-gray-800"
+            value={refreshInterval}
+            onChange={e => setRefreshInterval(Number(e.target.value))}
+          >
+            <option value={0}>
+              <Translate contentKey="health.interval.off">Off</Translate>
+            </option>
+            <option value={15000}>
+              <Translate contentKey="health.interval.15s">15s</Translate>
+            </option>
+            <option value={60000}>
+              <Translate contentKey="health.interval.60s">60s</Translate>
+            </option>
+          </select>
+        </div>
       </div>
       <div className="sr-only" aria-live="polite">
         {announce}

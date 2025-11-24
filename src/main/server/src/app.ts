@@ -68,7 +68,20 @@ app.get('/management/health', async (req, res) => {
       await AppDataSource.query('SELECT 1');
       const pingMs = Date.now() - start;
       dbStatus = 'UP';
-      components.db = { status: 'UP', details: { initialized, pingMs } };
+      let host: string | undefined;
+      let port: number | string | undefined;
+      let database: string | undefined;
+      const type: string | undefined = (AppDataSource.options as any)?.type;
+      const url: string | undefined = (AppDataSource.options as any)?.url;
+      try {
+        if (url) {
+          const u = new URL(url);
+          host = u.hostname;
+          port = u.port;
+          database = u.pathname?.replace(/^\//, '') || undefined;
+        }
+      } catch {}
+      components.db = { status: 'UP', details: { initialized, pingMs, type, host, port, database } };
     } else {
       dbStatus = 'DOWN';
       components.db = { status: 'DOWN', details: { initialized: false, error: 'DataSource not initialized' } };
