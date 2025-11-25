@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -29,6 +30,8 @@ app.use(
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Cookie parsing (for refresh token HttpOnly cookie)
+app.use(cookieParser());
 
 // Compression middleware
 app.use(compression());

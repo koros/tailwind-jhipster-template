@@ -12,9 +12,22 @@ export class AuthController {
       }
 
       const result = await authService.login(username, password, rememberMe);
-      // Set token in Authorization header for JHipster frontend
+
+      // HttpOnly refresh token cookie
+      const maxAgeMs = result.refresh_expires_in * 1000;
+      res.cookie('refreshToken', result.refresh_token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        path: '/api',
+        maxAge: maxAgeMs,
+      });
+
+      // Set access token in Authorization header for frontend
       res.setHeader('Authorization', `Bearer ${result.id_token}`);
-      res.json(result);
+
+      // Return only access token (omit refresh token from body)
+      res.json({ id_token: result.id_token });
     } catch (error) {
       next(error);
     }
@@ -22,14 +35,22 @@ export class AuthController {
 
   async refreshToken(req: Request, res: Response, next: NextFunction) {
     try {
-      const { refresh_token } = req.body;
-
-      if (!refresh_token) {
-        return res.status(400).json({ message: 'Refresh token required' });
+      const cookieToken = req.cookies?.refreshToken;
+      if (!cookieToken) {
+        return res.status(401).json({ message: 'Refresh token cookie missing' });
       }
-
-      const result = await authService.refreshAccessToken(refresh_token);
-      res.json(result);
+      const result = await authService.refreshAccessToken(cookieToken);
+      // Rotate cookie
+      const maxAgeMs = result.refresh_expires_in * 1000;
+      res.cookie('refreshToken', result.refresh_token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+        path: '/api',
+        maxAge: maxAgeMs,
+      });
+      res.setHeader('Authorization', `Bearer ${result.id_token}`);
+      res.json({ id_token: result.id_token });
     } catch (error) {
       next(error);
     }
@@ -40,6 +61,8 @@ export class AuthController {
       if (req.user) {
         await authService.logout(req.user.id);
       }
+      // Clear refresh token cookie
+      res.clearCookie('refreshToken', { path: '/api' });
       res.status(204).send();
     } catch (error) {
       next(error);

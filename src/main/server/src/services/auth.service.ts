@@ -35,26 +35,29 @@ export class AuthService {
       { expiresIn: jwtConfig.expiresIn },
     );
 
-    // Generate refresh token (long-lived)
+    // Generate refresh token (long-lived) and hash for storage
     const refreshTokenExpiresIn = rememberMe ? jwtConfig.refreshExpiresIn * 4 : jwtConfig.refreshExpiresIn;
     const refreshToken = jwt.sign(
       {
         id: user.id,
         sub: user.login,
         type: 'refresh',
+        rememberMe: !!rememberMe,
       },
       jwtConfig.refreshSecret,
       { expiresIn: refreshTokenExpiresIn },
     );
 
-    // Store refresh token in database
-    user.refreshToken = refreshToken;
+    // Hash refresh token before persisting (avoid plaintext storage)
+    const hashedRefresh = await bcrypt.hash(refreshToken, 10);
+    user.refreshToken = hashedRefresh;
     await userRepository.save(user);
 
     return {
       id_token: accessToken,
-      refresh_token: refreshToken,
-    };
+      refresh_token: refreshToken, // controller will move to HttpOnly cookie & strip from JSON
+      refresh_expires_in: refreshTokenExpiresIn,
+    } as const;
   }
 
   async refreshAccessToken(refreshToken: string) {
@@ -66,12 +69,17 @@ export class AuthService {
         throw new AppError('Invalid token type', 401);
       }
 
-      // Find user and verify refresh token matches stored one
+      // Find user and verify refresh token matches stored (hashed)
       const user = await userRepository.findOne({
         where: { id: decoded.id },
       });
 
-      if (!user || user.refreshToken !== refreshToken) {
+      if (!user || !user.refreshToken) {
+        throw new AppError('Invalid refresh token', 401);
+      }
+
+      const matches = await bcrypt.compare(refreshToken, user.refreshToken);
+      if (!matches) {
         throw new AppError('Invalid refresh token', 401);
       }
 
@@ -90,7 +98,22 @@ export class AuthService {
         { expiresIn: jwtConfig.expiresIn },
       );
 
-      return { id_token: accessToken };
+      // Rotate refresh token
+      const refreshTokenExpiresIn = decoded.rememberMe ? jwtConfig.refreshExpiresIn * 4 : jwtConfig.refreshExpiresIn;
+      const newRefreshToken = jwt.sign(
+        {
+          id: user.id,
+          sub: user.login,
+          type: 'refresh',
+          rememberMe: decoded.rememberMe,
+        },
+        jwtConfig.refreshSecret,
+        { expiresIn: refreshTokenExpiresIn },
+      );
+      user.refreshToken = await bcrypt.hash(newRefreshToken, 10);
+      await userRepository.save(user);
+
+      return { id_token: accessToken, refresh_token: newRefreshToken, refresh_expires_in: refreshTokenExpiresIn } as const;
     } catch (error) {
       if (error instanceof jwt.JsonWebTokenError) {
         throw new AppError('Invalid or expired refresh token', 401);
