@@ -35,8 +35,21 @@ const setupAxiosInterceptors = onUnauthenticated => {
     const status = err.status || (err.response ? err.response.status : 0);
     const originalRequest = err.config as InternalAxiosRequestConfig & { _retry?: boolean };
 
-    // If 401 and not already retrying and not the refresh endpoint itself
-    if (status === 401 && !originalRequest._retry && !originalRequest.url?.includes('/refresh-token')) {
+    // Debug logging
+    if ((status === 401 || status === 403) && process.env.NODE_ENV === 'development') {
+      console.warn(`[Auth Interceptor] ${status} detected:`, {
+        url: originalRequest?.url,
+        isRetry: originalRequest?._retry,
+        isRefreshEndpoint: originalRequest?.url?.includes('/refresh-token'),
+        errorMessage: (err.response?.data as any)?.message,
+      });
+    }
+
+    // Check if error is due to invalid/expired token (401 or 403 with token error message)
+    const isTokenError = status === 401 || (status === 403 && (err.response?.data as any)?.message?.toLowerCase().includes('token'));
+
+    // If token error and not already retrying and not the refresh endpoint itself
+    if (isTokenError && !originalRequest._retry && !originalRequest.url?.includes('/refresh-token')) {
       if (isRefreshing) {
         // Queue the request
         return new Promise((resolve, reject) => {
@@ -59,15 +72,32 @@ const setupAxiosInterceptors = onUnauthenticated => {
 
       const refreshToken = Storage.local.get('jhi-refreshToken') || Storage.session.get('jhi-refreshToken');
 
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('[Auth Interceptor] Attempting token refresh:', {
+          hasRefreshToken: !!refreshToken,
+          isRefreshing,
+        });
+      }
+
       if (!refreshToken) {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('[Auth Interceptor] No refresh token found, redirecting to login');
+        }
         isRefreshing = false;
         onUnauthenticated();
         return Promise.reject(err);
       }
 
       try {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('[Auth Interceptor] Calling /api/refresh-token');
+        }
         const response = await axios.post('/api/refresh-token', { refresh_token: refreshToken });
         const { id_token } = response.data;
+
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('[Auth Interceptor] Token refresh successful');
+        }
 
         // Store new access token
         const storage = Storage.local.get('jhi-refreshToken') ? Storage.local : Storage.session;
@@ -87,6 +117,7 @@ const setupAxiosInterceptors = onUnauthenticated => {
         // Retry original request
         return axios(originalRequest);
       } catch (refreshError) {
+        console.error('[Auth Interceptor] Token refresh failed:', refreshError);
         processQueue(refreshError);
         isRefreshing = false;
 

@@ -39,8 +39,8 @@ export const NavDropdown = props => {
           className="absolute right-0 mt-2 bg-white rounded-md shadow-xl border border-gray-200 py-1 z-50 min-w-[200px]"
           style={props.style}
           onClick={e => {
-            const btn = (e.target as HTMLElement).closest('button[data-close-dropdown="true"]');
-            if (btn) {
+            const target = (e.target as HTMLElement).closest('[data-close-dropdown="true"]');
+            if (target) {
               setIsOpen(false);
             }
           }}
