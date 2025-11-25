@@ -207,6 +207,36 @@ Potential future equivalents:
 
 Currently only actively supported features are shown to keep the UI clean.
 
+### Authentication (Cookie-based Refresh Tokens)
+
+The application now uses a short-lived JWT access token (stored in memory / session/local storage depending on "Remember me") and a long-lived refresh token stored exclusively in an HttpOnly, SameSite=Strict cookie.
+
+Key points:
+
+- Login (`POST /api/authenticate`) sets `refreshToken` HttpOnly cookie and returns only `id_token` in the JSON + `Authorization: Bearer` header.
+- Refresh (`POST /api/refresh-token`) requires no body; the cookie is sent automatically (`axios.defaults.withCredentials = true`). It rotates both the access and refresh tokens and re-sets the cookie.
+- Logout (`POST /api/logout`) clears the cookie and invalidates the hashed refresh token server-side.
+- Refresh tokens are hashed (bcrypt) before persistence; the database never stores plaintext refresh tokens.
+- Frontend removed all storage of refresh tokens (legacy keys are cleaned up). Multi-tab sessions now remain valid because the cookie is shared across tabs; only the access token is duplicated per tab.
+
+Security improvements vs previous implementation:
+
+1. Eliminates exposure of refresh token to JavaScript (mitigates XSS exfiltration risk).
+2. Rotates refresh token on every use, shrinking replay window.
+3. Strict cookie attributes: `HttpOnly`, `SameSite=Strict`, and `Secure` in production reduce CSRF and network interception risks.
+
+Operational notes:
+
+- If the refresh cookie is missing or invalid the interceptor triggers logout.
+- Remember-me extends refresh token lifetime (4x) exactly as before but via cookie max-age.
+- To invalidate all sessions for a user, clear the hashed refresh token column (`refreshToken`) in `jhi_user` or call logout while authenticated.
+
+Future hardening options (not yet implemented):
+
+- Maintain a refresh token version / rotation counter to instantly revoke older tokens.
+- Add IP / UA binding metadata to detect anomalous refresh attempts.
+- Implement sliding session expiry (shorten max lifetime after inactivity).
+
 ### PWA Support
 
 JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
