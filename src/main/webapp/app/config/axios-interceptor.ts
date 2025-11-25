@@ -4,6 +4,7 @@ import { Storage } from 'react-jhipster';
 const TIMEOUT = 1 * 60 * 1000;
 axios.defaults.timeout = TIMEOUT;
 axios.defaults.baseURL = SERVER_API_URL;
+axios.defaults.withCredentials = true; // send HttpOnly refresh cookie
 
 let isRefreshing = false;
 let failedQueue: Array<{ resolve: (value?: any) => void; reject: (reason?: any) => void }> = [];
@@ -70,29 +71,12 @@ const setupAxiosInterceptors = onUnauthenticated => {
       originalRequest._retry = true;
       isRefreshing = true;
 
-      const refreshToken = Storage.local.get('jhi-refreshToken') || Storage.session.get('jhi-refreshToken');
-
-      if (process.env.NODE_ENV === 'development') {
-        console.warn('[Auth Interceptor] Attempting token refresh:', {
-          hasRefreshToken: !!refreshToken,
-          isRefreshing,
-        });
-      }
-
-      if (!refreshToken) {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn('[Auth Interceptor] No refresh token found, redirecting to login');
-        }
-        isRefreshing = false;
-        onUnauthenticated();
-        return Promise.reject(err);
-      }
-
       try {
         if (process.env.NODE_ENV === 'development') {
           console.warn('[Auth Interceptor] Calling /api/refresh-token');
         }
-        const response = await axios.post('/api/refresh-token', { refresh_token: refreshToken });
+        // No body required; cookie carries refresh token
+        const response = await axios.post('/api/refresh-token');
         const { id_token } = response.data;
 
         if (process.env.NODE_ENV === 'development') {
@@ -100,7 +84,7 @@ const setupAxiosInterceptors = onUnauthenticated => {
         }
 
         // Store new access token
-        const storage = Storage.local.get('jhi-refreshToken') ? Storage.local : Storage.session;
+        const storage = Storage.local.get('jhi-authenticationToken') ? Storage.local : Storage.session;
         storage.set('jhi-authenticationToken', id_token);
 
         // Update axios default header

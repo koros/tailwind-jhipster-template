@@ -7,7 +7,8 @@ import { setLocale } from 'app/shared/reducers/locale';
 import { serializeAxiosError } from './reducer.utils';
 
 const AUTH_TOKEN_KEY = 'jhi-authenticationToken';
-const REFRESH_TOKEN_KEY = 'jhi-refreshToken';
+// Refresh token now stored as HttpOnly cookie; no longer kept in web storage
+const REFRESH_TOKEN_KEY = 'jhi-refreshToken'; // retained for cleanup of legacy entries
 
 export const initialState = {
   loading: false,
@@ -68,15 +69,7 @@ export const login: (username: string, password: string, rememberMe?: boolean) =
         Storage.session.set(AUTH_TOKEN_KEY, jwt);
       }
     }
-    // Store refresh token from response body
-    const refreshToken = response?.data?.refresh_token;
-    if (refreshToken) {
-      if (rememberMe) {
-        Storage.local.set(REFRESH_TOKEN_KEY, refreshToken);
-      } else {
-        Storage.session.set(REFRESH_TOKEN_KEY, refreshToken);
-      }
-    }
+    // No longer store refresh token (now sent via HttpOnly cookie by server)
     dispatch(getSession());
   };
 
@@ -95,7 +88,12 @@ export const clearAuthToken = () => {
   }
 };
 
-export const logout: () => AppThunk = () => dispatch => {
+export const logout: () => AppThunk = () => async dispatch => {
+  try {
+    await axios.post('api/logout'); // server clears cookie & invalidates refresh token
+  } catch {
+    // ignore errors during logout
+  }
   clearAuthToken();
   dispatch(logoutSession());
 };
