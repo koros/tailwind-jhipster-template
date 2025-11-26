@@ -19,7 +19,7 @@ module.exports = async () =>
     // devtool: 'source-map', // Enable source maps. Please note that this will slow down the build
     mode: ENV,
     entry: {
-      main: './src/main/webapp/app/index',
+      main: './client/app/index',
     },
     output: {
       path: utils.root('target/classes/static/'),

@@ -17,7 +17,7 @@ export default tseslint.config(
   },
   { ignores: ['src/main/docker/'] },
   { ignores: ['target/classes/static/', 'target/'] },
-  { ignores: ['src/main/server/dist/', 'src/main/server/node_modules/', '**/node_modules/'] },
+  { ignores: ['server/dist/', 'server/node_modules/', '**/node_modules/'] },
   eslint.configs.recommended,
   {
     files: ['**/*.{js,cjs,mjs}'],
@@ -26,7 +26,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['src/main/webapp/**/*.{ts,tsx}'],
+    files: ['client/**/*.{ts,tsx}'],
     extends: [...tseslint.configs.recommendedTypeChecked, react],
     settings: {
       react: {
@@ -89,7 +89,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['src/main/webapp/**/*.spec.ts'],
+    files: ['client/**/*.spec.ts'],
     rules: {
       '@typescript-eslint/no-empty-function': 'off',
     },
