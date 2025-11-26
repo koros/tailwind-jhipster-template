@@ -6,6 +6,15 @@ axios.defaults.timeout = TIMEOUT;
 axios.defaults.baseURL = SERVER_API_URL;
 axios.defaults.withCredentials = true; // send HttpOnly refresh cookie
 
+// Cross-tab token synchronization via BroadcastChannel
+function createAuthChannel(): BroadcastChannel | null {
+  if (typeof window === 'undefined' || !('BroadcastChannel' in window)) {
+    return null;
+  }
+  return new BroadcastChannel('auth');
+}
+const authChannel = createAuthChannel();
+
 let isRefreshing = false;
 let failedQueue: Array<{ resolve: (value?: any) => void; reject: (reason?: any) => void }> = [];
 
@@ -87,6 +96,9 @@ const setupAxiosInterceptors = onUnauthenticated => {
         const storage = Storage.local.get('jhi-authenticationToken') ? Storage.local : Storage.session;
         storage.set('jhi-authenticationToken', id_token);
 
+        // Broadcast to other tabs
+        authChannel?.postMessage({ type: 'token', token: id_token });
+
         // Update axios default header
         axios.defaults.headers.common.Authorization = `Bearer ${id_token}`;
 
@@ -124,6 +136,19 @@ const setupAxiosInterceptors = onUnauthenticated => {
 
   axios.interceptors.request.use(onRequestSuccess);
   axios.interceptors.response.use(onResponseSuccess, onResponseError);
+
+  // Listen for cross-tab events
+  authChannel?.addEventListener('message', ev => {
+    const data = ev.data;
+    if (data?.type === 'token' && typeof data.token === 'string') {
+      const storage = Storage.local.get('jhi-authenticationToken') ? Storage.local : Storage.session;
+      storage.set('jhi-authenticationToken', data.token);
+      axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+    } else if (data?.type === 'logout') {
+      Storage.local.remove('jhi-authenticationToken');
+      Storage.session.remove('jhi-authenticationToken');
+    }
+  });
 };
 
 export default setupAxiosInterceptors;

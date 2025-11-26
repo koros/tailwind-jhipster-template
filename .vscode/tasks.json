@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "lint-and-start",
+      "type": "shell",
+      "command": "npm run lint && npm start",
+      "args": [],
+      "isBackground": false,
+      "problemMatcher": ["$eslint - stylish"],
+      "group": "build"
+    },
+    {
+      "label": "lint-and-start-2",
+      "type": "shell",
+      "command": "npm run lint && npm start",
+      "args": [],
+      "isBackground": false,
+      "problemMatcher": ["$eslint - stylish"],
+      "group": "build"
+    },
+    {
+      "label": "lint-and-start-3",
+      "type": "shell",
+      "command": "npm run lint && npm start",
+      "args": [],
+      "isBackground": false,
+      "problemMatcher": ["$eslint - stylish"],
+      "group": "build"
+    }
+  ]
+}

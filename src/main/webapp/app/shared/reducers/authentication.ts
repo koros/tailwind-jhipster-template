@@ -28,6 +28,20 @@ export type AuthenticationState = Readonly<typeof initialState>;
 // Actions
 
 export const getSession = (): AppThunk => async (dispatch, getState) => {
+  // Attempt silent refresh if no access token is present but refresh cookie may exist
+  let token = Storage.local.get('jhi-authenticationToken') || Storage.session.get('jhi-authenticationToken');
+  if (!token) {
+    try {
+      const resp = await axios.post('api/refresh-token');
+      const { id_token } = resp.data;
+      // Always use localStorage for persistent sessions (refresh cookie implies rememberMe)
+      Storage.local.set('jhi-authenticationToken', id_token);
+      axios.defaults.headers.common.Authorization = `Bearer ${id_token}`;
+      token = id_token;
+    } catch (e) {
+      // ignore; user may not be logged in yet
+    }
+  }
   await dispatch(getAccount());
 
   const { account } = getState().authentication;
@@ -96,6 +110,12 @@ export const logout: () => AppThunk = () => async dispatch => {
   }
   clearAuthToken();
   dispatch(logoutSession());
+  // Broadcast logout to other tabs
+  if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
+    const channel = new BroadcastChannel('auth');
+    channel.postMessage({ type: 'logout' });
+    channel.close();
+  }
 };
 
 export const clearAuthentication = messageKey => dispatch => {
