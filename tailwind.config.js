@@ -1,6 +1,6 @@
 /** Tailwind configuration */
 module.exports = {
-  content: ['./src/main/webapp/**/*.{html,ts,tsx}'],
+  content: ['./client/**/*.{html,ts,tsx}'],
   theme: {
     extend: {
       colors: {
