@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "الحساب",
+        "dashboard": "لوحة القيادة",
         "settings": "الإعدادات",
         "password": "كلمه السر",
         "sessions": "جلسات",

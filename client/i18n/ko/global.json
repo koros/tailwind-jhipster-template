@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "계정",
+        "dashboard": "대시보드",
         "settings": "설정",
         "password": "비밀번호",
         "sessions": "세션",

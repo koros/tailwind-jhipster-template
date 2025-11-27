@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Профіль",
+        "dashboard": "Панэль",
         "settings": "Налады",
         "password": "Пароль",
         "sessions": "Сесіі",

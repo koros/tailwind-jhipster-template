@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Профіль",
+        "dashboard": "Панель керування",
         "settings": "Налаштування",
         "password": "Пароль",
         "sessions": "Сесії",

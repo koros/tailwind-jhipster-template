@@ -12,7 +12,8 @@
       },
       "account": {
         "main": "ගිණුම",
-        "settings": "සැකසුම්",
+        "dashboard": "ඩෑෂ්බෝඩ්",
+        "settings": "සැකසීම්",
         "password": "මුරපදය",
         "sessions": "සැසිවාර",
         "login": "පුරන්න",

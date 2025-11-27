@@ -12,7 +12,8 @@
       },
       "account": {
         "main": "ਖਾਤਾ",
-        "settings": "ਸੈਟਿੰਗਜ਼",
+        "dashboard": "ਡੈਸ਼ਬੋਰਡ",
+        "settings": "ਸੈਟਿੰਗਾਂ",
         "password": "ਪਾਸਵਰਡ",
         "sessions": "ਸੈਸ਼ਨ",
         "login": "ਸਾਈਨ ਇਨ",

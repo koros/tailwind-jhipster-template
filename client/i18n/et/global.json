@@ -12,7 +12,8 @@
       },
       "account": {
         "main": "Konto",
-        "settings": "Sätted",
+        "dashboard": "Dashboard",
+        "settings": "Seaded",
         "password": "Salasõna",
         "sessions": "Sessioonid",
         "login": "Logi sisse",

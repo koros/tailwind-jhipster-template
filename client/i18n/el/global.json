@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Λογαριασμός",
+        "dashboard": "Dashboard",
         "settings": "Ρυθμίσεις",
         "password": "Κωδικός",
         "sessions": "Συνδέσεις",

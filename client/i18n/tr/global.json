@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Hesap",
+        "dashboard": "Kontrol Paneli",
         "settings": "Ayarlar",
         "password": "Şifre",
         "sessions": "Oturumlar",

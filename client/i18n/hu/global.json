@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Hozzáférés",
+        "dashboard": "Dashboard",
         "settings": "Beállítások",
         "password": "Jelszó",
         "sessions": "Munkamenetek",

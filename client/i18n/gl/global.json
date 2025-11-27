@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Conta",
+        "dashboard": "Dashboard",
         "settings": "Axustes",
         "password": "Contrasinal",
         "sessions": "Sesións",

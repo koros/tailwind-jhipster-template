@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Profil",
+        "dashboard": "Kontrolna tabla",
         "settings": "Podešavanja",
         "password": "Lozinka",
         "sessions": "Sesije",

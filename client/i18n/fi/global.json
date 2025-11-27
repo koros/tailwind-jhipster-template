@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Tili",
+        "dashboard": "Dashboard",
         "settings": "Asetukset",
         "password": "Salasanat",
         "sessions": "Sessiot",

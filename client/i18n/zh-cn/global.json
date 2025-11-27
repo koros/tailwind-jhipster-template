@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "账号",
+        "dashboard": "仪表板",
         "settings": "设置",
         "password": "密码",
         "sessions": "会话",

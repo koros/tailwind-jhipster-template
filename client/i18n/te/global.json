@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "ఖాతా",
+        "dashboard": "డాష్‌బోర్డ్",
         "settings": "అమరికలు",
         "password": "రహస్య సంకేత పదం",
         "sessions": "సెషన్స్",

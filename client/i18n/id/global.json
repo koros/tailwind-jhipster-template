@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Akun",
+        "dashboard": "Dasbor",
         "settings": "Pengaturan",
         "password": "Password",
         "sessions": "Sesi",

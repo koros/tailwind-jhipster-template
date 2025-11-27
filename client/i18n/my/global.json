@@ -11,7 +11,8 @@
         "todo": "Todo"
       },
       "account": {
-        "main": "အကောင့်",
+        "main": "အကောင့်",
+        "dashboard": "ဒက်ရှ်ဘုတ်",
         "settings": "Setting များ",
         "password": "လျှို့ဝှက်ကုဒ်",
         "sessions": "Session များ",

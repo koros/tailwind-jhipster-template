@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Հաշիվ",
+        "dashboard": "Dashboard",
         "settings": "Կարգավորումներ",
         "password": "Գաղտնաբառ",
         "sessions": "Միացումներ",

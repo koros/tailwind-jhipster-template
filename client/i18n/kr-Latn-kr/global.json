@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Profil",
+        "dashboard": "Dashboard",
         "settings": "Sazlamalar",
         "password": "Parol",
         "sessions": "Sessiyalar",

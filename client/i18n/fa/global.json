@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "حساب",
+        "dashboard": "داشبورد",
         "settings": "تنظیمات",
         "password": "رمزعبور",
         "sessions": "نشست ها",

@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Profil",
+        "dashboard": "Boshqaruv paneli",
         "settings": "Sozlamalar",
         "password": "Parol",
         "sessions": "Sessiyalar",

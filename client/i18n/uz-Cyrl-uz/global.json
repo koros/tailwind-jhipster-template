@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Профил",
+        "dashboard": "Бошқарув панели",
         "settings": "Созламалар",
         "password": "Парол",
         "sessions": "Сессиялар",

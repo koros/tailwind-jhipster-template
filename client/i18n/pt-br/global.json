@@ -12,7 +12,8 @@
       },
       "account": {
         "main": "Conta",
-        "settings": "Configuração",
+        "dashboard": "Dashboard",
+        "settings": "Configurações",
         "password": "Senha",
         "sessions": "Sessões",
         "login": "Entrar",

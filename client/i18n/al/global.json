@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Konto",
+        "dashboard": "Dashboard",
         "settings": "Mjedisi",
         "password": "Fjalëkalimi",
         "sessions": "Seancat",

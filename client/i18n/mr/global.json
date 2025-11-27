@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "खाते",
+        "dashboard": "डॅशबोर्ड",
         "settings": "सेटिंग्ज",
         "password": "पासवर्ड",
         "sessions": "सत्र",

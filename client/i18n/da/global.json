@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Konto",
+        "dashboard": "Dashboard",
         "settings": "Indstillinger",
         "password": "Kodeord",
         "sessions": "Sessions",

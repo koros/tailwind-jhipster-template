@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Účet",
+        "dashboard": "Přehled",
         "settings": "Nastavení",
         "password": "Heslo",
         "sessions": "Sezení",

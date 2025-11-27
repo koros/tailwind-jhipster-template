@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Konto",
+        "dashboard": "Dashboard",
         "settings": "Inställningar",
         "password": "Lösenord",
         "sessions": "Sessioner",

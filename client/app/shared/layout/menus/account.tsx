@@ -5,6 +5,9 @@ import { NavDropdown } from './menu-components';
 
 const accountMenuItemsAuthenticated = () => (
   <>
+    <MenuItem icon="tachometer-alt" to="/dashboard" data-cy="dashboard">
+      <Translate contentKey="global.menu.account.dashboard">Dashboard</Translate>
+    </MenuItem>
     <MenuItem icon="gear" to="/account/settings" data-cy="settings">
       <Translate contentKey="global.menu.account.settings">Settings</Translate>
     </MenuItem>

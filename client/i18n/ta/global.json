@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "கணக்கு",
+        "dashboard": "டாஷ்போர்டு",
         "settings": "அமைப்புகள்",
         "password": "கடவுச்சொல்",
         "sessions": "பயன்பாடுகள்",

@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "บัญชี",
+        "dashboard": "แดชบอร์ด",
         "settings": "ตั้งค่า",
         "password": "รหัสผ่าน",
         "sessions": "เซสชั่น",

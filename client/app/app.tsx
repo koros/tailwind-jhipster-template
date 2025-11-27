@@ -57,13 +57,10 @@ export const App = () => {
             account={account}
           />
         </ErrorBoundary>
-        <div className="w-full h-[calc(100%-40px)] overflow-y-auto overflow-x-hidden p-4" id="app-view-container">
-          <Card className="jh-card">
-            <ErrorBoundary>
-              <AppRoutes />
-            </ErrorBoundary>
-          </Card>
-          <Footer />
+        <div className="w-full" id="app-view-container" style={{ minHeight: 'calc(100vh - 60px)' }}>
+          <ErrorBoundary>
+            <AppRoutes />
+          </ErrorBoundary>
         </div>
       </div>
     </BrowserRouter>

@@ -11,6 +11,8 @@ import PasswordResetFinish from 'app/modules/account/password-reset/finish/passw
 import Logout from 'app/modules/login/logout';
 import Home from 'app/modules/home/home';
 import EntitiesRoutes from 'app/entities/routes';
+import DashboardRoutes from 'app/modules/dashboard';
+import Dashboard from 'app/modules/dashboard/dashboard';
 import PrivateRoute from 'app/shared/auth/private-route';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 import PageNotFound from 'app/shared/error/page-not-found';
@@ -35,14 +37,6 @@ const AppRoutes = () => {
         <Route path="login" element={<Login />} />
         <Route path="logout" element={<Logout />} />
         <Route path="account">
-          <Route
-            path="*"
-            element={
-              <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]}>
-                <Account />
-              </PrivateRoute>
-            }
-          />
           <Route path="register" element={<Register />} />
           <Route path="activate" element={<Activate />} />
           <Route path="reset">
@@ -50,22 +44,30 @@ const AppRoutes = () => {
             <Route path="finish" element={<PasswordResetFinish />} />
           </Route>
         </Route>
+        {/* Authenticated area with sidebar */}
         <Route
-          path="admin/*"
           element={
-            <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN]}>
-              <Admin />
+            <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]}>
+              <Dashboard />
             </PrivateRoute>
           }
-        />
-        <Route
-          path="*"
-          element={
-            <PrivateRoute hasAnyAuthorities={[AUTHORITIES.USER]}>
-              <EntitiesRoutes />
-            </PrivateRoute>
-          }
-        />
+        >
+          {/* Dashboard index and nested welcome */}
+          <Route path="dashboard/*" element={<DashboardRoutes />} />
+          {/* Account (settings, password, etc) inside sidebar */}
+          <Route path="account/*" element={<Account />} />
+          {/* Admin section inside sidebar */}
+          <Route
+            path="admin/*"
+            element={
+              <PrivateRoute hasAnyAuthorities={[AUTHORITIES.ADMIN]}>
+                <Admin />
+              </PrivateRoute>
+            }
+          />
+          {/* Entities and other authenticated routes inside sidebar */}
+          <Route path="*" element={<EntitiesRoutes />} />
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </ErrorBoundaryRoutes>
     </div>

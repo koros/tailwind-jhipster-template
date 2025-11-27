@@ -11,8 +11,9 @@
         "todo": "Todo"
       },
       "account": {
-        "main": "帳號",
-        "settings": "設定",
+        "main": "賬號",
+        "dashboard": "儀表板",
+        "settings": "設置",
         "password": "密碼",
         "sessions": "工作階段",
         "login": "登入",

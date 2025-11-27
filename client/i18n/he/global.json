@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "חשבון",
+        "dashboard": "לוח בקרה",
         "settings": "הגדרות",
         "password": "סיסמה",
         "sessions": "הפעלות",

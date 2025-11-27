@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Účet",
+        "dashboard": "Prehľad",
         "settings": "Nastavenia",
         "password": "Heslo",
         "sessions": "Sedenia",

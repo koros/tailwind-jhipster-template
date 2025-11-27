@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Tài khoản",
+        "dashboard": "Bảng điều khiển",
         "settings": "Cài đặt",
         "password": "Mật khẩu",
         "sessions": "Phiên đăng nhập",

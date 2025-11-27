@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Korisnički račun",
+        "dashboard": "Nadzorna ploča",
         "settings": "Postavke",
         "password": "Zaporka",
         "sessions": "Sjednice",

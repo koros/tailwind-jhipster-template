@@ -15,6 +15,7 @@
       },
       "account": {
         "main": "Cont",
+        "dashboard": "Dashboard",
         "settings": "Setări",
         "password": "Parolă",
         "sessions": "Sesiuni",

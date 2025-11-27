@@ -12,6 +12,7 @@
       },
       "account": {
         "main": "Zugang",
+        "dashboard": "Dashboard",
         "settings": "Einstellungen",
         "password": "Passwort",
         "sessions": "Sitzungen",
