@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Translate } from 'react-jhipster';
+import { Translate, translate } from 'react-jhipster';
+import { languages } from 'app/config/translation';
 
 interface SidebarProps {
   isAdmin: boolean;
   account?: any;
   currentLocale?: string;
+  onCollapsedChange?: (collapsed: boolean) => void;
 }
 
 interface NavGroup {
@@ -21,18 +23,27 @@ interface NavItem {
   adminOnly?: boolean;
 }
 
-const Sidebar = ({ isAdmin, account, currentLocale }: SidebarProps) => {
-  const getLanguageCode = (locale: string) => {
-    return locale?.toUpperCase().split('-')[0] || 'EN';
-  };
+const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: SidebarProps) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const getFlagEmoji = (locale: string) => {
-    const countryCode = locale?.split('-')[1] || locale;
-    const codePoints = countryCode
-      .toUpperCase()
-      .split('')
-      .map(char => 127397 + char.charCodeAt(0));
-    return String.fromCodePoint(...codePoints);
+  useEffect(() => {
+    const handleResize = () => {
+      const shouldCollapse = window.innerWidth < 768;
+      setIsCollapsed(shouldCollapse);
+      onCollapsedChange?.(shouldCollapse);
+    };
+
+    // Set initial state
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [onCollapsedChange]);
+
+  const handleToggle = () => {
+    const newState = !isCollapsed;
+    setIsCollapsed(newState);
+    onCollapsedChange?.(newState);
   };
 
   const navGroups: NavGroup[] = [
@@ -40,7 +51,7 @@ const Sidebar = ({ isAdmin, account, currentLocale }: SidebarProps) => {
       title: 'Navigation',
       items: [
         { to: '/', icon: 'home', label: 'global.menu.home' },
-        { to: '/dashboard', icon: 'list', label: 'global.menu.account.dashboard' },
+        { to: '/dashboard', icon: 'chart-area', label: 'global.menu.account.dashboard' },
       ],
     },
     {
@@ -57,25 +68,35 @@ const Sidebar = ({ isAdmin, account, currentLocale }: SidebarProps) => {
     {
       title: 'Administration',
       items: [
-        { to: '/admin/user-management', icon: 'users-cog', label: 'global.menu.admin.userManagement', adminOnly: true },
+        { to: '/admin/user-management', icon: 'user-plus', label: 'global.menu.admin.userManagement', adminOnly: true },
         { to: '/admin/health', icon: 'heart', label: 'global.menu.admin.health', adminOnly: true },
-        { to: '/admin/docs', icon: 'book', label: 'global.menu.admin.apidocs', adminOnly: true },
+        { to: '/admin/docs', icon: ['far', 'file-code'], label: 'global.menu.admin.apidocs', adminOnly: true },
       ].filter(item => !item.adminOnly || isAdmin),
     },
   ];
 
   return (
     <div className="bg-gray-200 overflow-y-auto flex flex-col" style={{ minHeight: 'calc(100vh - 60px)' }}>
-      {/* JHipster Logo */}
-      <Link to="/" className="flex items-center justify-center lg:justify-start gap-2 py-4 px-4 border-b border-white">
-        <img src="content/images/logo-jhipster.png" alt="JHipster" className="w-8 h-8 object-contain flex-shrink-0" />
-        <span className="hidden lg:block font-bold text-gray-900">JHipster</span>
-      </Link>
+      {/* Logo and Collapse Button */}
+      <div className={`flex ${isCollapsed ? 'flex-col' : 'flex-row'} items-center justify-between py-4 px-4 border-b border-white gap-2`}>
+        <Link to="/" className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-2`}>
+          <img src="content/images/logo-jhipster.png" alt="JHipster" className="w-8 h-8 object-contain flex-shrink-0" />
+          {!isCollapsed && <span className="font-bold text-gray-900">JHipster</span>}
+        </Link>
+        <button
+          type="button"
+          onClick={handleToggle}
+          className="p-2 rounded-md hover:bg-gray-300 transition-colors"
+          aria-label="Toggle sidebar"
+        >
+          <FontAwesomeIcon icon={isCollapsed ? 'bars' : 'angles-left'} className="w-4 h-4 text-gray-700" />
+        </button>
+      </div>
 
       {/* User Card */}
       {account && (
         <div className="p-4 border-b border-white">
-          <div className="flex flex-col items-center lg:flex-row lg:items-center gap-3">
+          <div className={`flex ${isCollapsed ? 'flex-col' : 'flex-row'} items-center gap-3`}>
             <div className="flex-shrink-0">
               <img
                 src="content/images/jhipster_family_member_1.svg"
@@ -83,14 +104,16 @@ const Sidebar = ({ isAdmin, account, currentLocale }: SidebarProps) => {
                 className="rounded-full border-2 border-blue-500 w-12 h-12"
               />
             </div>
-            <div className="hidden lg:block flex-1 min-w-0">
-              <p className="text-sm font-semibold text-gray-900 truncate">{account.login}</p>
-              <p className="text-xs text-gray-600 truncate">{account.email}</p>
-              <div className="flex items-center gap-1 mt-1">
-                <span className="text-sm">{getFlagEmoji(currentLocale || 'en')}</span>
-                <span className="text-xs text-gray-600">{getLanguageCode(currentLocale || 'en')}</span>
+            {!isCollapsed && (
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-gray-900 truncate">{account.login}</p>
+                <p className="text-xs text-gray-600 truncate">{account.email}</p>
+                <div className="flex items-center gap-1 mt-1">
+                  <span className="text-sm">{languages[currentLocale || 'en']?.flag || '🇺🇸'}</span>
+                  <span className="text-xs text-gray-600">{languages[currentLocale || 'en']?.name || 'English'}</span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}
@@ -98,23 +121,25 @@ const Sidebar = ({ isAdmin, account, currentLocale }: SidebarProps) => {
       <nav className="p-4 space-y-6 flex-1">
         {navGroups.map((group, groupIndex) => (
           <div key={groupIndex}>
-            <h3 className="hidden lg:block text-xs font-semibold text-gray-500 uppercase mb-2 px-2">{group.title}</h3>
+            {!isCollapsed && <h3 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">{group.title}</h3>}
             <ul className="space-y-1">
               {group.items.map((item, itemIndex) => (
                 <li key={itemIndex}>
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `flex items-center justify-center lg:justify-start gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      `flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                       }`
                     }
-                    title={item.label}
+                    title={translate(item.label)}
                   >
                     <FontAwesomeIcon icon={item.icon} className="w-5 h-5 flex-shrink-0" />
-                    <span className="hidden lg:inline truncate">
-                      <Translate contentKey={item.label} />
-                    </span>
+                    {!isCollapsed && (
+                      <span className="truncate">
+                        <Translate contentKey={item.label} />
+                      </span>
+                    )}
                   </NavLink>
                 </li>
               ))}

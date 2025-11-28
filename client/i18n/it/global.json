@@ -12,7 +12,7 @@
       },
       "account": {
         "main": "Utente",
-        "dashboard": "Dashboard",
+        "dashboard": "Cruscotto",
         "settings": "Impostazioni",
         "password": "Password",
         "sessions": "Sessioni",

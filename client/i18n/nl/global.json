@@ -12,7 +12,7 @@
       },
       "account": {
         "main": "Gebruiker",
-        "dashboard": "Dashboard",
+        "dashboard": "Overzicht",
         "settings": "Instellingen",
         "password": "Wachtwoord",
         "sessions": "Sessions",

@@ -5,7 +5,7 @@ import { NavDropdown } from './menu-components';
 
 const accountMenuItemsAuthenticated = () => (
   <>
-    <MenuItem icon="tachometer-alt" to="/dashboard" data-cy="dashboard">
+    <MenuItem icon="chart-area" to="/dashboard" data-cy="dashboard">
       <Translate contentKey="global.menu.account.dashboard">Dashboard</Translate>
     </MenuItem>
     <MenuItem icon="gear" to="/account/settings" data-cy="settings">
@@ -14,7 +14,7 @@ const accountMenuItemsAuthenticated = () => (
     <MenuItem icon="lock" to="/account/password" data-cy="passwordItem">
       <Translate contentKey="global.menu.account.password">Password</Translate>
     </MenuItem>
-    <MenuItem icon="sign-out-alt" to="/logout" data-cy="logout">
+    <MenuItem icon="power-off" to="/logout" data-cy="logout">
       <Translate contentKey="global.menu.account.logout">Sign out</Translate>
     </MenuItem>
   </>

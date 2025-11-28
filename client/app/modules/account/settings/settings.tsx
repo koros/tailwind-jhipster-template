@@ -86,7 +86,7 @@ export const SettingsPage = () => {
           <ValidatedField type="select" id="langKey" name="langKey" label={translate('settings.form.language')} data-cy="langKey">
             {locales.map(locale => (
               <option value={locale} key={locale}>
-                {languages[locale].name}
+                {languages[locale].flag} {languages[locale].name}
               </option>
             ))}
           </ValidatedField>

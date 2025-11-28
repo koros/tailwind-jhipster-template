@@ -1,12 +1,16 @@
 import {
+  faAnglesLeft,
   faArrowLeft,
   faAsterisk,
   faBan,
+  faBars,
   faBell,
   faBook,
   faCloud,
   faCogs,
+  faChartArea,
   faChartBar,
+  faChartLine,
   faTableColumns,
   faDatabase,
   faEye,
@@ -24,6 +28,7 @@ import {
   faSearch,
   faSignInAlt,
   faSignOutAlt,
+  faPowerOff,
   faSort,
   faSync,
   faTachometerAlt,
@@ -41,21 +46,28 @@ import {
   faWrench,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { faFileCode } from '@fortawesome/free-regular-svg-icons';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 export const loadIcons = () => {
   library.add(
+    faAnglesLeft,
     faArrowLeft,
     faAsterisk,
     faBan,
+    faBars,
     faBell,
     faBook,
     faCloud,
     faCogs,
+    faChartArea,
     faChartBar,
+    faChartLine,
     faTableColumns,
     faDatabase,
     faEye,
+    faFileCode as any,
     faFlag,
     faGear,
     faHeart,
@@ -69,6 +81,7 @@ export const loadIcons = () => {
     faSave,
     faSignInAlt,
     faSignOutAlt,
+    faPowerOff,
     faSearch,
     faSort,
     faSync,

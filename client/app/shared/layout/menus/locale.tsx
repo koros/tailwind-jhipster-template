@@ -19,7 +19,11 @@ export const LocaleMenu = ({ currentLocale, onClick }: { currentLocale: string; 
   return (
     <NavDropdown
       icon="language"
-      name={currentLocale ? `${languages[currentLocale]?.flag || ''} ${currentLocale.toUpperCase()}` : undefined}
+      name={
+        currentLocale
+          ? `${languages[currentLocale]?.flag || ''} ${languages[currentLocale]?.name || currentLocale.toUpperCase()}`
+          : undefined
+      }
       style={{ maxHeight: '90vh', overflowY: 'auto' }}
     >
       <li className="px-3 py-2">
@@ -45,7 +49,7 @@ export const LocaleMenu = ({ currentLocale, onClick }: { currentLocale: string; 
               className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
             >
               <span className="mr-2">{languages[locale].flag}</span>
-              {locale.toUpperCase()} - {languages[locale].name}
+              {languages[locale].name}
             </button>
           </li>
         ))
