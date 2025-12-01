@@ -8,8 +8,8 @@ const router = Router();
 router.get('/account', authenticateToken, accountController.getAccount.bind(accountController));
 router.post('/account', authenticateToken, accountController.saveAccount.bind(accountController));
 router.post('/account/change-password', authenticateToken, accountController.changePassword.bind(accountController));
-// router.post('/account/reset-password/init', (req, res, next) => accountController.requestPasswordReset(req, res, next));
-// router.post('/account/reset-password/finish', (req, res, next) => accountController.finishPasswordReset(req, res, next));
+router.post('/account/reset-password/init', accountController.requestPasswordReset.bind(accountController) as any);
+router.post('/account/reset-password/finish', accountController.finishPasswordReset.bind(accountController) as any);
 router.get('/authorities', authenticateToken, userController.getAuthorities.bind(userController));
 
 export default router;

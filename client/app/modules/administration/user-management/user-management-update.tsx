@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Translate, ValidatedField, ValidatedForm, isEmail, translate } from 'react-jhipster';
+import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'app/shared/components';
 
@@ -38,7 +39,6 @@ export const UserManagementUpdate = () => {
     } else {
       dispatch(updateUser(values));
     }
-    handleClose();
   };
 
   const isInvalid = false;
@@ -46,6 +46,14 @@ export const UserManagementUpdate = () => {
   const loading = useAppSelector(state => state.userManagement.loading);
   const updating = useAppSelector(state => state.userManagement.updating);
   const authorities = useAppSelector(state => state.userManagement.authorities);
+  const updateSuccess = useAppSelector(state => state.userManagement.updateSuccess);
+
+  useEffect(() => {
+    if (updateSuccess) {
+      handleClose();
+      toast.success(translate(isNew ? 'userManagement.created' : 'userManagement.updated', { param: user.login }));
+    }
+  }, [updateSuccess]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
@@ -139,7 +147,7 @@ export const UserManagementUpdate = () => {
             <ValidatedField type="select" name="langKey" label={translate('userManagement.langKey')}>
               {locales.map(locale => (
                 <option value={locale} key={locale}>
-                  {languages[locale].name}
+                  {languages[locale].flag} {languages[locale].name}
                 </option>
               ))}
             </ValidatedField>

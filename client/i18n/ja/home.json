@@ -1,19 +1,100 @@
 {
   "home": {
-    "title": "ようこそ, Java Hipster!",
-    "subtitle": "ここはトップページです。",
+    "title": "Java Hipster へようこそ！",
+    "subtitle": "これはホームページです",
     "logged": {
-      "message": "\"{{username}}\"としてログインしています。"
+      "message": "ユーザー \"{{username}}\" としてログインしています。"
     },
-    "question": "JHipsterに関するお問い合わせは、こちらまで:",
+    "question": "JHipsterについてご質問がある場合:",
     "link": {
-      "homepage": "JHipsterのサイト",
-      "stackoverflow": "Stack Overflow のJHipster",
-      "bugtracker": "JHipsterのバグトラッカー",
-      "chat": "JHipsterの公開チャットルーム",
-      "follow": "Twitterの @jhipster"
+      "homepage": "JHipster ホームページ",
+      "stackoverflow": "JHipster on Stack Overflow",
+      "bugtracker": "JHipster bug tracker",
+      "chat": "JHipster 公開チャットルーム",
+      "follow": "follow @jhipster on Twitter"
     },
-    "like": "JHipsterを気に入ったら、是非スターをつけてください。",
-    "github": "GitHub"
+    "like": "JHipster を気に入っていただけた場合は、スターをつけてください。",
+    "github": "GitHub",
+    "hero": {
+      "welcome": "ようこそ、{{username}}",
+      "title": "JHipster + Tailwind でより速く構築",
+      "subtitle": "Spring Boot、React、Tailwind CSSを組み合わせた、迅速なアプリケーション開発のための最新の本番対応スターター。",
+      "login": "ログイン",
+      "getStarted": "始める",
+      "dashboard": "ダッシュボードへ",
+      "learnMore": "詳細を見る",
+      "pricing": "料金",
+      "contact": "お問い合わせ"
+    },
+    "about": {
+      "title": "私たちのプラットフォームについて",
+      "description1": "私たちのプラットフォームは、最新のWeb技術の力を組み合わせて、卓越した体験を提供します。業界をリードするフレームワークとベストプラクティスで構築され、次の素晴らしいアイデアのための強固な基盤を提供します。",
+      "description2": "スタートアップのMVPを構築している場合でも、エンタープライズアプリケーションをスケーリングしている場合でも、私たちのスタックはあなたと共に成長するように設計されています。認証とデータベース管理からレスポンシブUIコンポーネントまで、必要なすべてがすぐに使用できます。",
+      "keyFeatures": "主な機能",
+      "feature1": {
+        "title": "迅速なスキャフォールディング",
+        "description": "一貫したパターンでエンティティ、サービス、ルート、UIを高速生成。"
+      },
+      "feature2": {
+        "title": "モダンなスタイリング",
+        "description": "Tailwindのユーティリティファーストクラスは、スタイルをスリムに保ちながら表現力を維持します。"
+      },
+      "feature3": {
+        "title": "本番対応",
+        "description": "セキュリティ、国際化、品質ツールを備えた堅牢なアーキテクチャ。"
+      }
+    },
+    "howItWorks": {
+      "title": "仕組み",
+      "step1": {
+        "title": "プロジェクトのセットアップ",
+        "description": "事前設定されたセットアップで数分で開始できます。依存関係をインストールし、データベースを設定し、シンプルなコマンドで開発環境を起動します。複雑な設定は必要ありません。"
+      },
+      "step2": {
+        "title": "機能の構築",
+        "description": "強力なジェネレーターを使用してエンティティをスキャフォールドし、REST APIを作成し、UIコンポーネントを構築します。ビジネスロジックに集中しながら、ボイラープレートコードは私たちが処理します。要件に合わせてすべてをカスタマイズできます。"
+      },
+      "step3": {
+        "title": "デプロイとスケール",
+        "description": "本番対応の設定を使用して、自信を持ってアプリケーションを出荷します。組み込みのDockerサポート、クラウドネイティブアーキテクチャ、パフォーマンスの最適化により、アプリがあらゆる規模でスムーズに実行されることを保証します。"
+      }
+    },
+    "pricing": {
+      "title": "プランを選択",
+      "starter": {
+        "name": "スターター",
+        "price": "無料",
+        "features": ["基本的なプロジェクトスキャフォールディング", "コミュニティサポート", "オープンソースコンポーネント"],
+        "cta": "始める"
+      },
+      "pro": {
+        "name": "プロ",
+        "price": "¥2,900/月",
+        "features": ["高度なジェネレーター", "優先メールサポート", "プレミアムテンプレート", "定期的な更新"],
+        "cta": "プロになる"
+      },
+      "enterprise": {
+        "name": "エンタープライズ",
+        "price": "¥9,900/月",
+        "features": ["カスタムコンサルティング", "専任アカウントマネージャー", "オンプレミス展開", "SLA保証"],
+        "cta": "営業に問い合わせる"
+      }
+    },
+    "contact": {
+      "title": "お問い合わせ",
+      "description": "ご質問やサポートが必要ですか？お気軽にお問い合わせください。",
+      "name": "お名前",
+      "email": "メールアドレス",
+      "message": "メッセージ",
+      "send": "メッセージを送信",
+      "demo": "デモをリクエスト"
+    },
+    "footer": {
+      "about": "について",
+      "howItWorks": "仕組み",
+      "pricing": "料金",
+      "contact": "お問い合わせ",
+      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+    }
   }
 }

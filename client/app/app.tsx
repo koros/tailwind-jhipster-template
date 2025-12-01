@@ -3,7 +3,7 @@ import './app.scss';
 import 'app/config/dayjs';
 
 import React, { useEffect } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { Card } from 'app/shared/components';
@@ -21,7 +21,8 @@ import { setTextDirection } from './config/translation';
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
-export const App = () => {
+const AppContent = () => {
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -41,28 +42,36 @@ export const App = () => {
     setTextDirection(currentLocale);
   }, [currentLocale]);
 
-  const paddingTop = '60px';
+  const isHomePage = location.pathname === '/' || location.pathname === '';
+  const paddingTop = isHomePage ? '0px' : '60px';
+
+  return (
+    <div className="box-border" style={{ paddingTop }}>
+      <ToastContainer position="top-left" className="toastify-container" toastClassName="toastify-toast" />
+      <ErrorBoundary>
+        <Header
+          isAuthenticated={isAuthenticated}
+          isAdmin={isAdmin}
+          currentLocale={currentLocale}
+          ribbonEnv={ribbonEnv}
+          isInProduction={isInProduction}
+          isOpenAPIEnabled={isOpenAPIEnabled}
+          account={account}
+        />
+      </ErrorBoundary>
+      <div className="w-full" id="app-view-container" style={{ minHeight: 'calc(100vh - 60px)' }}>
+        <ErrorBoundary>
+          <AppRoutes />
+        </ErrorBoundary>
+      </div>
+    </div>
+  );
+};
+
+export const App = () => {
   return (
     <BrowserRouter basename={baseHref}>
-      <div className="box-border" style={{ paddingTop }}>
-        <ToastContainer position="top-left" className="toastify-container" toastClassName="toastify-toast" />
-        <ErrorBoundary>
-          <Header
-            isAuthenticated={isAuthenticated}
-            isAdmin={isAdmin}
-            currentLocale={currentLocale}
-            ribbonEnv={ribbonEnv}
-            isInProduction={isInProduction}
-            isOpenAPIEnabled={isOpenAPIEnabled}
-            account={account}
-          />
-        </ErrorBoundary>
-        <div className="w-full" id="app-view-container" style={{ minHeight: 'calc(100vh - 60px)' }}>
-          <ErrorBoundary>
-            <AppRoutes />
-          </ErrorBoundary>
-        </div>
-      </div>
+      <AppContent />
     </BrowserRouter>
   );
 };

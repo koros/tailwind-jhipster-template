@@ -2,23 +2,13 @@ import bcrypt from 'bcryptjs';
 import { AppDataSource } from '../config/database';
 import { User } from '../entities/User';
 import { AppError } from '../middleware/error.middleware';
-import crypto from 'crypto';
+import { RandomUtil } from '../utils/random.util';
+import mailService from './mail.service.js';
 
 const userRepository = AppDataSource.getRepository(User);
 
 export class UserService {
-  private generateRandomPassword(length: number = 20): string {
-    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
-    let password = '';
-    const randomBytes = crypto.randomBytes(length);
-    for (let i = 0; i < length; i++) {
-      password += charset[randomBytes[i] % charset.length];
-    }
-    return password;
-  }
-
   private formatUser(user: User) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password: _password, ...userWithoutPassword } = user;
     return {
       ...userWithoutPassword,
@@ -81,8 +71,12 @@ export class UserService {
     }
 
     // Generate random password if not provided (admin creating user)
-    const password = userData.password || this.generateRandomPassword();
+    const password = userData.password || RandomUtil.generatePassword();
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Generate reset key for admin-created users so they can set their own password
+    const resetKey = RandomUtil.generateResetKey();
+    const resetDate = new Date();
 
     // Only include valid fields, exclude id and audit fields from client
     const user = userRepository.create({
@@ -94,11 +88,22 @@ export class UserService {
       activated: userData.activated ?? true,
       langKey: userData.langKey || 'en',
       authorities: Array.isArray(userData.authorities) ? userData.authorities.join(',') : userData.authorities || 'ROLE_USER',
+      resetKey,
+      resetDate,
       createdBy: 'admin',
       lastModifiedBy: 'admin',
     });
 
     const savedUser = await userRepository.save(user);
+
+    // Send creation email with reset link
+    try {
+      await mailService.sendCreationEmail(savedUser);
+    } catch (error) {
+      console.error('Failed to send creation email:', error);
+      // Continue even if email fails
+    }
+
     return this.formatUser(savedUser);
   }
 
@@ -136,7 +141,7 @@ export class UserService {
     return { message: 'User deleted successfully' };
   }
 
-  async getAuthorities() {
+  getAuthorities() {
     return ['ROLE_USER', 'ROLE_ADMIN'];
   }
 }

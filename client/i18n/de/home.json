@@ -14,6 +14,87 @@
       "follow": "kontaktieren Sie uns mit @jhipster auf Twitter"
     },
     "like": "Wenn Sie JHipster mögen, vergessen Sie nicht uns einen Stern zu geben auf",
-    "github": "GitHub"
+    "github": "GitHub",
+    "hero": {
+      "welcome": "Willkommen, {{username}}",
+      "title": "Schneller Bauen mit JHipster + Tailwind",
+      "subtitle": "Ein moderner, produktionsfertiger Starter, der Spring Boot, React und Tailwind CSS für die schnelle Anwendungsentwicklung kombiniert.",
+      "login": "Anmelden",
+      "getStarted": "Loslegen",
+      "dashboard": "Zum Dashboard",
+      "learnMore": "Mehr erfahren",
+      "pricing": "Preise",
+      "contact": "Kontakt"
+    },
+    "about": {
+      "title": "Über Unsere Plattform",
+      "description1": "Unsere Plattform kombiniert die Kraft moderner Webtechnologien, um außergewöhnliche Erfahrungen zu bieten. Aufgebaut mit branchenführenden Frameworks und Best Practices bieten wir eine solide Grundlage für Ihre nächste große Idee.",
+      "description2": "Ob Sie ein Startup-MVP erstellen oder eine Unternehmensanwendung skalieren, unser Stack ist darauf ausgelegt, mit Ihnen zu wachsen. Von Authentifizierung und Datenbankverwaltung bis hin zu responsiven UI-Komponenten ist alles, was Sie benötigen, sofort einsatzbereit.",
+      "keyFeatures": "Hauptmerkmale",
+      "feature1": {
+        "title": "Schnelles Scaffolding",
+        "description": "Generieren Sie Entitäten, Services, Routen und UI schnell mit konsistenten Mustern."
+      },
+      "feature2": {
+        "title": "Modernes Styling",
+        "description": "Tailwinds Utility-First-Klassen halten Stile schlank und dennoch ausdrucksstark."
+      },
+      "feature3": {
+        "title": "Produktionsbereit",
+        "description": "Robuste Architektur mit Sicherheit, Internationalisierung und Qualitätswerkzeugen."
+      }
+    },
+    "howItWorks": {
+      "title": "Wie Es Funktioniert",
+      "step1": {
+        "title": "Richten Sie Ihr Projekt Ein",
+        "description": "Starten Sie in Minuten mit unserem vorkonfigurierten Setup. Installieren Sie Abhängigkeiten, konfigurieren Sie Ihre Datenbank und starten Sie Ihre Entwicklungsumgebung mit einfachen Befehlen. Keine komplexe Konfiguration erforderlich."
+      },
+      "step2": {
+        "title": "Bauen Sie Ihre Funktionen",
+        "description": "Verwenden Sie unsere leistungsstarken Generatoren, um Entitäten zu scaffolden, REST-APIs zu erstellen und UI-Komponenten zu bauen. Konzentrieren Sie sich auf Ihre Geschäftslogik, während wir den Boilerplate-Code verwalten. Passen Sie alles an Ihre Anforderungen an."
+      },
+      "step3": {
+        "title": "Bereitstellen und Skalieren",
+        "description": "Versenden Sie Ihre Anwendung mit Zuversicht mit unseren produktionsfertigen Konfigurationen. Integrierte Docker-Unterstützung, Cloud-native Architektur und Leistungsoptimierungen stellen sicher, dass Ihre App in jeder Größenordnung reibungslos läuft."
+      }
+    },
+    "pricing": {
+      "title": "Wählen Sie Ihren Plan",
+      "starter": {
+        "name": "Starter",
+        "price": "Kostenlos",
+        "features": ["Grundlegendes Projekt-Scaffolding", "Community-Support", "Open-Source-Komponenten"],
+        "cta": "Loslegen"
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "29 €/Monat",
+        "features": ["Erweiterte Generatoren", "Prioritäts-E-Mail-Support", "Premium-Vorlagen", "Regelmäßige Updates"],
+        "cta": "Pro Werden"
+      },
+      "enterprise": {
+        "name": "Unternehmen",
+        "price": "99 €/Monat",
+        "features": ["Individuelle Beratung", "Dedizierter Account Manager", "On-Premise-Bereitstellung", "SLA-Garantie"],
+        "cta": "Vertrieb Kontaktieren"
+      }
+    },
+    "contact": {
+      "title": "Kontaktieren Sie Uns",
+      "description": "Haben Sie Fragen oder benötigen Hilfe? Wir sind für Sie da.",
+      "name": "Ihr Name",
+      "email": "Ihre E-Mail",
+      "message": "Ihre Nachricht",
+      "send": "Nachricht Senden",
+      "demo": "Demo Anfragen"
+    },
+    "footer": {
+      "about": "Über",
+      "howItWorks": "Wie Es Funktioniert",
+      "pricing": "Preise",
+      "contact": "Kontakt",
+      "copyright": "© 2024 JHipster + Tailwind. Alle Rechte vorbehalten."
+    }
   }
 }

@@ -68,9 +68,9 @@ export class UserController {
     }
   }
 
-  async getAuthorities(req: Request, res: Response, next: NextFunction) {
+  getAuthorities(req: Request, res: Response, next: NextFunction) {
     try {
-      const authorities = await userService.getAuthorities();
+      const authorities = userService.getAuthorities();
       res.json(authorities);
     } catch (error) {
       next(error);

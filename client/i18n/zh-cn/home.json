@@ -14,6 +14,87 @@
       "follow": "在 Twitter 上联络 @jhipster"
     },
     "like": "如果您喜欢 JHipster, 请记得给我们加星在",
-    "github": "GitHub"
+    "github": "GitHub",
+    "hero": {
+      "welcome": "欢迎，{{username}}",
+      "title": "使用 JHipster + Tailwind 更快构建",
+      "subtitle": "一个现代化的、生产就绪的启动器，结合了 Spring Boot、React 和 Tailwind CSS，用于快速应用程序开发。",
+      "login": "登录",
+      "getStarted": "开始使用",
+      "dashboard": "前往仪表板",
+      "learnMore": "了解更多",
+      "pricing": "定价",
+      "contact": "联系"
+    },
+    "about": {
+      "title": "关于我们的平台",
+      "description1": "我们的平台结合了现代网络技术的力量，提供卓越的体验。采用行业领先的框架和最佳实践构建，我们为您的下一个伟大想法提供坚实的基础。",
+      "description2": "无论您是在构建创业公司的 MVP 还是扩展企业应用程序，我们的技术栈都旨在与您一起成长。从身份验证和数据库管理到响应式 UI 组件，您需要的一切都已准备就绪。",
+      "keyFeatures": "主要特点",
+      "feature1": {
+        "title": "快速脚手架",
+        "description": "使用一致的模式快速生成实体、服务、路由和 UI。"
+      },
+      "feature2": {
+        "title": "现代样式",
+        "description": "Tailwind 的实用优先类使样式保持精简的同时保持表现力。"
+      },
+      "feature3": {
+        "title": "生产就绪",
+        "description": "具有安全性、国际化和质量工具的强大架构。"
+      }
+    },
+    "howItWorks": {
+      "title": "工作原理",
+      "step1": {
+        "title": "设置您的项目",
+        "description": "使用我们预配置的设置在几分钟内开始。安装依赖项，配置数据库，并使用简单的命令启动开发环境。无需复杂配置。"
+      },
+      "step2": {
+        "title": "构建您的功能",
+        "description": "使用我们强大的生成器来搭建实体、创建 REST API 和构建 UI 组件。专注于您的业务逻辑，而我们处理样板代码。自定义一切以满足您的需求。"
+      },
+      "step3": {
+        "title": "部署和扩展",
+        "description": "使用我们的生产就绪配置自信地发布您的应用程序。内置的 Docker 支持、云原生架构和性能优化确保您的应用程序在任何规模下都能平稳运行。"
+      }
+    },
+    "pricing": {
+      "title": "选择您的计划",
+      "starter": {
+        "name": "入门版",
+        "price": "免费",
+        "features": ["基本项目脚手架", "社区支持", "开源组件"],
+        "cta": "开始使用"
+      },
+      "pro": {
+        "name": "专业版",
+        "price": "¥29/月",
+        "features": ["高级生成器", "优先电子邮件支持", "高级模板", "定期更新"],
+        "cta": "升级专业版"
+      },
+      "enterprise": {
+        "name": "企业版",
+        "price": "¥99/月",
+        "features": ["定制咨询", "专属客户经理", "本地部署", "SLA 保证"],
+        "cta": "联系销售"
+      }
+    },
+    "contact": {
+      "title": "联系我们",
+      "description": "有问题或需要帮助？我们随时为您服务。",
+      "name": "您的姓名",
+      "email": "您的电子邮件",
+      "message": "您的消息",
+      "send": "发送消息",
+      "demo": "请求演示"
+    },
+    "footer": {
+      "about": "关于",
+      "howItWorks": "工作原理",
+      "pricing": "定价",
+      "contact": "联系",
+      "copyright": "© 2024 JHipster + Tailwind. 保留所有权利。"
+    }
   }
 }

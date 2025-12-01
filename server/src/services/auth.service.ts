@@ -4,6 +4,8 @@ import { AppDataSource } from '../config/database';
 import { User } from '../entities/User';
 import { jwtConfig } from '../config/jwt';
 import { AppError } from '../middleware/error.middleware';
+import { RandomUtil } from '../utils/random.util';
+import mailService from './mail.service.js';
 
 const userRepository = AppDataSource.getRepository(User);
 
@@ -139,17 +141,25 @@ export class AuthService {
     });
 
     if (existingUser) {
-      throw new AppError('User already exists', 400);
+      if (existingUser.activated) {
+        throw new AppError('User already exists', 400);
+      }
+      // Remove non-activated user and allow re-registration
+      await userRepository.remove(existingUser);
     }
 
     // Hash password
     const hashedPassword = await bcrypt.hash(userData.password, 10);
 
-    // Create new user
+    // Generate activation key
+    const activationKey = RandomUtil.generateActivationKey();
+
+    // Create new user (not activated)
     const user = userRepository.create({
       ...userData,
       password: hashedPassword,
-      activated: true, // Auto-activate for simplicity
+      activated: false, // Requires email activation
+      activationKey,
       authorities: 'ROLE_USER',
       createdBy: 'system',
       lastModifiedBy: 'system',
@@ -157,8 +167,16 @@ export class AuthService {
 
     await userRepository.save(user);
 
+    // Send activation email
+    try {
+      await mailService.sendActivationEmail(user);
+    } catch (error) {
+      console.error('Failed to send activation email:', error);
+      // Don't fail registration if email fails
+    }
+
     // Remove password from response
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     const { password: _password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }

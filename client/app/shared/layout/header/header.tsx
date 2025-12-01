@@ -1,6 +1,7 @@
 import './header.scss';
 
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Storage, Translate } from 'react-jhipster';
 import LoadingBar from 'react-redux-loading-bar';
 
@@ -21,6 +22,8 @@ export interface IHeaderProps {
 
 const Header = (props: IHeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   const dispatch = useAppDispatch();
 
@@ -41,13 +44,25 @@ const Header = (props: IHeaderProps) => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  const isHomePage = location.pathname === '/' || location.pathname === '';
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [location.pathname]);
+
+  const navbarBg = isHomePage ? 'bg-transparent' : '';
+  const navbarStyle = isHomePage ? (scrolled ? { backgroundColor: '#9c27b0' } : {}) : { backgroundColor: '#353d47' };
+
   /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
   return (
-    <div id="app-header">
+    <div id="app-header" className="bg-transparent">
       {renderDevRibbon()}
       <LoadingBar className="loading-bar" />
-      <nav data-cy="navbar" className="jh-navbar fixed top-0 left-0 right-0 bg-navbar text-white z-50">
+      <nav data-cy="navbar" className={`jh-navbar fixed top-0 left-0 right-0 text-white z-50 ${navbarBg}`} style={navbarStyle}>
         <div className="flex items-center justify-between px-4 py-3">
           <button
             type="button"
@@ -61,16 +76,50 @@ const Header = (props: IHeaderProps) => {
           </button>
           <Brand />
           <div
-            className={`${menuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full left-0 right-0 md:top-auto bg-navbar md:bg-transparent`}
+            className={`${menuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full left-0 right-0 md:top-auto bg-gray-900 md:bg-transparent`}
           >
             <ul
               id="header-tabs"
               className="flex flex-col md:flex-row md:items-center md:ml-auto space-y-2 md:space-y-0 md:space-x-1 p-4 md:p-0"
             >
               <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
-              <AccountMenu isAuthenticated={props.isAuthenticated} account={props.account} />
+              {props.isAuthenticated && <AccountMenu isAuthenticated={props.isAuthenticated} account={props.account} />}
+              {!props.isAuthenticated && (
+                <>
+                  <li className="md:hidden">
+                    <Link to="/login" className="block px-4 py-2 rounded text-white hover:bg-gray-700" data-cy="login-mobile">
+                      Sign in
+                    </Link>
+                  </li>
+                  <li className="md:hidden">
+                    <Link
+                      to="/account/register"
+                      className="block px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-500"
+                      data-cy="register-mobile"
+                    >
+                      Get Started
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
+          {!props.isAuthenticated && (
+            <div className="hidden md:flex items-center space-x-3 ml-4">
+              <Link
+                to="/login"
+                className="px-4 py-2 text-sm font-medium rounded bg-white text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
+              >
+                Sign in
+              </Link>
+              <Link
+                to="/account/register"
+                className="px-4 py-2 text-sm font-medium rounded bg-indigo-600 text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+              >
+                Get Started
+              </Link>
+            </div>
+          )}
         </div>
       </nav>
     </div>

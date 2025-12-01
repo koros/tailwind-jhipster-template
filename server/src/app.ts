@@ -30,6 +30,8 @@ app.use(
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// Support text/plain bodies (used by JHipster reset-password init)
+app.use(express.text({ type: ['text/plain'] }));
 // Cookie parsing (for refresh token HttpOnly cookie)
 app.use(cookieParser());
 
@@ -63,14 +65,14 @@ app.get('/management/health', async (req, res) => {
   };
 
   // Optional DB ping if TypeORM is initialized
-  let dbStatus: 'UP' | 'DOWN' | 'UNKNOWN' = 'UNKNOWN';
+  let _dbStatus: 'UP' | 'DOWN' | 'UNKNOWN' = 'UNKNOWN';
   try {
     const initialized = AppDataSource?.isInitialized;
     const start = Date.now();
     if (initialized) {
       await AppDataSource.query('SELECT 1');
       const pingMs = Date.now() - start;
-      dbStatus = 'UP';
+      _dbStatus = 'UP';
       let host: string | undefined;
       let port: number | string | undefined;
       let database: string | undefined;
@@ -83,14 +85,16 @@ app.get('/management/health', async (req, res) => {
           port = u.port;
           database = u.pathname?.replace(/^\//, '') || undefined;
         }
-      } catch {}
+      } catch {
+        // Ignore URL parsing errors
+      }
       components.db = { status: 'UP', details: { initialized, pingMs, type, host, port, database } };
     } else {
-      dbStatus = 'DOWN';
+      _dbStatus = 'DOWN';
       components.db = { status: 'DOWN', details: { initialized: false, error: 'DataSource not initialized' } };
     }
   } catch (e: any) {
-    dbStatus = 'DOWN';
+    _dbStatus = 'DOWN';
     components.db = { status: 'DOWN', details: { error: e?.message || 'DB ping failed' } };
   }
 
