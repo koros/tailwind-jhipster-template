@@ -64,24 +64,33 @@
       "starter": {
         "name": "Inicial",
         "price": "Gratis",
-        "features": ["Andamiaje básico de proyectos", "Soporte comunitario", "Componentes de código abierto"],
+        "features": {
+          "0": "Andamiaje básico de proyectos",
+          "1": "Soporte comunitario",
+          "2": "Componentes de código abierto"
+        },
         "cta": "Comenzar"
       },
       "pro": {
         "name": "Pro",
         "price": "$29/mes",
-        "features": [
-          "Generadores avanzados",
-          "Soporte prioritario por correo electrónico",
-          "Plantillas premium",
-          "Actualizaciones regulares"
-        ],
+        "features": {
+          "0": "Generadores avanzados",
+          "1": "Soporte prioritario por correo electrónico",
+          "2": "Plantillas premium",
+          "3": "Actualizaciones regulares"
+        },
         "cta": "Hazte Pro"
       },
       "enterprise": {
         "name": "Empresa",
         "price": "$99/mes",
-        "features": ["Consultoría personalizada", "Gerente de cuenta dedicado", "Implementación local", "Garantía de SLA"],
+        "features": {
+          "0": "Consultoría personalizada",
+          "1": "Gerente de cuenta dedicado",
+          "2": "Implementación local",
+          "3": "Garantía de SLA"
+        },
         "cta": "Contactar Ventas"
       }
     },

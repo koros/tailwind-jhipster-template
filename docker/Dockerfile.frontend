@@ -1,0 +1,26 @@
+# Frontend Dockerfile - React build
+FROM node:22-alpine AS build
+
+WORKDIR /app
+
+# Copy entire project for webpack build
+COPY . .
+
+# Set API URL to empty string for relative URLs (proxied by Nginx)
+ENV SERVER_API_URL=""
+
+# Install dependencies and build
+RUN npm install && npm run webapp:prod
+
+# Use Nginx to serve static files
+FROM nginx:alpine
+
+# Copy built frontend from previous stage
+COPY --from=build /app/target/classes/static /usr/share/nginx/html
+
+# Copy nginx configuration
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

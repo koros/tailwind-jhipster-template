@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
+import path from 'path';
 
 import authRoutes from './routes/auth.routes';
 import accountRoutes from './routes/account.routes';
@@ -15,17 +16,30 @@ import { AppDataSource } from './config/database';
 
 const app: Application = express();
 
-// Security middleware
-app.use(helmet());
+// Security middleware - adjust for production static file serving
+const isProduction = process.env.NODE_ENV === 'production';
+if (isProduction) {
+  // In production, allow inline scripts for the built React app
+  app.use(
+    helmet({
+      contentSecurityPolicy: false, // Disable CSP to allow React app to run
+    }),
+  );
+} else {
+  app.use(helmet());
+}
 
-// CORS configuration
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:9000',
-    credentials: true,
-    exposedHeaders: ['X-Total-Count', 'Authorization'],
-  }),
-);
+// CORS configuration - only needed in development
+// In production, Nginx serves frontend and backend from same origin
+if (!isProduction) {
+  app.use(
+    cors({
+      origin: process.env.CORS_ORIGIN || 'http://localhost:9000',
+      credentials: true,
+      exposedHeaders: ['X-Total-Count', 'Authorization'],
+    }),
+  );
+}
 
 // Body parsing middleware
 app.use(express.json());

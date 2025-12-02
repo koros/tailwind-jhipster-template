@@ -1,19 +1,114 @@
 {
   "home": {
     "title": "Benvenuto, Java Hipster!",
-    "subtitle": "Questa è la tua home page",
+    "subtitle": "Questa è la tua homepage",
     "logged": {
-      "message": "Autenticato come \"{{username}}\"."
+      "message": "Hai effettuato l'accesso come \"{{username}}\"."
     },
-    "question": "In caso di domande su JHipster:",
+    "question": "Se hai domande su JHipster:",
     "link": {
-      "homepage": "Homepage JHipster",
+      "homepage": "Homepage di JHipster",
       "stackoverflow": "JHipster su Stack Overflow",
-      "bugtracker": "JHipster tracciamento errori",
+      "bugtracker": "JHipster bug tracker",
       "chat": "Chat room pubblica di JHipster",
       "follow": "segui @jhipster su Twitter"
     },
-    "like": "Se ti piace JHipster, non dimenticarti di darci una stella su",
-    "github": "GitHub"
+    "like": "Se ti piace JHipster, non dimenticare di darci una stella su",
+    "github": "GitHub",
+    "hero": {
+      "welcome": "Benvenuto, {{username}}",
+      "title": "Costruisci Più Velocemente con JHipster + Tailwind",
+      "subtitle": "Un starter moderno e pronto per la produzione che combina Spring Boot, React e Tailwind CSS per lo sviluppo rapido di applicazioni.",
+      "login": "Accedi",
+      "getStarted": "Inizia",
+      "dashboard": "Vai alla Dashboard",
+      "learnMore": "Scopri di più",
+      "pricing": "Prezzi",
+      "contact": "Contatti"
+    },
+    "about": {
+      "title": "Informazioni sulla Nostra Piattaforma",
+      "description1": "La nostra piattaforma combina la potenza delle moderne tecnologie web per offrire esperienze eccezionali. Costruita con framework leader del settore e best practice, forniamo una solida base per la tua prossima grande idea.",
+      "description2": "Che tu stia costruendo un MVP per startup o scalando un'applicazione enterprise, il nostro stack è progettato per crescere con te. Dall'autenticazione e gestione del database ai componenti UI responsive, tutto ciò di cui hai bisogno è pronto all'uso.",
+      "keyFeatures": "Caratteristiche Principali",
+      "feature1": {
+        "title": "Scaffolding Rapido",
+        "description": "Genera entità, servizi, route e UI velocemente con pattern coerenti."
+      },
+      "feature2": {
+        "title": "Stile Moderno",
+        "description": "Le classi utility-first di Tailwind mantengono gli stili snelli rimanendo espressivi."
+      },
+      "feature3": {
+        "title": "Pronto per la Produzione",
+        "description": "Architettura robusta con sicurezza, internazionalizzazione e strumenti di qualità."
+      }
+    },
+    "howItWorks": {
+      "title": "Come Funziona",
+      "step1": {
+        "title": "Configura il Tuo Progetto",
+        "description": "Inizia in pochi minuti con la nostra configurazione preconfigurata. Installa le dipendenze, configura il database e avvia l'ambiente di sviluppo con semplici comandi. Nessuna configurazione complessa richiesta."
+      },
+      "step2": {
+        "title": "Costruisci le Tue Funzionalità",
+        "description": "Usa i nostri potenti generatori per creare entità, API REST e componenti UI. Concentrati sulla logica di business mentre noi gestiamo il codice boilerplate. Personalizza tutto secondo le tue esigenze."
+      },
+      "step3": {
+        "title": "Distribuisci e Scala",
+        "description": "Rilascia la tua applicazione con fiducia usando le nostre configurazioni pronte per la produzione. Supporto Docker integrato, architettura cloud-native e ottimizzazioni delle prestazioni garantiscono che la tua app funzioni senza problemi a qualsiasi scala."
+      }
+    },
+    "pricing": {
+      "title": "Scegli il Tuo Piano",
+      "starter": {
+        "name": "Starter",
+        "price": "Gratuito",
+        "features": {
+          "0": "Scaffolding di progetto base",
+          "1": "Supporto della community",
+          "2": "Componenti open-source"
+        },
+        "cta": "Inizia"
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "€29/mese",
+        "features": {
+          "0": "Generatori avanzati",
+          "1": "Supporto email prioritario",
+          "2": "Template premium",
+          "3": "Aggiornamenti regolari"
+        },
+        "cta": "Diventa Pro"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "€99/mese",
+        "features": {
+          "0": "Consulenza personalizzata",
+          "1": "Account manager dedicato",
+          "2": "Distribuzione on-premise",
+          "3": "Garanzia SLA"
+        },
+        "cta": "Contatta le Vendite"
+      }
+    },
+    "contact": {
+      "title": "Mettiti in Contatto",
+      "description": "Hai domande o hai bisogno di aiuto? Siamo qui per te.",
+      "name": "Il Tuo Nome",
+      "email": "La Tua Email",
+      "message": "Il Tuo Messaggio",
+      "send": "Invia Messaggio",
+      "demo": "Richiedi una Demo"
+    },
+    "footer": {
+      "about": "Informazioni",
+      "howItWorks": "Come Funziona",
+      "pricing": "Prezzi",
+      "contact": "Contatti",
+      "copyright": "© 2024 JHipster + Tailwind. Tutti i diritti riservati."
+    }
   }
 }

@@ -1,247 +1,591 @@
 # myTailwindJhipster
 
-This application was generated using JHipster 8.11.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.11.0](https://www.jhipster.tech/documentation-archive/v8.11.0).
+This application was generated using JHipster 8.11.0 and customized with a Node.js/Express backend instead of the traditional Java/Spring Boot stack. You can find documentation at [https://www.jhipster.tech/documentation-archive/v8.11.0](https://www.jhipster.tech/documentation-archive/v8.11.0).
 
 ## Project Structure
 
-This application uses a Node.js/Express backend with TypeORM instead of the traditional Java/Spring Boot backend.
+This is a full-stack JavaScript/TypeScript application with a modern tech stack:
 
-Node is required for generation and recommended for development. `package.json` is always generated for a better development experience with prettier, commit hooks, scripts and so on.
+**Backend:**
 
-In the project root, JHipster generates configuration files for tools like git, prettier, eslint, husky, and others that are well known and you can find references in the web.
+- Node.js with Express.js
+- TypeScript
+- TypeORM for database management
+- PostgreSQL database
+- JWT authentication with HttpOnly cookie-based refresh tokens
+- ESLint with TypeScript-aware linting
+
+**Frontend:**
+
+- React 18.3
+- Redux Toolkit for state management
+- Tailwind CSS for styling (migrated from Bootstrap/Reactstrap)
+- React Router for navigation
+- Axios for HTTP requests
+- react-jhipster for internationalization (50+ languages)
+- Jest for testing
 
 **Directory Structure:**
 
-- `/src/main/webapp` - React frontend application
-- `/src/main/server` - Node.js/Express backend with TypeORM
-- `/src/main/docker` - Docker configurations for the application and services
+```
+/client                    - React frontend application
+  /app                    - Application components
+    /modules              - Feature modules (home, admin, account, etc.)
+    /shared               - Shared components and utilities
+  /i18n                   - Translation files
+/server                   - Node.js/Express backend
+  /src
+    /config               - Configuration files
+    /controllers          - Request handlers
+    /entities             - TypeORM entities
+    /middleware           - Express middleware
+    /routes               - API routes
+    /services             - Business logic
+    /templates            - Email templates
+    /utils                - Utility functions
+/docker                   - Docker configurations
+/webpack                  - Webpack build configurations
+```
 
-- `.yo-rc.json` - Yeoman configuration file
-  JHipster configuration is stored in this file at `generator-jhipster` key. You may find `generator-jhipster-*` for specific blueprints configuration.
-- `.yo-resolve` (optional) - Yeoman conflict resolver
-  Allows to use a specific action when conflicts are found skipping prompts for files that matches a pattern. Each line should match `[pattern] [action]` with pattern been a [Minimatch](https://github.com/isaacs/minimatch#minimatch) pattern and action been one of skip (default if omitted) or force. Lines starting with `#` are considered comments and are ignored.
-- `.jhipster/*.json` - JHipster entity configuration files
+Configuration files:
 
-- `npmw` - wrapper to use locally installed npm.
-  JHipster installs Node and npm locally using the build tool by default. This wrapper makes sure npm is installed locally and uses it avoiding some differences different versions can cause. By using `./npmw` instead of the traditional `npm` you can configure a Node-less environment to develop or test your application.
-- `/src/main/docker` - Docker configurations for the application and services that the application depends on
+- `.yo-rc.json` - JHipster configuration
+- `package.json` - Root dependencies and scripts
+- `server/package.json` - Backend dependencies
+- `tsconfig.json` - TypeScript configuration
+- `tailwind.config.js` - Tailwind CSS configuration
+- `eslint.config.mjs` - Frontend ESLint configuration
+- `server/eslint.config.mjs` - Backend ESLint configuration
 
 ## Development
 
 ### Prerequisites
 
-- Node.js >= 22.15.0
-- npm
-- PostgreSQL database
+- **Node.js** >= 22.15.0
+- **npm** >= 10.x
+- **PostgreSQL** >= 12
+- **Docker** (optional, for running services in containers)
 
-### Setup
+## Docker
 
-1. Install dependencies for both frontend and backend:
+This project ships with a production-ready Docker setup and a lightweight development setup for the database.
+
+### Files
+
+- `docker/Dockerfile`: Multi-stage build that compiles the React frontend and Node.js backend and serves the frontend from the backend container.
+- `docker/docker-compose.yml`: Production compose file with the app container and PostgreSQL.
+- `docker/docker-compose.dev.yml`: Development compose file for running PostgreSQL only.
+
+### Quick Start (Production)
+
+```bash
+# Build and start app + database
+npm run docker:up
+
+# Stop and remove containers and volumes
+npm run docker:down
+```
+
+App runs at `http://localhost:8080`.
+
+### Development (Database Only)
+
+```bash
+# Start only the database
+npm run docker:dev:up
+
+# Stop and remove DB
+npm run docker:dev:down
+```
+
+Then run the app locally:
+
+```bash
+npm run backend:start   # backend on 8080
+npm start               # frontend on 9000
+```
+
+### Environment Variables
+
+For production Docker, variables are provided via compose:
+
+- `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`, `DB_DATABASE`
+- `JWT_SECRET`, `JWT_REFRESH_SECRET` (change in production!)
+- `PORT` (default 8080)
+
+You can also create `docker/.env` (see `docker/.env.example`).
+
+### Initial Setup
+
+1. **Clone and install root dependencies:**
 
 ```bash
 npm install
-cd src/main/server && npm install
 ```
 
-2. Set up your database connection in `src/main/server/.env`:
+2. **Install backend dependencies:**
 
 ```bash
-DATABASE_URL=postgresql://user:password@localhost:5432/mydb
-JWT_SECRET=your-secret-key
-JWT_REFRESH_SECRET=your-refresh-secret-key
+cd server
+npm install
+cd ..
 ```
 
-3. Run database migrations:
+3. **Configure environment variables:**
+
+Create or edit `server/.env`:
+
+```env
+# Database
+DATABASE_URL=postgresql://myTailwindJhipster:password@localhost:5432/myTailwindJhipster
+
+# JWT Secrets (use strong random strings in production)
+JWT_SECRET=your-secret-key-min-256-bits
+JWT_REFRESH_SECRET=your-refresh-secret-key-min-256-bits
+
+# Email Configuration (optional for development)
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USER=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_FROM=noreply@mytailwindjhipster.com
+```
+
+4. **Start PostgreSQL database:**
+
+Using Docker (recommended):
+
+```bash
+npm run docker:db:up
+```
+
+Or use your local PostgreSQL installation.
+
+5. **Run database migrations:**
 
 ```bash
 npm run migration:run
 ```
 
-### Running the Application
-
-Run the following commands to start the development servers:
+6. **(Optional) Seed database with sample data:**
 
 ```bash
-# Terminal 1 - Start the Node.js backend (port 8080)
+npm run server:seed
+```
+
+This creates:
+
+- Admin user: `admin` / `admin`
+- Regular user: `user` / `user`
+- Sample todos for testing
+
+### Running the Application
+
+**Development mode with hot reload:**
+
+```bash
+# Terminal 1 - Start the backend (port 8080)
 npm run server:dev
 
-# Terminal 2 - Start the React frontend (port 9000)
+# Terminal 2 - Start the frontend dev server (port 9000)
 npm start
 ```
 
-The application will be available at `http://localhost:9000`
+The application will be available at `http://localhost:9000` and will proxy API requests to the backend at `http://localhost:8080`.
 
-### Available Commands
-
-**Backend (Node.js/Express) - Run from root:**
+**Production build:**
 
 ```bash
-npm run server:build          # Build TypeScript
-npm run server:dev            # Start development server with hot reload
-npm run server:start          # Start production server
-npm run server:seed           # Seed database with initial data
-npm run server:lint           # Run ESLint on backend code
+# Build both frontend and backend
+npm run build
+npm run server:build
+
+# Start production server
+npm run server:start
+```
+
+### Available npm Scripts
+
+**Backend Development:**
+
+```bash
+npm run server:dev          # Start dev server with hot reload
+npm run server:build        # Build TypeScript to JavaScript
+npm run server:start        # Start production server
+npm run server:seed         # Seed database with sample data
+npm run server:lint         # Run ESLint on backend code
 
 # Database migrations
-npm run migration:generate    # Generate migration from entity changes
-npm run migration:create      # Create empty migration file
-npm run migration:run         # Run pending migrations
-npm run migration:revert      # Rollback last migration
-npm run migration:show        # Show migration status
+npm run migration:create    # Create empty migration file
+npm run migration:generate  # Generate migration from entity changes
+npm run migration:run       # Run pending migrations
+npm run migration:revert    # Rollback last migration
+npm run migration:show      # Show migration status
 ```
 
-**Frontend (React) - Run from root:**
+**Frontend Development:**
 
 ```bash
-npm start                     # Start development server
-npm run build                 # Build for production
-npm run lint                  # Run ESLint
-npm run lint:fix              # Fix ESLint errors
-npm test                      # Run tests
-npm run prettier:format       # Format code
+npm start                   # Start dev server on port 9000
+npm run build               # Build for production
+npm run webapp:prod         # Optimized production build
+npm run lint                # Run ESLint
+npm run lint:fix            # Auto-fix ESLint errors
+npm test                    # Run Jest tests
+npm run test:watch          # Run tests in watch mode
+npm run prettier:check      # Check code formatting
+npm run prettier:format     # Format all code
 ```
 
-**Legacy commands (still available):**
+**Docker:**
 
 ```bash
-npm run backend:start         # Same as server:dev
-npm run backend:build         # Same as server:build
-npm run backend:seed          # Same as server:seed
+npm run docker:db:up        # Start PostgreSQL in Docker
+npm run docker:db:down      # Stop and remove PostgreSQL container
+npm run services:up         # Start all required services
 ```
 
-### Tailwind CSS Migration
+**Legacy aliases (still available):**
 
-This project has successfully migrated from Bootstrap/Reactstrap to Tailwind CSS.
+```bash
+npm run backend:start       # Alias for server:dev
+npm run backend:build       # Alias for server:build
+npm run backend:seed        # Alias for server:seed
+```
 
-**Completed:**
+### Tailwind CSS Implementation
 
-- ✅ Bootstrap and Reactstrap dependencies removed from `package.json`
-- ✅ Bootstrap imports removed from `src/main/webapp/app/app.scss`
-- ✅ Tailwind CSS configured with extended theme (colors: brand #533f03, navbar #353d47, accent #009cd8)
-- ✅ Tailwind preflight enabled for consistent base styles
-- ✅ Custom component library created (`Button`, `Badge`, `Card`, `Modal` with subcomponents)
-- ✅ Core components migrated (11 files including user-management, todo entities, health, login)
-- ✅ RTL support preserved via `postcss-rtlcss` and `setTextDirection` locale handling
+This project has been fully migrated from Bootstrap/Reactstrap to **Tailwind CSS v3**.
+
+**Features:**
+
+- ✅ Utility-first CSS approach with Tailwind v3
+- ✅ Custom design system with brand colors
+- ✅ Responsive design with mobile-first approach
+- ✅ RTL (Right-to-Left) support via `postcss-rtlcss`
+- ✅ Custom component library for consistent UI
+- ✅ Dark mode support ready (Tailwind classes available)
+
+**Custom Colors:**
+
+```js
+// tailwind.config.js
+colors: {
+  brand: {
+    DEFAULT: '#533f03',
+    light: '#6b5304',
+    dark: '#3b2d02'
+  },
+  navbar: '#353d47',
+  accent: '#009cd8'
+}
+```
 
 **Component Library:**
 
-Custom Tailwind components are available in `app/shared/components/`:
-
-- `Button`: Supports 9 variants (primary, secondary, info, success, warning, danger, light, dark, link), multiple sizes, and router integration
-- `Badge`: Pill-shaped badges with 7 color variants
-- `Card`: Simple container with consistent styling
-- `Modal`: Full-featured modal with Header/Body/Footer subcomponents
-
-**Usage:**
+Custom Tailwind components in `client/app/shared/components/`:
 
 ```tsx
 import { Button, Badge, Card, Modal, ModalHeader, ModalBody, ModalFooter } from 'app/shared/components';
 
-// Button example
-<Button variant="primary" size="lg">Click me</Button>
-<Button tag={Link} to="/path" variant="info">Navigate</Button>
+// Button - 9 variants (primary, secondary, info, success, warning, danger, light, dark, link)
+<Button variant="primary" size="lg" onClick={handleClick}>
+  Click Me
+</Button>
 
-// Badge example
+// Badge - 7 color variants
 <Badge variant="success">Active</Badge>
+<Badge variant="danger">Inactive</Badge>
 
-// Modal example
-<Modal isOpen={isOpen} toggle={handleClose}>
-  <ModalHeader toggle={handleClose}>Title</ModalHeader>
-  <ModalBody>Content</ModalBody>
+// Card - Container component
+<Card>
+  <h3>Card Title</h3>
+  <p>Card content goes here</p>
+</Card>
+
+// Modal - Full-featured modal with subcomponents
+<Modal isOpen={isOpen} toggle={toggleModal}>
+  <ModalHeader toggle={toggleModal}>Modal Title</ModalHeader>
+  <ModalBody>
+    Modal content here
+  </ModalBody>
   <ModalFooter>
-    <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+    <Button variant="primary" onClick={handleSave}>Save</Button>
+    <Button variant="secondary" onClick={toggleModal}>Cancel</Button>
   </ModalFooter>
 </Modal>
 ```
 
+**Router Integration:**
+
+Buttons support React Router's `Link` component:
+
+```tsx
+<Button tag={Link} to="/dashboard" variant="info">
+  Go to Dashboard
+</Button>
+```
+
 **RTL Support:**
 
-- Locale toggle sets `<html dir="rtl"|"ltr">`
-- `postcss-rtlcss` automatically transforms directional utilities (e.g., `ml-4` becomes `mr-4` in RTL)
-- Supports 50+ locales including `ar-ly` for Arabic
+- Language toggle automatically sets `<html dir="rtl">` or `<html dir="ltr">`
+- `postcss-rtlcss` transforms directional utilities (e.g., `ml-4` → `mr-4` in RTL)
+- Supports 50+ locales including Arabic (`ar-ly`)
 
-**Remaining Work:**
+**Migration Status:**
 
-Some files still contain Reactstrap imports and need migration:
+All core application components have been migrated to Tailwind CSS:
 
-- Navigation components (header, menus) - using `Navbar`, `Nav`, `DropdownMenu`
-- Account pages - using `Row`, `Col`, `Alert`, `Form`
-- Admin pages - using `Table`, `Input`, `FormText`
-- Footer component
+- Landing page with hero, sections, pricing, and contact forms
+- User management (list, detail, edit forms)
+- Todo entities (CRUD operations)
+- Authentication (login, register, account management)
+- Admin dashboards (health checks, metrics, API docs)
 
-These will cause runtime errors if accessed. Migration pattern:
+**Development:**
 
-- Replace `Row`/`Col` with Tailwind flex/grid utilities
-- Replace `Alert` with custom Tailwind alert component or toast notifications
-- Replace `Form` with standard HTML forms
-- Replace `Table` with Tailwind table structure
+Tailwind's JIT (Just-In-Time) compiler is enabled for instant builds and smaller CSS output. Use any Tailwind utility class and it will be generated on demand.
 
-Npm is also used to manage CSS and JavaScript dependencies used in this application. You can upgrade dependencies by
-specifying a newer version in [package.json](package.json). You can also run `./npmw update` and `./npmw install` to manage dependencies.
-Add the `help` flag on any command to see how you can use it. For example, `./npmw help update`.
+### Internationalization (i18n)
 
-The `./npmw run` command will list all the scripts available to run for this project.
+The application supports **50+ languages** out of the box using `react-jhipster`:
 
-### Administration Menu (Customized)
+- English (en), Spanish (es), French (fr), German (de)
+- Chinese Simplified (zh-cn), Japanese (ja)
+- Arabic (ar-ly) with RTL support
+- And many more...
 
-This Node.js adaptation removes Java/Spring-specific administration features that relied on endpoints not implemented in this backend.
+**Usage:**
 
-Active administration items:
+```tsx
+import { Translate, translate } from 'react-jhipster';
 
-- User Management – manage users and authorities
-- Health – system health check via `/management/health`
-- API – embedded Swagger UI via `/admin/docs`
+// For JSX content
+<h1><Translate contentKey="home.title" /></h1>
 
-Removed legacy items (Spring Boot specific):
+// With interpolation
+<p>
+  <Translate contentKey="home.welcome" interpolate={{ name: userName }} />
+</p>
 
-- Metrics (Spring Actuator metrics)
-- Configuration (Spring environment/config props)
-- Logs (dynamic log level management)
-- Database (H2 console)
+// For attributes (placeholders, titles, etc.)
+<input placeholder={translate('form.email.placeholder')} />
+```
 
-Potential future equivalents:
+**Translation Files:**
 
-- Process metrics (Node memory, uptime)
-- Sanitized environment inspection
-- Dynamic logger level controls
+Located in `client/i18n/{locale}/` with JSON structure:
 
-Currently only actively supported features are shown to keep the UI clean.
+```json
+{
+  "home": {
+    "title": "Welcome",
+    "welcome": "Hello, {{name}}!"
+  }
+}
+```
 
-### Authentication (Cookie-based Refresh Tokens)
+The language selector in the header allows users to switch languages instantly.
 
-The application now uses a short-lived JWT access token (stored in memory / session/local storage depending on "Remember me") and a long-lived refresh token stored exclusively in an HttpOnly, SameSite=Strict cookie.
+### Administration Features
 
-Key points:
+The Node.js backend provides essential administration capabilities:
 
-- Login (`POST /api/authenticate`) sets `refreshToken` HttpOnly cookie and returns only `id_token` in the JSON + `Authorization: Bearer` header.
-- Refresh (`POST /api/refresh-token`) requires no body; the cookie is sent automatically (`axios.defaults.withCredentials = true`). It rotates both the access and refresh tokens and re-sets the cookie.
-- Logout (`POST /api/logout`) clears the cookie and invalidates the hashed refresh token server-side.
-- Refresh tokens are hashed (bcrypt) before persistence; the database never stores plaintext refresh tokens.
-- Frontend removed all storage of refresh tokens (legacy keys are cleaned up). Multi-tab sessions now remain valid because the cookie is shared across tabs; only the access token is duplicated per tab.
+**Available Features:**
 
-Security improvements vs previous implementation:
+- **User Management** - Create, update, delete users and manage authorities (roles)
+- **Health Checks** - System health at `/management/health`:
+  - Database connectivity status
+  - Application status and uptime
+  - Detailed component health
+- **API Documentation** - Interactive Swagger UI at `/admin/docs`
 
-1. Eliminates exposure of refresh token to JavaScript (mitigates XSS exfiltration risk).
-2. Rotates refresh token on every use, shrinking replay window.
-3. Strict cookie attributes: `HttpOnly`, `SameSite=Strict`, and `Secure` in production reduce CSRF and network interception risks.
+**Not Available (Spring Boot specific):**
 
-Operational notes:
+- Metrics dashboard (Spring Actuator)
+- Configuration viewer (Spring environment)
+- Log level management
+- Database console (H2 console)
 
-- If the refresh cookie is missing or invalid the interceptor triggers logout.
-- Remember-me extends refresh token lifetime (4x) exactly as before but via cookie max-age.
-- To invalidate all sessions for a user, clear the hashed refresh token column (`refreshToken`) in `jhi_user` or call logout while authenticated.
+**Potential Node.js Enhancements:**
 
-Future hardening options (not yet implemented):
+- Process metrics (memory, CPU via `process` API)
+- Environment inspection (sanitized)
+- Winston/Pino log controls
+- Query monitoring
 
-- Maintain a refresh token version / rotation counter to instantly revoke older tokens.
-- Add IP / UA binding metadata to detect anomalous refresh attempts.
-- Implement sliding session expiry (shorten max lifetime after inactivity).
+### Authentication & Security
+
+**JWT Authentication with Secure Refresh Tokens:**
+
+The application uses a dual-token authentication strategy:
+
+1. **Access Token (short-lived)**
+
+   - JWT stored in memory (or localStorage with "Remember me")
+   - Short expiration (15 minutes)
+   - Sent via `Authorization: Bearer` header
+   - Contains user ID, username, and authorities
+
+2. **Refresh Token (long-lived)**
+   - Stored in HttpOnly, SameSite=Strict, Secure cookie
+   - Long expiration (7 days, 28 days with "Remember me")
+   - Never exposed to JavaScript (XSS protection)
+   - Hashed with bcrypt before database storage
+
+**Authentication Flow:**
+
+```bash
+# Login
+POST /api/authenticate
+Body: { username, password, rememberMe }
+Response: { id_token }
+Cookie: refreshToken (HttpOnly, Secure, SameSite=Strict)
+
+# Refresh Access Token
+POST /api/refresh-token
+Cookie: refreshToken (sent automatically)
+Response: { id_token }
+Cookie: New rotated refreshToken
+
+# Logout
+POST /api/logout
+Effect: Clears cookie and invalidates server-side refresh token
+```
+
+**Security Features:**
+
+- ✅ Refresh tokens never exposed to JavaScript (XSS mitigation)
+- ✅ Token rotation on every refresh (shrinks replay window)
+- ✅ Bcrypt hashing for stored refresh tokens
+- ✅ HttpOnly cookies prevent client-side access
+- ✅ SameSite=Strict prevents CSRF attacks
+- ✅ Secure flag in production (HTTPS only)
+- ✅ Multi-tab session support (shared cookie)
+
+**Session Management:**
+
+- Access tokens stored in memory by default
+- "Remember me" stores access token in localStorage
+- Automatic token refresh before expiration
+- Automatic logout on invalid/missing refresh token
+- Manual logout clears both tokens
+
+**Password Requirements:**
+
+- Minimum 4 characters (configurable)
+- Bcrypt hashing with salt rounds
+- Password reset via email (with token expiration)
+
+**Future Enhancements:**
+
+- Refresh token versioning for instant revocation
+- IP/User-Agent binding detection
+- Sliding session expiry
+- Rate limiting on auth endpoints
+
+### Email Service
+
+The backend includes a mail service for sending transactional emails:
+
+**Features:**
+
+- Nodemailer integration with SMTP
+- Handlebars templates for HTML emails
+- Plain text fallback generation
+- Template caching for performance
+
+**Email Templates:**
+
+Located in `server/src/templates/mail/`:
+
+- `activationEmail.html` - Account activation
+- `creationEmail.html` - Welcome email for new users
+- `passwordResetEmail.html` - Password reset instructions
+
+**Configuration:**
+
+Set environment variables in `server/.env`:
+
+```env
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USER=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_FROM=noreply@mytailwindjhipster.com
+APPLICATION_NAME=MyTailwindJhipster
+APPLICATION_URL=http://localhost:9000
+```
+
+**Usage:**
+
+```typescript
+import mailService from './services/mail.service';
+
+// Send activation email
+await mailService.sendActivationEmail(user);
+
+// Send password reset email
+await mailService.sendPasswordResetMail(user);
+```
+
+### Code Quality
+
+**ESLint Configuration:**
+
+Both frontend and backend have TypeScript-aware ESLint configurations:
+
+**Frontend** (`eslint.config.mjs`):
+
+- React and JSX rules
+- TypeScript type checking
+- Import ordering
+- Accessibility checks (jsx-a11y)
+
+**Backend** (`server/eslint.config.mjs`):
+
+- TypeScript strict rules
+- Naming conventions (camelCase, PascalCase)
+- Async/await best practices
+- Node.js-specific rules
+- Express handler patterns
+
+**Running Linters:**
+
+```bash
+# Frontend
+npm run lint
+npm run lint:fix
+
+# Backend
+npm run server:lint
+cd server && npm run lint -- --fix
+```
+
+**Prettier:**
+
+Code formatting is enforced with Prettier:
+
+```bash
+npm run prettier:check      # Check formatting
+npm run prettier:format     # Auto-format all files
+```
+
+**Git Hooks:**
+
+Husky + lint-staged run automatic checks on commit:
+
+- ESLint on staged files
+- Prettier formatting
+- TypeScript type checking
 
 ### PWA Support
 
-JHipster ships with PWA (Progressive Web App) support, and it's turned off by default. One of the main components of a PWA is a service worker.
+Progressive Web App features are available but disabled by default.
 
-The service worker initialization code is commented out by default. To enable it, uncomment the following code in `src/main/webapp/index.html`:
+**To Enable:**
+
+Uncomment in `client/index.html`:
 
 ```html
 <script>
@@ -253,180 +597,334 @@ The service worker initialization code is commented out by default. To enable it
 </script>
 ```
 
-Note: [Workbox](https://developers.google.com/web/tools/workbox/) powers JHipster's service worker. It dynamically generates the `service-worker.js` file.
+Workbox handles service worker generation with intelligent caching strategies.
 
-### Managing dependencies
+## Production Deployment
 
-For example, to add [Leaflet][] library as a runtime dependency of your application, you would run following command:
+### Building for Production
 
-```
-./npmw install --save --save-exact leaflet
-```
+**Build both frontend and backend:**
 
-To benefit from TypeScript type definitions from [DefinitelyTyped][] repository in development, you would run following command:
+```bash
+# Build optimized frontend bundle
+npm run webapp:prod
 
-```
-./npmw install --save-dev --save-exact @types/leaflet
-```
-
-Then you would import the JS and CSS files specified in library's installation instructions so that [Webpack][] knows about them:
-Note: There are still a few other things remaining to do for Leaflet that we won't detail here.
-
-For further instructions on how to develop with JHipster, have a look at [Using JHipster in development][].
-
-## Building for production
-
-### Packaging as jar
-
-To build the final jar and optimize the myTailwindJhipster application for production, run:
-
-```
-./mvnw -Pprod clean verify
+# Build backend TypeScript to JavaScript
+npm run server:build
 ```
 
-This will concatenate and minify the client CSS and JavaScript files. It will also modify `index.html` so it references these new files.
-To ensure everything worked, run:
+The frontend build outputs to `target/classes/static/` and the backend build outputs to `server/dist/`.
 
-```
-java -jar target/*.jar
-```
+**Start production server:**
 
-Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
-
-Refer to [Using JHipster in production][] for more details.
-
-### Packaging as war
-
-To package your application as a war in order to deploy it to an application server, run:
-
-```
-./mvnw -Pprod,war clean verify
+```bash
+cd server
+NODE_ENV=production npm start
 ```
 
-### JHipster Control Center
+The server will:
 
-JHipster Control Center can help you manage and control your application(s). You can start a local control center server (accessible on http://localhost:7419) with:
+- Serve the static frontend from `/`
+- Expose API endpoints at `/api/*`
+- Run on port 8080 (configurable via `PORT` env variable)
 
+### Environment Variables
+
+Required for production:
+
+```env
+# Database
+DATABASE_URL=postgresql://user:pass@host:5432/dbname
+
+# JWT Secrets (use strong random strings!)
+JWT_SECRET=your-256-bit-secret
+JWT_REFRESH_SECRET=your-256-bit-refresh-secret
+
+# Email
+MAIL_HOST=smtp.your-provider.com
+MAIL_PORT=587
+MAIL_USER=your-email
+MAIL_PASSWORD=your-password
+MAIL_FROM=noreply@yourdomain.com
+
+# Application
+NODE_ENV=production
+PORT=8080
+APPLICATION_NAME=MyTailwindJhipster
+APPLICATION_URL=https://yourdomain.com
 ```
-docker compose -f src/main/docker/jhipster-control-center.yml up
+
+### Docker Deployment
+
+**Build Docker image:**
+
+```bash
+# Build image
+docker build -t mytailwindjhipster:latest .
+
+# Or for ARM64 (Apple Silicon)
+docker build --platform linux/arm64 -t mytailwindjhipster:latest .
+```
+
+**Run with Docker Compose:**
+
+```bash
+# Start all services (app + PostgreSQL)
+docker compose -f docker/app.yml up -d
+
+# View logs
+docker compose -f docker/app.yml logs -f
+
+# Stop services
+docker compose -f docker/app.yml down
+```
+
+### Database Migrations
+
+**In production, run migrations before starting:**
+
+```bash
+cd server
+npm run migration:run
+```
+
+**Check migration status:**
+
+```bash
+npm run migration:show
+```
+
+### Health Checks
+
+Monitor application health:
+
+```bash
+curl http://localhost:8080/management/health
+```
+
+Response:
+
+```json
+{
+  "status": "UP",
+  "components": {
+    "db": {
+      "status": "UP",
+      "details": {
+        "initialized": true,
+        "pingMs": 2,
+        "type": "postgres"
+      }
+    }
+  }
+}
 ```
 
 ## Testing
 
-### Spring Boot tests
+### Backend Tests
 
-To launch your application's tests, run:
-
-```
-./mvnw verify
-```
-
-### Client tests
-
-Unit tests are run by [Jest][]. They're located near components and can be run with:
-
-```
-./npmw test
+```bash
+cd server
+npm test                    # Run all tests
+npm test -- --watch         # Run in watch mode
+npm test -- --coverage      # Generate coverage report
 ```
 
-## Others
+### Frontend Tests
 
-### Code quality using Sonar
-
-Sonar is used to analyse code quality. You can start a local Sonar server (accessible on http://localhost:9001) with:
-
-```
-docker compose -f src/main/docker/sonar.yml up -d
+```bash
+npm test                    # Run Jest tests
+npm run test:watch          # Run in watch mode
+npm run test-ci             # Run with CI optimizations
 ```
 
-Note: we have turned off forced authentication redirect for UI in [src/main/docker/sonar.yml](src/main/docker/sonar.yml) for out of the box experience while trying out SonarQube, for real use cases turn it back on.
+Tests are located next to the components they test:
 
-You can run a Sonar analysis with using the [sonar-scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner) or by using the maven plugin.
+- `*.spec.ts` - Backend unit tests
+- `*.spec.tsx` - Frontend component tests
 
-Then, run a Sonar analysis:
+### End-to-End Tests
 
-```
-./mvnw -Pprod clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=admin
-```
+E2E tests can be added using Cypress or Playwright. Currently not configured.
 
-If you need to re-run the Sonar phase, please be sure to specify at least the `initialize` phase since Sonar properties are loaded from the sonar-project.properties file.
+## Docker Services
 
-```
-./mvnw initialize sonar:sonar -Dsonar.login=admin -Dsonar.password=admin
-```
+### Available Compose Files
 
-Additionally, Instead of passing `sonar.password` and `sonar.login` as CLI arguments, these parameters can be configured from [sonar-project.properties](sonar-project.properties) as shown below:
+Located in `docker/`:
 
-```
-sonar.login=admin
-sonar.password=admin
-```
+```bash
+# PostgreSQL database
+docker compose -f docker/postgresql.yml up -d
 
-For more information, refer to the [Code quality page][].
+# All required services
+docker compose -f docker/services.yml up -d
 
-### Docker Compose support
+# Full application stack (app + services)
+docker compose -f docker/app.yml up -d
 
-JHipster generates a number of Docker Compose configuration files in the [src/main/docker/](src/main/docker/) folder to launch required third party services.
+# Monitoring (Prometheus + Grafana)
+docker compose -f docker/monitoring.yml up -d
 
-For example, to start required services in Docker containers, run:
-
-```
-docker compose -f src/main/docker/services.yml up -d
+# SonarQube for code quality
+docker compose -f docker/sonar.yml up -d
 ```
 
-To stop and remove the containers, run:
+### Common Commands
 
-```
-docker compose -f src/main/docker/services.yml down
-```
+```bash
+# Start services in background
+docker compose -f docker/services.yml up -d
 
-[Spring Docker Compose Integration](https://docs.spring.io/spring-boot/reference/features/dev-services.html) is enabled by default. It's possible to disable it in application.yml:
+# View logs
+docker compose -f docker/services.yml logs -f
 
-```yaml
-spring:
-  ...
-  docker:
-    compose:
-      enabled: false
-```
+# Stop services
+docker compose -f docker/services.yml down
 
-You can also fully dockerize your application and all the services that it depends on.
-To achieve this, first build a Docker image of your app by running:
+# Stop and remove volumes
+docker compose -f docker/services.yml down -v
 
-```sh
-npm run java:docker
+# Check running containers
+docker ps
 ```
 
-Or build a arm64 Docker image when using an arm64 processor os like MacOS with M1 processor family running:
+## Code Quality with SonarQube
 
-```sh
-npm run java:docker:arm64
+Start SonarQube:
+
+```bash
+docker compose -f docker/sonar.yml up -d
 ```
 
-Then run:
+Access at `http://localhost:9001` (default credentials: admin/admin)
 
-```sh
-docker compose -f src/main/docker/app.yml up -d
+Run analysis:
+
+```bash
+# Install sonar-scanner globally
+npm install -g sonar-scanner
+
+# Run scan
+sonar-scanner
 ```
 
-For more information refer to [Using Docker and Docker-Compose][], this page also contains information on the Docker Compose sub-generator (`jhipster docker-compose`), which is able to generate Docker configurations for one or several JHipster applications.
+Configuration in `sonar-project.properties`.
 
-## Continuous Integration (optional)
+## Troubleshooting
 
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
+### Common Issues
 
-[JHipster Homepage and latest documentation]: https://www.jhipster.tech
-[JHipster 8.11.0 archive]: https://www.jhipster.tech/documentation-archive/v8.11.0
-[Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v8.11.0/development/
-[Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v8.11.0/docker-compose
-[Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v8.11.0/production/
-[Running tests page]: https://www.jhipster.tech/documentation-archive/v8.11.0/running-tests/
-[Code quality page]: https://www.jhipster.tech/documentation-archive/v8.11.0/code-quality/
-[Setting up Continuous Integration]: https://www.jhipster.tech/documentation-archive/v8.11.0/setting-up-ci/
-[Node.js]: https://nodejs.org/
-[NPM]: https://www.npmjs.com/
-[Webpack]: https://webpack.github.io/
-[BrowserSync]: https://www.browsersync.io/
-[Jest]: https://jestjs.io
-[Leaflet]: https://leafletjs.com/
-[DefinitelyTyped]: https://definitelytyped.org/
+**Database Connection Failed:**
+
+```bash
+# Check if PostgreSQL is running
+docker ps
+
+# Start database
+npm run docker:db:up
+
+# Check connection in server/.env
+DATABASE_URL=postgresql://myTailwindJhipster:password@localhost:5432/myTailwindJhipster
+```
+
+**Port Already in Use:**
+
+```bash
+# Frontend (default 9000)
+# Backend (default 8080)
+
+# Find process using port
+lsof -i :8080
+
+# Kill process
+kill -9 <PID>
+```
+
+**Migration Errors:**
+
+```bash
+# Check migration status
+npm run migration:show
+
+# Revert last migration
+npm run migration:revert
+
+# In development, you can drop and recreate
+npm run docker:db:down
+npm run docker:db:up
+npm run migration:run
+npm run server:seed
+```
+
+**Email Not Sending:**
+
+- Check SMTP credentials in `server/.env`
+- For Gmail, use App Password (not account password)
+- Verify firewall/network allows SMTP connection
+
+**Build Errors:**
+
+```bash
+# Clear caches and reinstall
+rm -rf node_modules server/node_modules
+rm package-lock.json server/package-lock.json
+npm install
+cd server && npm install
+```
+
+## Technology Stack
+
+**Backend:**
+
+- Node.js 22.15+
+- Express.js 4.x
+- TypeScript 5.3
+- TypeORM 0.3
+- PostgreSQL
+- JWT (jsonwebtoken)
+- bcryptjs
+- Nodemailer
+- Handlebars (email templates)
+- Swagger/OpenAPI
+
+**Frontend:**
+
+- React 18.3
+- Redux Toolkit
+- React Router 6.x
+- TypeScript 5.3
+- Tailwind CSS 3.x
+- Axios
+- react-jhipster (i18n)
+- FontAwesome
+- dayjs
+
+**Build Tools:**
+
+- Webpack 5
+- Babel
+- PostCSS (with rtlcss for RTL support)
+- ESLint 9
+- Prettier
+- Husky (git hooks)
+- Jest (testing)
+
+**DevOps:**
+
+- Docker & Docker Compose
+- SonarQube (code quality)
+- Prometheus + Grafana (monitoring)
+
+## Additional Resources
+
+- [JHipster Documentation](https://www.jhipster.tech/documentation-archive/v8.11.0)
+- [TypeORM Documentation](https://typeorm.io/)
+- [React Documentation](https://react.dev/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Express.js Documentation](https://expressjs.com/)
+
+## License
+
+This project is licensed under the UNLICENSED license.

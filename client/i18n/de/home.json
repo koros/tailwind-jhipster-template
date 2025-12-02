@@ -64,19 +64,33 @@
       "starter": {
         "name": "Starter",
         "price": "Kostenlos",
-        "features": ["Grundlegendes Projekt-Scaffolding", "Community-Support", "Open-Source-Komponenten"],
+        "features": {
+          "0": "Grundlegendes Projekt-Scaffolding",
+          "1": "Community-Support",
+          "2": "Open-Source-Komponenten"
+        },
         "cta": "Loslegen"
       },
       "pro": {
         "name": "Pro",
         "price": "29 €/Monat",
-        "features": ["Erweiterte Generatoren", "Prioritäts-E-Mail-Support", "Premium-Vorlagen", "Regelmäßige Updates"],
+        "features": {
+          "0": "Erweiterte Generatoren",
+          "1": "Prioritäts-E-Mail-Support",
+          "2": "Premium-Vorlagen",
+          "3": "Regelmäßige Updates"
+        },
         "cta": "Pro Werden"
       },
       "enterprise": {
         "name": "Unternehmen",
         "price": "99 €/Monat",
-        "features": ["Individuelle Beratung", "Dedizierter Account Manager", "On-Premise-Bereitstellung", "SLA-Garantie"],
+        "features": {
+          "0": "Individuelle Beratung",
+          "1": "Dedizierter Account Manager",
+          "2": "On-Premise-Bereitstellung",
+          "3": "SLA-Garantie"
+        },
         "cta": "Vertrieb Kontaktieren"
       }
     },

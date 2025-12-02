@@ -14,6 +14,101 @@
       "follow": "kontakta @jhipster på Twitter"
     },
     "like": "Om du gillar JHipster, glöm inte att ge oss en stjärna på",
-    "github": "GitHub"
+    "github": "GitHub",
+    "hero": {
+      "welcome": "Welcome, {{username}}",
+      "title": "Build Faster with JHipster + Tailwind",
+      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
+      "login": "Login",
+      "getStarted": "Get Started",
+      "dashboard": "Go to Dashboard",
+      "learnMore": "Learn more",
+      "pricing": "Pricing",
+      "contact": "Contact"
+    },
+    "about": {
+      "title": "About Our Platform",
+      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
+      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
+      "keyFeatures": "Key Features",
+      "feature1": {
+        "title": "Rapid Scaffolding",
+        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+      },
+      "feature2": {
+        "title": "Modern Styling",
+        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+      },
+      "feature3": {
+        "title": "Production Ready",
+        "description": "Robust architecture with security, internationalization, and quality tooling."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Set Up Your Project",
+        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+      },
+      "step2": {
+        "title": "Build Your Features",
+        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+      },
+      "step3": {
+        "title": "Deploy & Scale",
+        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+      }
+    },
+    "pricing": {
+      "title": "Choose Your Plan",
+      "starter": {
+        "name": "Starter",
+        "price": "Free",
+        "features": {
+          "0": "Basic project scaffolding",
+          "1": "Community support",
+          "2": "Open-source components"
+        },
+        "cta": "Get Started"
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$29/mo",
+        "features": {
+          "0": "Advanced generators",
+          "1": "Priority email support",
+          "2": "Premium templates",
+          "3": "Regular updates"
+        },
+        "cta": "Go Pro"
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "$99/mo",
+        "features": {
+          "0": "Custom consulting",
+          "1": "Dedicated account manager",
+          "2": "On-premise deployment",
+          "3": "SLA guarantee"
+        },
+        "cta": "Contact Sales"
+      }
+    },
+    "contact": {
+      "title": "Get In Touch",
+      "description": "Have questions or need help? We're here for you.",
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message",
+      "send": "Send Message",
+      "demo": "Request a Demo"
+    },
+    "footer": {
+      "about": "About",
+      "howItWorks": "How It Works",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+    }
   }
 }

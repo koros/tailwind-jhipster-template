@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  app:
+    env_file:
+      - .env
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - '8080:8080'
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USERNAME=myTailwindJhipster
+      - DB_PASSWORD=myTailwindJhipster
+      - DB_DATABASE=myTailwindJhipster
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key-change-in-production}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-your-refresh-secret-key-change-in-production}
+      - MAIL_HOST=${MAIL_HOST:-smtp.gmail.com}
+      - MAIL_PORT=${MAIL_PORT:-587}
+      - MAIL_SECURE=${MAIL_SECURE:-false}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - MAIL_FROM=${MAIL_FROM:-noreply@mytailwindjhipster.com}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: myTailwindJhipster
+      POSTGRES_USER: myTailwindJhipster
+      POSTGRES_PASSWORD: myTailwindJhipster
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U myTailwindJhipster']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
+    driver: local

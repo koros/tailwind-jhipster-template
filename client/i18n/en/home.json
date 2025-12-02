@@ -64,19 +64,33 @@
       "starter": {
         "name": "Starter",
         "price": "Free",
-        "features": ["Basic project scaffolding", "Community support", "Open-source components"],
+        "features": {
+          "0": "Basic project scaffolding",
+          "1": "Community support",
+          "2": "Open-source components"
+        },
         "cta": "Get Started"
       },
       "pro": {
         "name": "Pro",
         "price": "$29/mo",
-        "features": ["Advanced generators", "Priority email support", "Premium templates", "Regular updates"],
+        "features": {
+          "0": "Advanced generators",
+          "1": "Priority email support",
+          "2": "Premium templates",
+          "3": "Regular updates"
+        },
         "cta": "Go Pro"
       },
       "enterprise": {
         "name": "Enterprise",
         "price": "$99/mo",
-        "features": ["Custom consulting", "Dedicated account manager", "On-premise deployment", "SLA guarantee"],
+        "features": {
+          "0": "Custom consulting",
+          "1": "Dedicated account manager",
+          "2": "On-premise deployment",
+          "3": "SLA guarantee"
+        },
         "cta": "Contact Sales"
       }
     },

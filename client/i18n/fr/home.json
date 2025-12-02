@@ -64,19 +64,33 @@
       "starter": {
         "name": "Débutant",
         "price": "Gratuit",
-        "features": ["Échafaudage de projet de base", "Support communautaire", "Composants open-source"],
+        "features": {
+          "0": "Échafaudage de projet de base",
+          "1": "Support communautaire",
+          "2": "Composants open-source"
+        },
         "cta": "Commencer"
       },
       "pro": {
         "name": "Pro",
         "price": "29 $/mois",
-        "features": ["Générateurs avancés", "Support par e-mail prioritaire", "Modèles premium", "Mises à jour régulières"],
+        "features": {
+          "0": "Générateurs avancés",
+          "1": "Support par e-mail prioritaire",
+          "2": "Modèles premium",
+          "3": "Mises à jour régulières"
+        },
         "cta": "Devenir Pro"
       },
       "enterprise": {
         "name": "Entreprise",
         "price": "99 $/mois",
-        "features": ["Conseil personnalisé", "Gestionnaire de compte dédié", "Déploiement sur site", "Garantie SLA"],
+        "features": {
+          "0": "Conseil personnalisé",
+          "1": "Gestionnaire de compte dédié",
+          "2": "Déploiement sur site",
+          "3": "Garantie SLA"
+        },
         "cta": "Contacter les Ventes"
       }
     },

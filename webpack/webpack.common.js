@@ -119,7 +119,7 @@ module.exports = async options => {
             },
             { from: './client/swagger-ui/', to: 'swagger-ui/' },
             // Content folder may be absent; don't fail the build if missing
-            { from: './client/content/', to: 'content/', noErrorOnMissing: true },
+            { from: './client/app/content/', to: 'content/', noErrorOnMissing: true },
             { from: './client/favicon.ico', to: 'favicon.ico' },
             { from: './client/manifest.webapp', to: 'manifest.webapp' },
             // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
