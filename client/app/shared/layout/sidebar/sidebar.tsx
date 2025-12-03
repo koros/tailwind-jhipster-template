@@ -69,7 +69,7 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
       title: 'Administration',
       items: [
         { to: '/admin/user-management', icon: 'user-plus', label: 'global.menu.admin.userManagement', adminOnly: true },
-        { to: '/admin/health', icon: 'heart', label: 'global.menu.admin.health', adminOnly: true },
+        { to: '/admin/health', icon: 'heart-pulse', label: 'global.menu.admin.health', adminOnly: true },
         { to: '/admin/docs', icon: ['far', 'file-code'], label: 'global.menu.admin.apidocs', adminOnly: true },
       ].filter(item => !item.adminOnly || isAdmin),
     },
@@ -106,7 +106,11 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 truncate">{account.login}</p>
+                <p className="text-sm font-semibold text-gray-900 truncate">
+                  {account.firstName && account.lastName
+                    ? `${account.firstName.charAt(0).toUpperCase() + account.firstName.slice(1)} ${account.lastName.charAt(0).toUpperCase() + account.lastName.slice(1)}`
+                    : account.login}
+                </p>
                 <p className="text-xs text-gray-600 truncate">{account.email}</p>
                 <div className="flex items-center gap-1 mt-1">
                   <span className="text-sm">{languages[currentLocale || 'en']?.flag || '🇺🇸'}</span>

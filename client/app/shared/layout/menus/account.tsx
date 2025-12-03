@@ -33,7 +33,7 @@ const accountMenuItems = () => (
 
 export const AccountMenu = ({ isAuthenticated = false, account = null }) => (
   <NavDropdown
-    icon={isAuthenticated ? 'user' : 'user-slash'}
+    icon={!isAuthenticated ? 'user-slash' : undefined}
     name={undefined}
     ariaLabel={translate(isAuthenticated ? 'global.menu.account.main' : 'global.menu.account.login')}
     id="account-menu"

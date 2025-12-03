@@ -2,6 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import { AppDataSource } from './config/database';
 import app from './app';
+import { ensureAdminUser } from './bootstrap/create-admin-user';
 
 const PORT = process.env.PORT || 8080;
 
@@ -10,6 +11,9 @@ async function startServer() {
     // Initialize database connection
     await AppDataSource.initialize();
     console.log('Database connection established');
+
+    // Ensure admin user exists
+    await ensureAdminUser(AppDataSource);
 
     // Start Express server
     app.listen(PORT, () => {

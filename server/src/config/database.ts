@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { DataSource } from 'typeorm';
 import { User } from '../entities/User';
 import { Todo } from '../entities/Todo';
+import { CreateInitialSchema1733000000000 } from '../migrations/1733000000000-CreateInitialSchema';
 
 // Support both DATABASE_URL and individual environment variables
 const getDatabaseConfig = () => {
@@ -28,7 +29,7 @@ export const AppDataSource = new DataSource({
   synchronize: false, // Disabled - use migrations instead
   logging: process.env.NODE_ENV === 'development',
   entities: [User, Todo],
-  migrations: ['dist/migrations/**/*.js'],
+  migrations: process.env.NODE_ENV === 'production' ? ['dist/migrations/**/*.js'] : [CreateInitialSchema1733000000000],
   subscribers: [],
   migrationsRun: true, // Auto-run pending migrations on startup
 });
