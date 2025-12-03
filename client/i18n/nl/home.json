@@ -1,114 +1,114 @@
 {
   "home": {
     "title": "Welkom, Java Hipster!",
-    "subtitle": "Dit is uw startpagina",
+    "subtitle": "Dit is uw homepage",
     "logged": {
-      "message": "U bent aangemeld als gebruiker \"{{username}}\"."
+      "message": "U bent ingelogd als gebruiker \"{{username}}\"."
     },
-    "question": "Indien u vragen hebt over JHipster:",
+    "question": "Als u vragen heeft over JHipster:",
     "link": {
-      "homepage": "JHipster startpagina",
+      "homepage": "JHipster homepage",
       "stackoverflow": "JHipster op Stack Overflow",
       "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster publieke chatruimte",
-      "follow": "contacteer @jhipster op Twitter"
+      "chat": "JHipster publieke chatroom",
+      "follow": "volg @jhipster op Twitter"
     },
     "like": "Als u JHipster leuk vindt, vergeet dan niet om ons een ster te geven op",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
+      "welcome": "Welkom, {{username}}",
+      "title": "Bouw Sneller met JHipster + Tailwind",
+      "subtitle": "Een moderne, productieklare starter die Spring Boot, React en Tailwind CSS combineert voor snelle applicatieontwikkeling.",
+      "login": "Inloggen",
+      "getStarted": "Aan de slag",
+      "dashboard": "Ga naar Dashboard",
+      "learnMore": "Meer informatie",
+      "pricing": "Prijzen",
       "contact": "Contact"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "Over Ons Platform",
+      "description1": "Ons platform combineert de kracht van moderne webtechnologieën om uitzonderlijke ervaringen te leveren. Gebouwd met toonaangevende frameworks en best practices, bieden we een solide basis voor uw volgende grote idee.",
+      "description2": "Of u nu een startup MVP bouwt of een enterprise-applicatie schaalt, onze stack is ontworpen om met u mee te groeien. Van authenticatie en databasebeheer tot responsieve UI-componenten, alles wat u nodig heeft is kant-en-klaar.",
+      "keyFeatures": "Belangrijkste Functies",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "Snelle Scaffolding",
+        "description": "Genereer snel entiteiten, services, routes en UI met consistente patronen."
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "Moderne Styling",
+        "description": "Tailwind utility-first klassen houden stijlen slanker terwijl ze expressief blijven."
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "Productieklaar",
+        "description": "Robuuste architectuur met beveiliging, internationalisatie en kwaliteitstools."
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "Hoe Het Werkt",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "Stel Uw Project In",
+        "description": "Begin binnen enkele minuten met onze vooraf geconfigureerde setup. Installeer afhankelijkheden, configureer uw database en start uw ontwikkelomgeving met eenvoudige commando's. Geen complexe configuratie vereist."
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "Bouw Uw Functies",
+        "description": "Gebruik onze krachtige generators om entiteiten, REST API's en UI-componenten te bouwen. Focus op uw bedrijfslogica terwijl wij de boilerplate code afhandelen. Pas alles aan om aan uw vereisten te voldoen."
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "Implementeer en Schaal",
+        "description": "Lanceer uw applicatie met vertrouwen met onze productieklare configuraties. Ingebouwde Docker-ondersteuning, cloud-native architectuur en prestatieoptimalisaties zorgen ervoor dat uw app soepel draait op elke schaal."
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "Kies Uw Plan",
       "starter": {
         "name": "Starter",
-        "price": "Free",
+        "price": "Gratis",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "Basis projectscaffolding",
+          "1": "Ondersteuning van de gemeenschap",
+          "2": "Open-source componenten"
         },
-        "cta": "Get Started"
+        "cta": "Aan de slag"
       },
       "pro": {
         "name": "Pro",
-        "price": "$29/mo",
+        "price": "€29/maand",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
+          "0": "Geavanceerde generators",
+          "1": "Prioritaire e-mailondersteuning",
           "2": "Premium templates",
-          "3": "Regular updates"
+          "3": "Regelmatige updates"
         },
-        "cta": "Go Pro"
+        "cta": "Ga Pro"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "$99/mo",
+        "price": "€99/maand",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "Aangepaste consultancy",
+          "1": "Toegewijde accountmanager",
+          "2": "On-premise implementatie",
+          "3": "SLA garantie"
         },
-        "cta": "Contact Sales"
+        "cta": "Neem Contact Op met Verkoop"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "Neem Contact Op",
+      "description": "Heeft u vragen of heeft u hulp nodig? Wij zijn er voor u.",
+      "name": "Uw Naam",
+      "email": "Uw E-mail",
+      "message": "Uw Bericht",
+      "send": "Bericht Verzenden",
+      "demo": "Vraag een Demo aan"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
+      "about": "Over",
+      "howItWorks": "Hoe Het Werkt",
+      "pricing": "Prijzen",
       "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "copyright": "© 2024 JHipster + Tailwind. Alle rechten voorbehouden."
     }
   }
 }

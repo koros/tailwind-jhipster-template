@@ -1,114 +1,114 @@
 {
   "home": {
-    "title": "Chào mừng bạn đến với Java Hipster!",
+    "title": "Chào mừng, Java Hipster!",
     "subtitle": "Đây là trang chủ của bạn",
     "logged": {
-      "message": "Bạn đang đăng nhập bằng tài khoản \"{{username}}\"."
+      "message": "Bạn đã đăng nhập với tên người dùng \"{{username}}\"."
     },
-    "question": "Nếu bạn có bất kỳ câu hỏi nào về JHipster vui lòng truy cập:",
+    "question": "Nếu bạn có bất kỳ câu hỏi nào về JHipster:",
     "link": {
       "homepage": "Trang chủ JHipster",
       "stackoverflow": "JHipster trên Stack Overflow",
-      "bugtracker": "Theo dõi các lỗi JHipster",
-      "chat": "Phòng chat công cộng JHipster",
-      "follow": "Theo dõi @jhipster trên Twitter"
+      "bugtracker": "Trình theo dõi lỗi JHipster",
+      "chat": "Phòng chat công khai JHipster",
+      "follow": "theo dõi @jhipster trên Twitter"
     },
-    "like": "Nếu bạn thích JHipster, đừng quên cho chúng tôi thêm một ngôi sao trên",
+    "like": "Nếu bạn thích JHipster, đừng quên cho chúng tôi một ngôi sao trên",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "Chào mừng, {{username}}",
+      "title": "Xây Dựng Nhanh Hơn với JHipster + Tailwind",
+      "subtitle": "Một starter hiện đại, sẵn sàng cho production kết hợp Spring Boot, React và Tailwind CSS để phát triển ứng dụng nhanh chóng.",
+      "login": "Đăng nhập",
+      "getStarted": "Bắt đầu",
+      "dashboard": "Đến Bảng điều khiển",
+      "learnMore": "Tìm hiểu thêm",
+      "pricing": "Bảng giá",
+      "contact": "Liên hệ"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "Về Nền Tảng Của Chúng Tôi",
+      "description1": "Nền tảng của chúng tôi kết hợp sức mạnh của các công nghệ web hiện đại để mang lại trải nghiệm đặc biệt. Được xây dựng với các framework hàng đầu trong ngành và các phương pháp hay nhất, chúng tôi cung cấp nền tảng vững chắc cho ý tưởng lớn tiếp theo của bạn.",
+      "description2": "Cho dù bạn đang xây dựng MVP cho startup hay mở rộng ứng dụng doanh nghiệp, stack của chúng tôi được thiết kế để phát triển cùng bạn. Từ xác thực và quản lý cơ sở dữ liệu đến các thành phần UI responsive, mọi thứ bạn cần đã sẵn sàng sử dụng ngay.",
+      "keyFeatures": "Tính Năng Chính",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "Scaffolding Nhanh",
+        "description": "Tạo các entity, service, route và UI nhanh chóng với các mẫu nhất quán."
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "Styling Hiện Đại",
+        "description": "Các lớp utility-first của Tailwind giữ cho style gọn gàng trong khi vẫn có tính biểu cảm."
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "Sẵn Sàng Production",
+        "description": "Kiến trúc mạnh mẽ với bảo mật, quốc tế hóa và các công cụ chất lượng."
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "Cách Thức Hoạt Động",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "Thiết Lập Dự Án",
+        "description": "Bắt đầu trong vài phút với thiết lập được cấu hình sẵn của chúng tôi. Cài đặt các phụ thuộc, cấu hình cơ sở dữ liệu và khởi chạy môi trường phát triển với các lệnh đơn giản. Không cần cấu hình phức tạp."
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "Xây Dựng Tính Năng",
+        "description": "Sử dụng các trình tạo mạnh mẽ của chúng tôi để scaffold các entity, tạo REST API và xây dựng các thành phần UI. Tập trung vào logic kinh doanh trong khi chúng tôi xử lý code boilerplate. Tùy chỉnh mọi thứ để phù hợp với yêu cầu của bạn."
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "Triển Khai và Mở Rộng",
+        "description": "Triển khai ứng dụng của bạn một cách tự tin bằng cách sử dụng các cấu hình sẵn sàng production của chúng tôi. Hỗ trợ Docker tích hợp, kiến trúc cloud-native và tối ưu hóa hiệu suất đảm bảo ứng dụng của bạn chạy mượt mà ở mọi quy mô."
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "Chọn Gói Của Bạn",
       "starter": {
-        "name": "Starter",
-        "price": "Free",
+        "name": "Khởi Đầu",
+        "price": "Miễn phí",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "Scaffolding dự án cơ bản",
+          "1": "Hỗ trợ cộng đồng",
+          "2": "Các thành phần mã nguồn mở"
         },
-        "cta": "Get Started"
+        "cta": "Bắt đầu"
       },
       "pro": {
         "name": "Pro",
-        "price": "$29/mo",
+        "price": "699.000đ/tháng",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "Trình tạo nâng cao",
+          "1": "Hỗ trợ email ưu tiên",
+          "2": "Mẫu cao cấp",
+          "3": "Cập nhật thường xuyên"
         },
-        "cta": "Go Pro"
+        "cta": "Nâng cấp Pro"
       },
       "enterprise": {
-        "name": "Enterprise",
-        "price": "$99/mo",
+        "name": "Doanh Nghiệp",
+        "price": "2.399.000đ/tháng",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "Tư vấn tùy chỉnh",
+          "1": "Quản lý tài khoản chuyên dụng",
+          "2": "Triển khai on-premise",
+          "3": "Đảm bảo SLA"
         },
-        "cta": "Contact Sales"
+        "cta": "Liên Hệ Bán Hàng"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "Liên Hệ",
+      "description": "Có câu hỏi hoặc cần trợ giúp? Chúng tôi ở đây vì bạn.",
+      "name": "Tên của bạn",
+      "email": "Email của bạn",
+      "message": "Tin nhắn của bạn",
+      "send": "Gửi Tin Nhắn",
+      "demo": "Yêu Cầu Demo"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "Giới thiệu",
+      "howItWorks": "Cách Hoạt Động",
+      "pricing": "Bảng giá",
+      "contact": "Liên hệ",
+      "copyright": "© 2024 JHipster + Tailwind. Tất cả quyền được bảo lưu."
     }
   }
 }

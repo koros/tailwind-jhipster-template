@@ -1,114 +1,114 @@
 {
   "home": {
-    "title": "आपका स्वागत है, Java Hipster!",
-    "subtitle": "यह आपका मुखपृष्ठ है",
+    "title": "स्वागत है, Java Hipster!",
+    "subtitle": "यह आपका होमपेज है",
     "logged": {
-      "message": "आप उपयोगकर्ता \"{{username}}\" के रूप में लॉग इन है।"
+      "message": "आप \"{{username}}\" उपयोगकर्ता के रूप में लॉग इन हैं।"
     },
-    "question": "यदि आपको JHipster के बारें कोई भी सवाल है:",
+    "question": "यदि आपके पास JHipster के बारे में कोई प्रश्न है:",
     "link": {
-      "homepage": "JHipster मुखपृष्ठ",
-      "stackoverflow": "JHipster स्टैक ओवरफ़्लो",
-      "bugtracker": "JHipster बग tracker",
+      "homepage": "JHipster होमपेज",
+      "stackoverflow": "Stack Overflow पर JHipster",
+      "bugtracker": "JHipster बग ट्रैकर",
       "chat": "JHipster सार्वजनिक चैट रूम",
-      "follow": "@jhipster को ट्विटर पर फौलो करें"
+      "follow": "Twitter पर @jhipster को फॉलो करें"
     },
-    "like": "यदि आपको JHipster पसंद है, तो हमें एक स्टार देना न भूलें",
-    "github": "GitHub पर",
+    "like": "यदि आपको JHipster पसंद है, तो हमें स्टार देना न भूलें",
+    "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "स्वागत है, {{username}}",
+      "title": "JHipster + Tailwind के साथ तेज़ी से बनाएं",
+      "subtitle": "एक आधुनिक, प्रोडक्शन-रेडी स्टार्टर जो तेज़ एप्लिकेशन विकास के लिए Spring Boot, React और Tailwind CSS को जोड़ता है।",
+      "login": "लॉगिन करें",
+      "getStarted": "शुरू करें",
+      "dashboard": "डैशबोर्ड पर जाएं",
+      "learnMore": "और जानें",
+      "pricing": "मूल्य निर्धारण",
+      "contact": "संपर्क करें"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "हमारे प्लेटफॉर्म के बारे में",
+      "description1": "हमारा प्लेटफॉर्म असाधारण अनुभव प्रदान करने के लिए आधुनिक वेब तकनीकों की शक्ति को जोड़ता है। उद्योग-अग्रणी फ्रेमवर्क और सर्वोत्तम प्रथाओं के साथ निर्मित, हम आपके अगले बड़े विचार के लिए एक मजबूत नींव प्रदान करते हैं।",
+      "description2": "चाहे आप स्टार्टअप MVP बना रहे हों या एंटरप्राइज़ एप्लिकेशन को स्केल कर रहे हों, हमारा स्टैक आपके साथ बढ़ने के लिए डिज़ाइन किया गया है। प्रमाणीकरण और डेटाबेस प्रबंधन से लेकर रिस्पॉन्सिव UI कंपोनेंट्स तक, आपको जो कुछ भी चाहिए वह तुरंत उपयोग के लिए तैयार है।",
+      "keyFeatures": "मुख्य विशेषताएं",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "तेज़ स्कैफोल्डिंग",
+        "description": "सुसंगत पैटर्न के साथ तेज़ी से एंटिटीज़, सेवाएं, रूट्स और UI जेनरेट करें।"
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "आधुनिक स्टाइलिंग",
+        "description": "Tailwind की यूटिलिटी-फर्स्ट क्लासेस स्टाइल्स को सुव्यवस्थित रखती हैं जबकि अभिव्यक्तिपूर्ण बनी रहती हैं।"
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "प्रोडक्शन के लिए तैयार",
+        "description": "सुरक्षा, अंतर्राष्ट्रीयकरण और गुणवत्ता टूलिंग के साथ मजबूत आर्किटेक्चर।"
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "यह कैसे काम करता है",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "अपना प्रोजेक्ट सेट अप करें",
+        "description": "हमारे पूर्व-कॉन्फ़िगर सेटअप के साथ मिनटों में शुरू करें। निर्भरताएं इंस्टॉल करें, अपने डेटाबेस को कॉन्फ़िगर करें, और सरल कमांड के साथ अपना विकास वातावरण लॉन्च करें। जटिल कॉन्फ़िगरेशन की आवश्यकता नहीं।"
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "अपनी सुविधाएं बनाएं",
+        "description": "एंटिटीज़ स्कैफोल्ड करने, REST API बनाने और UI कंपोनेंट्स बनाने के लिए हमारे शक्तिशाली जेनरेटर का उपयोग करें। अपने व्यवसाय तर्क पर ध्यान केंद्रित करें जबकि हम बॉयलरप्लेट कोड को संभालते हैं। अपनी आवश्यकताओं से मेल खाने के लिए सब कुछ अनुकूलित करें।"
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "तैनात करें और स्केल करें",
+        "description": "हमारे प्रोडक्शन-रेडी कॉन्फ़िगरेशन का उपयोग करके आत्मविश्वास के साथ अपना एप्लिकेशन शिप करें। बिल्ट-इन Docker सपोर्ट, क्लाउड-नेटिव आर्किटेक्चर और परफॉर्मेंस ऑप्टिमाइज़ेशन सुनिश्चित करते हैं कि आपका ऐप किसी भी स्केल पर सुगमता से चलता है।"
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "अपनी योजना चुनें",
       "starter": {
-        "name": "Starter",
-        "price": "Free",
+        "name": "स्टार्टर",
+        "price": "मुफ़्त",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "बेसिक प्रोजेक्ट स्कैफोल्डिंग",
+          "1": "समुदाय सहायता",
+          "2": "ओपन-सोर्स कंपोनेंट्स"
         },
-        "cta": "Get Started"
+        "cta": "शुरू करें"
       },
       "pro": {
-        "name": "Pro",
-        "price": "$29/mo",
+        "name": "प्रो",
+        "price": "₹2,499/माह",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "उन्नत जेनरेटर",
+          "1": "प्राथमिकता ईमेल सहायता",
+          "2": "प्रीमियम टेम्प्लेट",
+          "3": "नियमित अपडेट"
         },
-        "cta": "Go Pro"
+        "cta": "प्रो बनें"
       },
       "enterprise": {
-        "name": "Enterprise",
-        "price": "$99/mo",
+        "name": "एंटरप्राइज़",
+        "price": "₹8,299/माह",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "कस्टम परामर्श",
+          "1": "समर्पित खाता प्रबंधक",
+          "2": "ऑन-प्रिमाइस तैनाती",
+          "3": "SLA गारंटी"
         },
-        "cta": "Contact Sales"
+        "cta": "बिक्री से संपर्क करें"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "संपर्क में रहें",
+      "description": "प्रश्न हैं या मदद चाहिए? हम आपके लिए यहां हैं।",
+      "name": "आपका नाम",
+      "email": "आपका ईमेल",
+      "message": "आपका संदेश",
+      "send": "संदेश भेजें",
+      "demo": "डेमो का अनुरोध करें"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "के बारे में",
+      "howItWorks": "यह कैसे काम करता है",
+      "pricing": "मूल्य निर्धारण",
+      "contact": "संपर्क करें",
+      "copyright": "© 2024 JHipster + Tailwind. सर्वाधिकार सुरक्षित।"
     }
   }
 }

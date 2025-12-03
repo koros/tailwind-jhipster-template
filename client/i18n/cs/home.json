@@ -3,112 +3,112 @@
     "title": "Vítejte, Java Hipster!",
     "subtitle": "Toto je vaše domovská stránka",
     "logged": {
-      "message": "Jste přihlášen jako \"{{username}}\"."
+      "message": "Jste přihlášeni jako uživatel \"{{username}}\"."
     },
-    "question": "Pokud máte nějaké dotazy týkající se JHipster:",
+    "question": "Pokud máte otázky k JHipster:",
     "link": {
       "homepage": "Domovská stránka JHipster",
-      "stackoverflow": "JHipster ve službě Stack Overflow",
-      "bugtracker": "Nahlašování chyb JHipster",
-      "chat": "Veřejná chatovací místnost JHipster",
-      "follow": "Sledovat @jhipster ve službě Twitter"
+      "stackoverflow": "JHipster na Stack Overflow",
+      "bugtracker": "Sledování chyb JHipster",
+      "chat": "Veřejný chat JHipster",
+      "follow": "sledujte @jhipster na Twitteru"
     },
-    "like": "Pokud se vám JHipster líbí, nezapomeňte nám dát hvězdičku ve službě",
+    "like": "Pokud se vám JHipster líbí, nezapomeňte nám dát hvězdičku na",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "Vítejte, {{username}}",
+      "title": "Stavte Rychleji s JHipster + Tailwind",
+      "subtitle": "Moderní starter připravený pro produkci kombinující Spring Boot, React a Tailwind CSS pro rychlý vývoj aplikací.",
+      "login": "Přihlásit se",
+      "getStarted": "Začít",
+      "dashboard": "Přejít na Nástěnku",
+      "learnMore": "Zjistit více",
+      "pricing": "Ceník",
+      "contact": "Kontakt"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "O Naší Platformě",
+      "description1": "Naše platforma kombinuje sílu moderních webových technologií pro poskytování výjimečných zážitků. Postavená na předních průmyslových frameworcích a nejlepších praktikách poskytujeme solidní základ pro váš další velký nápad.",
+      "description2": "Ať už stavíte MVP pro startup nebo škálujete podnikovou aplikaci, náš stack je navržen tak, aby rostl s vámi. Od autentizace a správy databází po responzivní UI komponenty, vše, co potřebujete, je připraveno k použití.",
+      "keyFeatures": "Klíčové Funkce",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "Rychlé Scaffolding",
+        "description": "Generujte entity, služby, trasy a UI rychle s konzistentními vzory."
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "Moderní Stylování",
+        "description": "Utility-first třídy Tailwind udržují styly štíhlé a zárověň výrazné."
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "Připraveno pro Produkci",
+        "description": "Robustní architektura se zabezpečením, internacionalizací a kvalitními nástroji."
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "Jak To Funguje",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "Nastavte Svůj Projekt",
+        "description": "Začněte během několika minut s naší předkonfigurovanou instalací. Nainstalujte závislosti, nakonfigurujte databázi a spusťte vývojové prostředí jednoduchými příkazy. Není potřeba žádná složitá konfigurace."
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "Vytvářejte Své Funkce",
+        "description": "Použijte naše výkonné generátory k vytvoření entit, REST API a UI komponent. Zaměřte se na svou obchodní logiku, zatímco my zpracováváme boilerplate kód. Přizpůsobte vše podle svých požadavků."
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "Nasaďte a Škálujte",
+        "description": "Spusťte svou aplikaci s důvěrou pomocí našich produkčně připravených konfigurací. Vestavěná podpora Dockeru, cloud-native architektura a optimalizace výkonu zajišťují hladký chod vaší aplikace v jakémkoli měřítku."
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "Vyberte Si Váš Plán",
       "starter": {
         "name": "Starter",
-        "price": "Free",
+        "price": "Zdarma",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "Základní scaffolding projektu",
+          "1": "Podpora komunity",
+          "2": "Open-source komponenty"
         },
-        "cta": "Get Started"
+        "cta": "Začít"
       },
       "pro": {
         "name": "Pro",
-        "price": "$29/mo",
+        "price": "699 Kč/měs",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "Pokročilé generátory",
+          "1": "Prioritní emailová podpora",
+          "2": "Prémiové šablony",
+          "3": "Pravidelné aktualizace"
         },
-        "cta": "Go Pro"
+        "cta": "Přejít na Pro"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "$99/mo",
+        "price": "2 499 Kč/měs",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "Vlastní poradenství",
+          "1": "Dedikovaný account manager",
+          "2": "On-premise nasazení",
+          "3": "SLA záruka"
         },
-        "cta": "Contact Sales"
+        "cta": "Kontaktovat Prodej"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "Kontaktujte Nás",
+      "description": "Máte otázky nebo potřebujete pomoc? Jsme tu pro vás.",
+      "name": "Vaše Jméno",
+      "email": "Váš Email",
+      "message": "Vaše Zpráva",
+      "send": "Odeslat Zprávu",
+      "demo": "Požádat o Demo"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "O nás",
+      "howItWorks": "Jak To Funguje",
+      "pricing": "Ceník",
+      "contact": "Kontakt",
+      "copyright": "© 2024 JHipster + Tailwind. Všechna práva vyhrazena."
     }
   }
 }

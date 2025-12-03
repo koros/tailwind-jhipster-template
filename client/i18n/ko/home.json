@@ -1,114 +1,114 @@
 {
   "home": {
-    "title": "Java Hipster 에 오신 것을 환영합니다!",
-    "subtitle": "이것은 당신의 홈페이지입니다.",
+    "title": "환영합니다, Java Hipster!",
+    "subtitle": "여기는 당신의 홈페이지입니다",
     "logged": {
-      "message": "\"{{username}}\"(으)로 로그인하셨습니다."
+      "message": "\"{{username}}\" 사용자로 로그인했습니다."
     },
-    "question": "JHipster에 질문이 있다면:",
+    "question": "JHipster에 대해 질문이 있으시면:",
     "link": {
       "homepage": "JHipster 홈페이지",
-      "stackoverflow": "JHipster Stack Overflow",
-      "bugtracker": "JHipster 버그 트랙커",
-      "chat": "JHipster public chat room",
-      "follow": "트위터에서 @jhipster 에 접속하세요."
+      "stackoverflow": "Stack Overflow의 JHipster",
+      "bugtracker": "JHipster 버그 추적기",
+      "chat": "JHipster 공개 채팅방",
+      "follow": "Twitter에서 @jhipster 팔로우"
     },
-    "like": "JHipster 가 마음에 든다면, 별을 주는 것을 잊지 마세요.",
+    "like": "JHipster가 마음에 드시면, GitHub에서 별을 주는 것을 잊지 마세요",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "환영합니다, {{username}}",
+      "title": "JHipster + Tailwind로 더 빠르게 개발하기",
+      "subtitle": "신속한 애플리케이션 개발을 위해 Spring Boot, React, Tailwind CSS를 결합한 현대적이고 프로덕션 준비가 완료된 스타터입니다.",
+      "login": "로그인",
+      "getStarted": "시작하기",
+      "dashboard": "대시보드로 이동",
+      "learnMore": "더 알아보기",
+      "pricing": "가격",
+      "contact": "문의"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "우리 플랫폼 소개",
+      "description1": "우리 플랫폼은 탁월한 경험을 제공하기 위해 현대 웹 기술의 힘을 결합합니다. 업계를 선도하는 프레임워크와 모범 사례로 구축되어, 당신의 다음 큰 아이디어를 위한 견고한 기반을 제공합니다.",
+      "description2": "스타트업 MVP를 구축하든 엔터프라이즈 애플리케이션을 확장하든, 우리의 스택은 당신과 함께 성장하도록 설계되었습니다. 인증 및 데이터베이스 관리부터 반응형 UI 컴포넌트까지, 필요한 모든 것이 즉시 사용 가능합니다.",
+      "keyFeatures": "주요 기능",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "빠른 스캐폴딩",
+        "description": "일관된 패턴으로 엔티티, 서비스, 라우트 및 UI를 빠르게 생성합니다."
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "현대적인 스타일링",
+        "description": "Tailwind의 유틸리티 우선 클래스는 스타일을 간결하게 유지하면서도 표현력을 제공합니다."
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "프로덕션 준비 완료",
+        "description": "보안, 국제화 및 품질 도구를 갖춘 견고한 아키텍처."
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "작동 방식",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "프로젝트 설정",
+        "description": "사전 구성된 설정으로 몇 분 안에 시작하세요. 간단한 명령으로 종속성을 설치하고, 데이터베이스를 구성하고, 개발 환경을 시작하세요. 복잡한 구성이 필요하지 않습니다."
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "기능 구축",
+        "description": "강력한 생성기를 사용하여 엔티티, REST API 및 UI 컴포넌트를 구축하세요. 우리가 보일러플레이트 코드를 처리하는 동안 비즈니스 로직에 집중하세요. 요구 사항에 맞게 모든 것을 사용자 정의하세요."
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "배포 및 확장",
+        "description": "프로덕션 준비가 완료된 구성을 사용하여 자신 있게 애플리케이션을 배포하세요. 내장 Docker 지원, 클라우드 네이티브 아키텍처 및 성능 최적화로 어떤 규모에서도 앱이 원활하게 실행됩니다."
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "플랜 선택",
       "starter": {
-        "name": "Starter",
-        "price": "Free",
+        "name": "스타터",
+        "price": "무료",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "기본 프로젝트 스캐폴딩",
+          "1": "커뮤니티 지원",
+          "2": "오픈 소스 컴포넌트"
         },
-        "cta": "Get Started"
+        "cta": "시작하기"
       },
       "pro": {
-        "name": "Pro",
-        "price": "$29/mo",
+        "name": "프로",
+        "price": "₩39,000/월",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "고급 생성기",
+          "1": "우선 이메일 지원",
+          "2": "프리미엄 템플릿",
+          "3": "정기 업데이트"
         },
-        "cta": "Go Pro"
+        "cta": "프로 시작"
       },
       "enterprise": {
-        "name": "Enterprise",
-        "price": "$99/mo",
+        "name": "엔터프라이즈",
+        "price": "₩129,000/월",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "맞춤 컨설팅",
+          "1": "전담 계정 관리자",
+          "2": "온프레미스 배포",
+          "3": "SLA 보장"
         },
-        "cta": "Contact Sales"
+        "cta": "영업팀 문의"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "문의하기",
+      "description": "질문이 있거나 도움이 필요하신가요? 저희가 도와드리겠습니다.",
+      "name": "이름",
+      "email": "이메일",
+      "message": "메시지",
+      "send": "메시지 보내기",
+      "demo": "데모 요청"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "소개",
+      "howItWorks": "작동 방식",
+      "pricing": "가격",
+      "contact": "문의",
+      "copyright": "© 2024 JHipster + Tailwind. 모든 권리 보유."
     }
   }
 }

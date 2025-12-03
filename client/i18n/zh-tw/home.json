@@ -1,114 +1,114 @@
 {
   "home": {
-    "title": "Java 文青，歡迎!",
-    "subtitle": "這裡是您的首頁",
+    "title": "歡迎，Java Hipster！",
+    "subtitle": "這是您的首頁",
     "logged": {
-      "message": "您目前是用 “{{username}}” 帳號登入。"
+      "message": "您已登入為使用者「{{username}}」。"
     },
-    "question": "要是您對 JHipster 有任何疑問，可以到:",
+    "question": "如果您對 JHipster 有任何疑問：",
     "link": {
       "homepage": "JHipster 首頁",
-      "stackoverflow": "Stack Overflow 上標有 JHipster 的問題",
-      "bugtracker": "JHipster 議題管理",
+      "stackoverflow": "Stack Overflow 上的 JHipster",
+      "bugtracker": "JHipster 錯誤追蹤器",
       "chat": "JHipster 公開聊天室",
       "follow": "在 Twitter 上關注 @jhipster"
     },
-    "like": "如果您喜歡 JHipster，別忘了給我們星星，馬上連到",
+    "like": "如果您喜歡 JHipster，請不要忘記在以下位置給我們一顆星",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "歡迎，{{username}}",
+      "title": "使用 JHipster + Tailwind 更快速地建置",
+      "subtitle": "一個結合 Spring Boot、React 和 Tailwind CSS 的現代化生產就緒啟動器，用於快速應用程式開發。",
+      "login": "登入",
+      "getStarted": "開始使用",
+      "dashboard": "前往控制台",
+      "learnMore": "了解更多",
+      "pricing": "定價",
+      "contact": "聯絡"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "關於我們的平台",
+      "description1": "我們的平台結合了現代網路技術的力量，提供卓越的體驗。採用業界領先的框架和最佳實踐構建，我們為您的下一個偉大想法提供堅實的基礎。",
+      "description2": "無論您是在建構新創公司的 MVP 還是在擴展企業應用程式，我們的堆疊都旨在與您一起成長。從身份驗證和資料庫管理到響應式 UI 元件，您需要的一切都已準備就緒。",
+      "keyFeatures": "主要功能",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "快速腳手架",
+        "description": "使用一致的模式快速生成實體、服務、路由和使用者介面。"
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "現代化樣式",
+        "description": "Tailwind 的實用優先類別保持樣式精簡且具有表現力。"
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "生產就緒",
+        "description": "具有安全性、國際化和品質工具的強大架構。"
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "運作方式",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "設定您的專案",
+        "description": "使用我們預先配置的設定在幾分鐘內開始。使用簡單的指令安裝相依性、配置資料庫並啟動開發環境。無需複雜的配置。"
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "建置您的功能",
+        "description": "使用我們強大的生成器來建構實體、建立 REST API 和建置 UI 元件。專注於您的業務邏輯，我們處理樣板程式碼。自訂所有內容以符合您的需求。"
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "部署和擴展",
+        "description": "使用我們生產就緒的配置自信地發布您的應用程式。內建 Docker 支援、雲原生架構和效能最佳化確保您的應用程式在任何規模下都能順暢運行。"
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "選擇您的方案",
       "starter": {
-        "name": "Starter",
-        "price": "Free",
+        "name": "入門",
+        "price": "免費",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "基本專案腳手架",
+          "1": "社群支援",
+          "2": "開放原始碼元件"
         },
-        "cta": "Get Started"
+        "cta": "開始使用"
       },
       "pro": {
-        "name": "Pro",
-        "price": "$29/mo",
+        "name": "專業版",
+        "price": "NT$899/月",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "進階生成器",
+          "1": "優先電子郵件支援",
+          "2": "高級範本",
+          "3": "定期更新"
         },
-        "cta": "Go Pro"
+        "cta": "升級專業版"
       },
       "enterprise": {
-        "name": "Enterprise",
-        "price": "$99/mo",
+        "name": "企業版",
+        "price": "NT$2,999/月",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "客製化諮詢",
+          "1": "專屬客戶經理",
+          "2": "本地部署",
+          "3": "SLA 保證"
         },
-        "cta": "Contact Sales"
+        "cta": "聯絡業務"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "聯絡我們",
+      "description": "有問題或需要幫助嗎？我們隨時為您服務。",
+      "name": "您的姓名",
+      "email": "您的電子郵件",
+      "message": "您的訊息",
+      "send": "傳送訊息",
+      "demo": "申請展示"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "關於",
+      "howItWorks": "運作方式",
+      "pricing": "定價",
+      "contact": "聯絡",
+      "copyright": "© 2024 JHipster + Tailwind. 保留所有權利。"
     }
   }
 }

@@ -1,114 +1,114 @@
 {
   "home": {
-    "title": "أهلا وسهلا بك، جافا هبستر!",
-    "subtitle": "هذه صفحتك الرئيسية",
+    "title": "مرحباً, Java Hipster!",
+    "subtitle": "هذه هي صفحتك الرئيسية",
     "logged": {
-      "message": "قمت بتسجيل الدخول كمستخدم \"{{username}}\"."
+      "message": "لقد قمت بتسجيل الدخول كمستخدم \"{{username}}\"."
     },
     "question": "إذا كان لديك أي سؤال حول JHipster:",
     "link": {
-      "homepage": "JHipster homepage",
-      "stackoverflow": "JHipster on Stack Overflow",
-      "bugtracker": "JHipster bug tracker",
-      "chat": "JHipster public chat room",
-      "follow": "follow @jhipster on Twitter"
+      "homepage": "الصفحة الرئيسية لـ JHipster",
+      "stackoverflow": "JHipster على Stack Overflow",
+      "bugtracker": "متتبع الأخطاء في JHipster",
+      "chat": "غرفة الدردشة العامة لـ JHipster",
+      "follow": "تابع @jhipster على تويتر"
     },
-    "like": "إذا كنت تحب JHipster، لا تنسى أن تعطي لنا نجم على",
+    "like": "إذا أعجبك JHipster، لا تنسى أن تعطينا نجمة على",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "مرحباً، {{username}}",
+      "title": "ابنِ بشكل أسرع مع JHipster + Tailwind",
+      "subtitle": "بادئ حديث وجاهز للإنتاج يجمع بين Spring Boot وReact وTailwind CSS لتطوير التطبيقات السريع.",
+      "login": "تسجيل الدخول",
+      "getStarted": "ابدأ",
+      "dashboard": "انتقل إلى لوحة التحكم",
+      "learnMore": "اعرف المزيد",
+      "pricing": "الأسعار",
+      "contact": "اتصل بنا"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "عن منصتنا",
+      "description1": "تجمع منصتنا بين قوة تقنيات الويب الحديثة لتقديم تجارب استثنائية. مبنية بأطر عمل رائدة في الصناعة وأفضل الممارسات، نوفر أساساً متيناً لفكرتك الكبيرة القادمة.",
+      "description2": "سواء كنت تبني MVP لشركة ناشئة أو توسع تطبيقاً للمؤسسات، فإن مجموعتنا التقنية مصممة للنمو معك. من المصادقة وإدارة قواعد البيانات إلى مكونات واجهة المستخدم سريعة الاستجابة، كل ما تحتاجه جاهز للاستخدام.",
+      "keyFeatures": "الميزات الرئيسية",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "هيكلة سريعة",
+        "description": "أنشئ الكيانات والخدمات والمسارات وواجهة المستخدم بسرعة مع أنماط متسقة."
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "تصميم حديث",
+        "description": "تحافظ فئات Tailwind ذات الأولوية للأدوات على الأنماط موجزة مع بقائها معبرة."
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "جاهز للإنتاج",
+        "description": "بنية قوية مع الأمان والتدويل وأدوات الجودة."
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "كيف يعمل",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "قم بإعداد مشروعك",
+        "description": "ابدأ في دقائق مع إعدادنا المُهيأ مسبقاً. قم بتثبيت التبعيات، وتكوين قاعدة البيانات الخاصة بك، وإطلاق بيئة التطوير الخاصة بك بأوامر بسيطة. لا حاجة لتكوين معقد."
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "قم ببناء ميزاتك",
+        "description": "استخدم مولداتنا القوية لإنشاء الكيانات وإنشاء واجهات REST API وبناء مكونات واجهة المستخدم. ركز على منطق عملك بينما نتعامل مع الكود النمطي. خصص كل شيء ليتوافق مع متطلباتك."
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "نشر وتوسيع",
+        "description": "أطلق تطبيقك بثقة باستخdام تكويناتنا الجاهزة للإنتاج. دعم Docker المدمج والبنية السحابية الأصلية وتحسينات الأداء تضمن تشغيل تطبيقك بسلاسة على أي نطاق."
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "اختر خطتك",
       "starter": {
-        "name": "Starter",
-        "price": "Free",
+        "name": "المبتدئ",
+        "price": "مجاني",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "هيكلة أساسية للمشروع",
+          "1": "دعم المجتمع",
+          "2": "مكونات مفتوحة المصدر"
         },
-        "cta": "Get Started"
+        "cta": "ابدأ"
       },
       "pro": {
-        "name": "Pro",
-        "price": "$29/mo",
+        "name": "احترافي",
+        "price": "29$/شهر",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "مولدات متقدمة",
+          "1": "دعم بريد إلكتروني ذو أولوية",
+          "2": "قوالب متميزة",
+          "3": "تحديثات منتظمة"
         },
-        "cta": "Go Pro"
+        "cta": "انتقل للاحترافي"
       },
       "enterprise": {
-        "name": "Enterprise",
-        "price": "$99/mo",
+        "name": "المؤسسات",
+        "price": "99$/شهر",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "استشارات مخصصة",
+          "1": "مدير حساب مخصص",
+          "2": "نشر محلي",
+          "3": "ضمان SLA"
         },
-        "cta": "Contact Sales"
+        "cta": "اتصل بالمبيعات"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "تواصل معنا",
+      "description": "هل لديك أسئلة أو تحتاج إلى مساعدة؟ نحن هنا من أجلك.",
+      "name": "اسمك",
+      "email": "بريدك الإلكتروني",
+      "message": "رسالتك",
+      "send": "إرسال الرسالة",
+      "demo": "طلب عرض توضيحي"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "حول",
+      "howItWorks": "كيف يعمل",
+      "pricing": "الأسعار",
+      "contact": "اتصل بنا",
+      "copyright": "© 2024 JHipster + Tailwind. جميع الحقوق محفوظة."
     }
   }
 }

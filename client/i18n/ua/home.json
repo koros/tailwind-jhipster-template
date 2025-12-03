@@ -1,114 +1,114 @@
 {
   "home": {
-    "title": "Ласкаво просимо, Java hipster!",
+    "title": "Ласкаво просимо, Java Hipster!",
     "subtitle": "Це ваша домашня сторінка",
     "logged": {
-      "message": "Ви ввійшли як користувач \"{{username}}\"."
+      "message": "Ви увійшли як користувач \"{{username}}\"."
     },
-    "question": "Якщо у вас виникли питання по JHipster:",
+    "question": "Якщо у вас є питання щодо JHipster:",
     "link": {
       "homepage": "Домашня сторінка JHipster",
       "stackoverflow": "JHipster на Stack Overflow",
-      "bugtracker": "Баг трекер JHipster",
-      "chat": "Публічна чат кімната JHipster ",
-      "follow": "Користувач @jhipster в Twitter"
+      "bugtracker": "Трекер помилок JHipster",
+      "chat": "Публічний чат JHipster",
+      "follow": "підпишіться на @jhipster у Twitter"
     },
-    "like": "Якщо вам подобається JHipster, не забудьте дати нам зірку на",
+    "like": "Якщо вам подобається JHipster, не забудьте поставити нам зірку на",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "Ласкаво просимо, {{username}}",
+      "title": "Створюйте Швидше з JHipster + Tailwind",
+      "subtitle": "Сучасний стартер, готовий до продакшену, що поєднує Spring Boot, React та Tailwind CSS для швидкої розробки додатків.",
+      "login": "Увійти",
+      "getStarted": "Почати",
+      "dashboard": "Перейти до Панелі",
+      "learnMore": "Дізнатися більше",
+      "pricing": "Ціни",
+      "contact": "Контакти"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "Про Нашу Платформу",
+      "description1": "Наша платформа поєднує силу сучасних веб-технологій для створення виняткового досвіду. Побудована на провідних галузевих фреймворках та кращих практиках, ми надаємо міцну основу для вашої наступної великої ідеї.",
+      "description2": "Незалежно від того, чи створюєте ви MVP для стартапу, чи масштабуєте корпоративний додаток, наш стек розроблений для зростання разом з вами. Від аутентифікації та управління базами даних до адаптивних UI-компонентів — все, що вам потрібно, готове до використання.",
+      "keyFeatures": "Ключові Можливості",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "Швидкий Скаффолдинг",
+        "description": "Швидко генеруйте сутності, сервіси, маршрути та UI з послідовними шаблонами."
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "Сучасна Стилізація",
+        "description": "Utility-first класи Tailwind роблять стилі компактними, залишаючись виразними."
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "Готово до Продакшену",
+        "description": "Надійна архітектура з безпекою, інтернаціоналізацією та якісними інструментами."
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "Як Це Працює",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "Налаштуйте Ваш Проект",
+        "description": "Почніть за хвилини з нашим попередньо налаштованим встановленням. Встановіть залежності, налаштуйте базу даних та запустіть середовище розробки простими командами. Складного налаштування не потрібно."
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "Створюйте Функціонал",
+        "description": "Використовуйте наші потужні генератори для створення сутностей, REST API та UI-компонентів. Зосередьтеся на бізнес-логіці, поки ми обробляємо шаблонний код. Налаштуйте все відповідно до ваших вимог."
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "Розгортайте та Масштабуйте",
+        "description": "Випускайте додаток із впевненістю, використовуючи наші готові до продакшену конфігурації. Вбудована підтримка Docker, хмарна архітектура та оптимізації продуктивності гарантують безперебійну роботу вашого додатку в будь-якому масштабі."
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "Оберіть Ваш План",
       "starter": {
-        "name": "Starter",
-        "price": "Free",
+        "name": "Стартовий",
+        "price": "Безкоштовно",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "Базовий скаффолдинг проекту",
+          "1": "Підтримка спільноти",
+          "2": "Компоненти з відкритим кодом"
         },
-        "cta": "Get Started"
+        "cta": "Почати"
       },
       "pro": {
         "name": "Pro",
-        "price": "$29/mo",
+        "price": "1 099₴/міс",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "Розширені генератори",
+          "1": "Пріоритетна підтримка по email",
+          "2": "Преміум шаблони",
+          "3": "Регулярні оновлення"
         },
-        "cta": "Go Pro"
+        "cta": "Перейти на Pro"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "$99/mo",
+        "price": "3 699₴/міс",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "Індивідуальний консалтинг",
+          "1": "Виділений менеджер акаунту",
+          "2": "Розгортання on-premise",
+          "3": "Гарантія SLA"
         },
-        "cta": "Contact Sales"
+        "cta": "Зв'язатися з Відділом Продажів"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "Зв'яжіться з Нами",
+      "description": "Маєте запитання або потребуєте допомоги? Ми тут для вас.",
+      "name": "Ваше Ім'я",
+      "email": "Ваш Email",
+      "message": "Ваше Повідомлення",
+      "send": "Надіслати Повідомлення",
+      "demo": "Запросити Демо"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "Про нас",
+      "howItWorks": "Як Це Працює",
+      "pricing": "Ціни",
+      "contact": "Контакти",
+      "copyright": "© 2024 JHipster + Tailwind. Всі права захищені."
     }
   }
 }

@@ -1,114 +1,114 @@
 {
   "home": {
     "title": "Bem-vindo, Java Hipster!",
-    "subtitle": "Esta é a página principal",
+    "subtitle": "Esta é a sua página inicial",
     "logged": {
-      "message": "Está autenticado como \"{{username}}\"."
+      "message": "Está autenticado como utilizador \"{{username}}\"."
     },
-    "question": "Em caso de dúvida sobre o JHipster:",
+    "question": "Se tiver alguma questão sobre o JHipster:",
     "link": {
-      "homepage": "Página do JHipster",
+      "homepage": "Página inicial do JHipster",
       "stackoverflow": "JHipster no Stack Overflow",
-      "bugtracker": "Bug's do JHipster",
-      "chat": "Chat público do JHipster",
-      "follow": "Contacte @jhipster no Twitter"
+      "bugtracker": "Rastreador de bugs do JHipster",
+      "chat": "Sala de chat pública do JHipster",
+      "follow": "siga @jhipster no Twitter"
     },
-    "like": "Se gosta do JHipster, não se esqueça de avaliar no",
+    "like": "Se gosta do JHipster, não se esqueça de nos dar uma estrela no",
     "github": "GitHub",
     "hero": {
-      "welcome": "Welcome, {{username}}",
-      "title": "Build Faster with JHipster + Tailwind",
-      "subtitle": "A modern, production-ready starter combining Spring Boot, React, and Tailwind CSS for rapid application development.",
-      "login": "Login",
-      "getStarted": "Get Started",
-      "dashboard": "Go to Dashboard",
-      "learnMore": "Learn more",
-      "pricing": "Pricing",
-      "contact": "Contact"
+      "welcome": "Bem-vindo, {{username}}",
+      "title": "Construa Mais Rápido com JHipster + Tailwind",
+      "subtitle": "Um starter moderno e pronto para produção que combina Spring Boot, React e Tailwind CSS para desenvolvimento rápido de aplicações.",
+      "login": "Entrar",
+      "getStarted": "Começar",
+      "dashboard": "Ir para o Painel",
+      "learnMore": "Saber mais",
+      "pricing": "Preços",
+      "contact": "Contacto"
     },
     "about": {
-      "title": "About Our Platform",
-      "description1": "Our platform combines the power of modern web technologies to deliver exceptional experiences. Built with industry-leading frameworks and best practices, we provide a solid foundation for your next big idea.",
-      "description2": "Whether you're building a startup MVP or scaling an enterprise application, our stack is designed to grow with you. From authentication and database management to responsive UI components, everything you need is ready out of the box.",
-      "keyFeatures": "Key Features",
+      "title": "Sobre a Nossa Plataforma",
+      "description1": "A nossa plataforma combina o poder das modernas tecnologias web para proporcionar experiências excecionais. Construída com frameworks líderes da indústria e melhores práticas, fornecemos uma base sólida para a sua próxima grande ideia.",
+      "description2": "Quer esteja a construir um MVP de startup ou a escalar uma aplicação empresarial, o nosso stack foi concebido para crescer consigo. Da autenticação e gestão de base de dados aos componentes de UI responsivos, tudo o que precisa está pronto a usar.",
+      "keyFeatures": "Características Principais",
       "feature1": {
-        "title": "Rapid Scaffolding",
-        "description": "Generate entities, services, routes, and UI fast with consistent patterns."
+        "title": "Scaffolding Rápido",
+        "description": "Gere entidades, serviços, rotas e UI rapidamente com padrões consistentes."
       },
       "feature2": {
-        "title": "Modern Styling",
-        "description": "Tailwind utility-first classes keep styles lean while remaining expressive."
+        "title": "Estilo Moderno",
+        "description": "As classes utilitárias do Tailwind mantêm os estilos enxutos e expressivos."
       },
       "feature3": {
-        "title": "Production Ready",
-        "description": "Robust architecture with security, internationalization, and quality tooling."
+        "title": "Pronto para Produção",
+        "description": "Arquitetura robusta com segurança, internacionalização e ferramentas de qualidade."
       }
     },
     "howItWorks": {
-      "title": "How It Works",
+      "title": "Como Funciona",
       "step1": {
-        "title": "Set Up Your Project",
-        "description": "Get started in minutes with our pre-configured setup. Install dependencies, configure your database, and launch your development environment with simple commands. No complex configuration required."
+        "title": "Configure o Seu Projeto",
+        "description": "Comece em minutos com a nossa configuração pré-configurada. Instale dependências, configure a sua base de dados e inicie o seu ambiente de desenvolvimento com comandos simples. Nenhuma configuração complexa necessária."
       },
       "step2": {
-        "title": "Build Your Features",
-        "description": "Use our powerful generators to scaffold entities, create REST APIs, and build UI components. Focus on your business logic while we handle the boilerplate code. Customize everything to match your requirements."
+        "title": "Construa as Suas Funcionalidades",
+        "description": "Use os nossos poderosos geradores para criar entidades, APIs REST e componentes de UI. Concentre-se na sua lógica de negócio enquanto tratamos do código boilerplate. Personalize tudo para corresponder aos seus requisitos."
       },
       "step3": {
-        "title": "Deploy & Scale",
-        "description": "Ship your application with confidence using our production-ready configurations. Built-in Docker support, cloud-native architecture, and performance optimizations ensure your app runs smoothly at any scale."
+        "title": "Implemente e Escale",
+        "description": "Lance a sua aplicação com confiança usando as nossas configurações prontas para produção. Suporte Docker integrado, arquitetura nativa em nuvem e otimizações de desempenho garantem que a sua aplicação funciona perfeitamente em qualquer escala."
       }
     },
     "pricing": {
-      "title": "Choose Your Plan",
+      "title": "Escolha o Seu Plano",
       "starter": {
-        "name": "Starter",
-        "price": "Free",
+        "name": "Inicial",
+        "price": "Grátis",
         "features": {
-          "0": "Basic project scaffolding",
-          "1": "Community support",
-          "2": "Open-source components"
+          "0": "Scaffolding básico de projeto",
+          "1": "Suporte da comunidade",
+          "2": "Componentes de código aberto"
         },
-        "cta": "Get Started"
+        "cta": "Começar"
       },
       "pro": {
         "name": "Pro",
-        "price": "$29/mo",
+        "price": "€29/mês",
         "features": {
-          "0": "Advanced generators",
-          "1": "Priority email support",
-          "2": "Premium templates",
-          "3": "Regular updates"
+          "0": "Geradores avançados",
+          "1": "Suporte prioritário por e-mail",
+          "2": "Templates premium",
+          "3": "Atualizações regulares"
         },
-        "cta": "Go Pro"
+        "cta": "Ir Pro"
       },
       "enterprise": {
         "name": "Enterprise",
-        "price": "$99/mo",
+        "price": "€99/mês",
         "features": {
-          "0": "Custom consulting",
-          "1": "Dedicated account manager",
-          "2": "On-premise deployment",
-          "3": "SLA guarantee"
+          "0": "Consultoria personalizada",
+          "1": "Gestor de conta dedicado",
+          "2": "Implementação on-premise",
+          "3": "Garantia de SLA"
         },
-        "cta": "Contact Sales"
+        "cta": "Contactar Vendas"
       }
     },
     "contact": {
-      "title": "Get In Touch",
-      "description": "Have questions or need help? We're here for you.",
-      "name": "Your Name",
-      "email": "Your Email",
-      "message": "Your Message",
-      "send": "Send Message",
-      "demo": "Request a Demo"
+      "title": "Entre em Contacto",
+      "description": "Tem questões ou precisa de ajuda? Estamos aqui para si.",
+      "name": "O Seu Nome",
+      "email": "O Seu E-mail",
+      "message": "A Sua Mensagem",
+      "send": "Enviar Mensagem",
+      "demo": "Solicitar uma Demo"
     },
     "footer": {
-      "about": "About",
-      "howItWorks": "How It Works",
-      "pricing": "Pricing",
-      "contact": "Contact",
-      "copyright": "© 2024 JHipster + Tailwind. All rights reserved."
+      "about": "Sobre",
+      "howItWorks": "Como Funciona",
+      "pricing": "Preços",
+      "contact": "Contacto",
+      "copyright": "© 2024 JHipster + Tailwind. Todos os direitos reservados."
     }
   }
 }
