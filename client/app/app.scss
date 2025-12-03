@@ -55,20 +55,20 @@
     @apply block text-sm font-medium text-gray-700 mb-1;
   }
 
-  /* Validation error text */
-  .invalid-feedback {
-    @apply text-red-600 text-sm mt-1;
-    display: block;
-  }
-
   /* Valid field styling */
-  .is-valid {
+  .is-valid,
+  input.valid,
+  select.valid,
+  textarea.valid {
     @apply border-green-500 focus:ring-green-500 focus:border-green-500;
   }
 
   /* Invalid field styling */
-  .is-invalid {
-    @apply border-red-500 focus:ring-red-500 focus:border-red-500;
+  .is-invalid,
+  input.invalid,
+  select.invalid,
+  textarea.invalid {
+    @apply border-red-500 focus:ring-red-500 focus:border-red-500 bg-red-50;
   }
 
   /* Form group spacing */
@@ -159,6 +159,16 @@ Generic styles
 /* Temporary workaround for availity-reactstrap-validation */
 .invalid-feedback {
   display: inline;
+  color: #dc2626 !important;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Additional error text selectors */
+.text-danger,
+.error-message,
+.error-text {
+  color: #dc2626 !important;
 }
 
 /* other generic styles */

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Translate, ValidatedField, ValidatedForm, isEmail, translate } from 'react-jhipster';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'app/shared/components';
 
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
@@ -11,6 +11,7 @@ import { handleRegister, reset } from './register.reducer';
 export const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(
     () => () => {
@@ -21,19 +22,21 @@ export const RegisterPage = () => {
 
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
 
-  const handleValidSubmit = ({ username, email, firstPassword }) => {
-    dispatch(handleRegister({ login: username, email, password: firstPassword, langKey: currentLocale }));
+  const handleValidSubmit = ({ username, email, firstName, lastName, firstPassword }) => {
+    dispatch(handleRegister({ login: username, email, firstName, lastName, password: firstPassword, langKey: currentLocale }));
   };
 
   const updatePassword = event => setPassword(event.target.value);
 
   const successMessage = useAppSelector(state => state.register.successMessage);
+  const loading = useAppSelector(state => state.register.loading);
 
   useEffect(() => {
     if (successMessage) {
       toast.success(translate(successMessage));
+      navigate('/');
     }
-  }, [successMessage]);
+  }, [successMessage, navigate]);
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
@@ -58,6 +61,28 @@ export const RegisterPage = () => {
               maxLength: { value: 50, message: translate('register.messages.validate.login.maxlength') },
             }}
             data-cy="username"
+          />
+          <ValidatedField
+            name="firstName"
+            label={translate('settings.form.firstname')}
+            placeholder={translate('settings.form.firstname.placeholder')}
+            validate={{
+              required: { value: true, message: translate('settings.messages.validate.firstname.required') },
+              minLength: { value: 1, message: translate('settings.messages.validate.firstname.minlength') },
+              maxLength: { value: 50, message: translate('settings.messages.validate.firstname.maxlength') },
+            }}
+            data-cy="firstName"
+          />
+          <ValidatedField
+            name="lastName"
+            label={translate('settings.form.lastname')}
+            placeholder={translate('settings.form.lastname.placeholder')}
+            validate={{
+              required: { value: true, message: translate('settings.messages.validate.lastname.required') },
+              minLength: { value: 1, message: translate('settings.messages.validate.lastname.minlength') },
+              maxLength: { value: 50, message: translate('settings.messages.validate.lastname.maxlength') },
+            }}
+            data-cy="lastName"
           />
           <ValidatedField
             name="email"
@@ -99,8 +124,18 @@ export const RegisterPage = () => {
             }}
             data-cy="secondPassword"
           />
-          <Button id="register-submit" variant="primary" type="submit" data-cy="submit">
-            <Translate contentKey="register.form.button">Register</Translate>
+          <Button id="register-submit" className="mt-4" variant="primary" type="submit" data-cy="submit" disabled={loading}>
+            {loading ? (
+              <span className="inline-flex items-center gap-2">
+                <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                </svg>
+                <Translate contentKey="register.form.button">Register</Translate>
+              </span>
+            ) : (
+              <Translate contentKey="register.form.button">Register</Translate>
+            )}
           </Button>
         </ValidatedForm>
         <p>&nbsp;</p>
