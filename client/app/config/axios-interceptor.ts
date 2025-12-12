@@ -45,6 +45,14 @@ const setupAxiosInterceptors = onUnauthenticated => {
     const status = err.status || (err.response ? err.response.status : 0);
     const originalRequest = err.config as InternalAxiosRequestConfig & { _retry?: boolean };
 
+    // If originalRequest is undefined, reject immediately
+    if (!originalRequest) {
+      if (status === 401) {
+        onUnauthenticated();
+      }
+      return Promise.reject(err);
+    }
+
     // Debug logging
     if ((status === 401 || status === 403) && process.env.NODE_ENV === 'development') {
       console.warn(`[Auth Interceptor] ${status} detected:`, {

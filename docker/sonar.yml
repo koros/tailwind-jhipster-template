@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  sonar:
+    container_name: sonarqube
+    image: sonarqube:10.3-community
+    environment:
+      # Allow token-less analysis for development
+      # For production CI/CD, use SONAR_TOKEN instead
+      - SONAR_FORCEAUTHENTICATION=false
+      # Default admin credentials (change in production)
+      - SONAR_ADMIN_PASSWORD=admin
+      # Increase memory for better performance
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+    ports:
+      # Remove 127.0.0.1 binding to allow browser access
+      - 9001:9000
+    volumes:
+      # Persist SonarQube data across container restarts
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    networks:
+      - jhipster
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:9000/api/system/status']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+networks:
+  jhipster:
+    driver: bridge
+
+volumes:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:

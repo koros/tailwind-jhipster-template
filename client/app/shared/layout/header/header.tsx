@@ -7,7 +7,7 @@ import LoadingBar from 'react-redux-loading-bar';
 
 import { useAppDispatch } from 'app/config/store';
 import { setLocale } from 'app/shared/reducers/locale';
-import { AccountMenu, LocaleMenu } from '../menus';
+import { AccountMenu, AdminMenu, EntitiesMenu, LocaleMenu } from '../menus';
 import { Brand } from './header-components';
 
 export interface IHeaderProps {
@@ -83,7 +83,9 @@ const Header = (props: IHeaderProps) => {
               className="flex flex-col md:flex-row md:items-center md:ml-auto space-y-2 md:space-y-0 md:space-x-1 p-4 md:p-0"
             >
               <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
-              {props.isAuthenticated && <AccountMenu isAuthenticated={props.isAuthenticated} account={props.account} />}
+              {props.isAuthenticated && props.isAdmin && <AdminMenu showOpenAPI={props.isOpenAPIEnabled} />}
+              {props.isAuthenticated && <EntitiesMenu />}
+              <AccountMenu isAuthenticated={props.isAuthenticated} account={props.account} />
               {!props.isAuthenticated && (
                 <>
                   <li className="md:hidden">
@@ -108,13 +110,13 @@ const Header = (props: IHeaderProps) => {
             <div className="hidden md:flex items-center space-x-3 ml-4">
               <Link
                 to="/login"
-                className="px-4 py-2 text-sm font-medium rounded bg-white text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white"
+                className="px-4 py-2 text-sm font-medium rounded-full border-2 border-transparent bg-white text-gray-800 hover:bg-gray-300 hover:shadow-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white"
               >
                 Sign in
               </Link>
               <Link
                 to="/account/register"
-                className="px-4 py-2 text-sm font-medium rounded bg-indigo-600 text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                className="px-4 py-2 text-sm font-medium rounded-full border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-white"
               >
                 Get Started
               </Link>

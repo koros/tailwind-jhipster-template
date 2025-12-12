@@ -43,13 +43,13 @@ export const NavDropdown = props => {
         aria-label={props.ariaLabel || props.name}
         className={
           iconOnly
-            ? 'flex items-center justify-center w-9 h-9 rounded-full text-white hover:bg-gray-700'
-            : 'flex items-center gap-2 px-3 py-2 rounded text-white hover:bg-gray-700 w-full text-left'
+            ? 'group flex items-center justify-center w-9 h-9 rounded-full text-white hover:bg-gray-700'
+            : 'group flex items-center gap-2 px-3 py-2 rounded text-white hover:bg-gray-700 w-full text-left'
         }
       >
         {showUserCard && account ? (
           <div
-            className="flex items-center justify-center w-9 h-9 rounded-full text-white font-semibold text-sm"
+            className="flex items-center justify-center w-9 h-9 rounded-full text-white font-semibold text-sm transition-opacity duration-150 group-hover:opacity-80"
             style={{ backgroundColor: getColorFromName(`${account.firstName || ''} ${account.lastName || ''}`.trim()) }}
           >
             {getInitial(account.firstName)}

@@ -1,5 +1,23 @@
 # myTailwindJhipster
 
+## Code Quality
+
+<!-- Uncomment and update these badges after setting up SonarCloud -->
+<!-- Replace YOUR_PROJECT_KEY with your actual SonarCloud project key -->
+
+<!--
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=coverage)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=bugs)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=YOUR_PROJECT_KEY&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=YOUR_PROJECT_KEY)
+-->
+
+> **Setup Instructions**: See [GITHUB_ACTIONS_SETUP.md](GITHUB_ACTIONS_SETUP.md) for automated code quality analysis with GitHub Actions.
+
+## About
+
 This application was generated using JHipster 8.11.0 and customized with a Node.js/Express backend instead of the traditional Java/Spring Boot stack. You can find documentation at [https://www.jhipster.tech/documentation-archive/v8.11.0](https://www.jhipster.tech/documentation-archive/v8.11.0).
 
 ## Project Structure
@@ -792,25 +810,83 @@ docker ps
 
 ## Code Quality with SonarQube
 
-Start SonarQube:
+SonarQube is configured for easy local development and CI/CD integration with **automated token management**.
+
+### Quick Start
+
+**1. Start SonarQube:**
 
 ```bash
-docker compose -f docker/sonar.yml up -d
+npm run sonar:up
 ```
 
-Access at `http://localhost:9001` (default credentials: admin/admin)
+Wait ~60 seconds for SonarQube to fully start.
 
-Run analysis:
+**2. Generate token (first time only):**
 
 ```bash
-# Install sonar-scanner globally
-npm install -g sonar-scanner
-
-# Run scan
-sonar-scanner
+npm run sonar:setup
 ```
 
-Configuration in `sonar-project.properties`.
+This automatically:
+
+- Waits for SonarQube to be ready
+- Generates an API token
+- Saves it to `.env.sonar`
+
+**3. Run analysis:**
+
+```bash
+npm run sonar:analyze
+```
+
+The token is automatically loaded from `.env.sonar` - no manual steps needed!
+
+**4. View results:**
+
+Open http://localhost:9001 in your browser (credentials: `admin`/`admin`)
+
+### CI/CD Integration
+
+For automated pipelines:
+
+```bash
+# All-in-one command
+npm run sonar:ci
+```
+
+Or with a pre-configured token:
+
+```bash
+export SONAR_TOKEN=your-token-here
+npm run sonar:analyze
+```
+
+### Available Commands
+
+```bash
+npm run sonar:up        # Start SonarQube container
+npm run sonar:down      # Stop SonarQube container
+npm run sonar:setup     # Generate and save API token
+npm run sonar:analyze   # Run code analysis
+npm run sonar:ci        # Full CI workflow (up + setup + analyze)
+npm run sonar:clean     # Stop and remove all data
+npm run sonar:install   # Install sonar-scanner globally
+```
+
+### Configuration
+
+- **Project settings**: `sonar-project.properties`
+- **Docker configuration**: `docker/sonar.yml`
+- **Detailed setup guide**: See [SONAR_SETUP.md](SONAR_SETUP.md)
+
+### Features
+
+✅ **No manual token copying** - Automated via script  
+✅ **Auto-loads credentials** - Token read from `.env.sonar`  
+✅ **CI/CD ready** - Single command setup  
+✅ **Persistent data** - Survives container restarts  
+✅ **Browser accessible** - No localhost binding issues
 
 ## Troubleshooting
 

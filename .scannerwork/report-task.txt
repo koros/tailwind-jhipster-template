@@ -1,0 +1,6 @@
+projectKey=myTailwindJhipster
+serverUrl=http://localhost:9001
+serverVersion=10.3.0.82913
+dashboardUrl=http://localhost:9001/dashboard?id=myTailwindJhipster
+ceTaskId=AZr9LzyWXusH8wjBOfyL
+ceTaskUrl=http://localhost:9001/api/ce/task?id=AZr9LzyWXusH8wjBOfyL
