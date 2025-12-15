@@ -23,5 +23,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["client/app"],
-  "exclude": ["node_modules", "**/*.spec.ts", "**/*.spec.tsx"]
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.spec.tsx", "**/setup-tests.ts"]
 }

@@ -18,6 +18,7 @@ import ErrorBoundary from 'app/shared/error/error-boundary';
 import { AUTHORITIES } from 'app/config/constants';
 import AppRoutes from 'app/routes';
 import { setTextDirection } from './config/translation';
+import { ThemeProvider } from './shared/layout/theme/ThemeContext';
 
 const baseHref = document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 
@@ -70,9 +71,11 @@ const AppContent = () => {
 
 export const App = () => {
   return (
-    <BrowserRouter basename={baseHref}>
-      <AppContent />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter basename={baseHref}>
+        <AppContent />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

@@ -9,6 +9,7 @@ import { useAppDispatch } from 'app/config/store';
 import { setLocale } from 'app/shared/reducers/locale';
 import { AccountMenu, AdminMenu, EntitiesMenu, LocaleMenu } from '../menus';
 import { Brand } from './header-components';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 export interface IHeaderProps {
   isAuthenticated: boolean;
@@ -82,6 +83,9 @@ const Header = (props: IHeaderProps) => {
               id="header-tabs"
               className="flex flex-col md:flex-row md:items-center md:ml-auto space-y-2 md:space-y-0 md:space-x-1 p-4 md:p-0"
             >
+              <li>
+                <ThemeSwitcher />
+              </li>
               <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
               {props.isAuthenticated && props.isAdmin && <AdminMenu showOpenAPI={props.isOpenAPIEnabled} />}
               {props.isAuthenticated && <EntitiesMenu />}
