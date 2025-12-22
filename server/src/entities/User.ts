@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, OneToOne } from 'typeorm';
 import { Todo } from './Todo';
+import { UserImage } from './UserImage';
 
 @Entity('jhi_user')
 export class User {
@@ -59,4 +60,7 @@ export class User {
 
   @OneToMany(() => Todo, todo => todo.user)
   todos: Todo[];
+
+  @OneToOne(() => UserImage, userImage => userImage.user)
+  userImage: any;
 }

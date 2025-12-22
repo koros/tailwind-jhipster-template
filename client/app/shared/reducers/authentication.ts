@@ -21,6 +21,7 @@ export const initialState = {
   redirectMessage: null as unknown as string,
   sessionHasBeenFetched: false,
   logoutUrl: null as unknown as string,
+  userImage: null as string | null,
 };
 
 export type AuthenticationState = Readonly<typeof initialState>;
@@ -53,6 +54,20 @@ export const getSession = (): AppThunk => async (dispatch, getState) => {
 
 export const getAccount = createAsyncThunk('authentication/get_account', async () => axios.get<any>('api/account'), {
   serializeError: serializeAxiosError,
+});
+
+export const getUserImage = createAsyncThunk('authentication/get_user_image', async (_, { dispatch }) => {
+  try {
+    const response = await axios.get('/api/user-images', { responseType: 'blob' });
+    if (response.data && response.data.size > 0) {
+      const url = URL.createObjectURL(response.data);
+      dispatch(updateUserImage(url));
+      return url;
+    }
+  } catch (e) {
+    // ignore
+  }
+  return null;
 });
 
 interface IAuthParams {
@@ -132,6 +147,7 @@ export const AuthenticationSlice = createSlice({
       return {
         ...initialState,
         showModalLogin: true,
+        userImage: null,
       };
     },
     authError(state, action) {
@@ -148,6 +164,9 @@ export const AuthenticationSlice = createSlice({
         showModalLogin: true,
         isAuthenticated: false,
       };
+    },
+    updateUserImage(state, action) {
+      state.userImage = action.payload;
     },
   },
   extraReducers(builder) {
@@ -192,7 +211,7 @@ export const AuthenticationSlice = createSlice({
   },
 });
 
-export const { logoutSession, authError, clearAuth } = AuthenticationSlice.actions;
+export const { logoutSession, authError, clearAuth, updateUserImage } = AuthenticationSlice.actions;
 
 // Reducer
 export default AuthenticationSlice.reducer;

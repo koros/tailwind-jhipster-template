@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Translate, translate } from 'react-jhipster';
 import { languages } from 'app/config/translation';
+import { useAppSelector } from 'app/config/store';
 
 interface SidebarProps {
   isAdmin: boolean;
@@ -75,6 +76,22 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
     },
   ];
 
+  const userImage = useAppSelector(state => state.authentication.userImage);
+
+  const getInitial = (firstName: string) => {
+    return firstName?.charAt(0)?.toUpperCase() || '';
+  };
+
+  const getColorFromName = (fullName: string) => {
+    let hash = 0;
+    for (let i = 0; i < fullName.length; i++) {
+      // eslint-disable-next-line no-bitwise
+      hash = fullName.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash % 360);
+    return `hsl(${hue}, 65%, 50%)`;
+  };
+
   return (
     <div className="bg-gray-200 overflow-y-auto flex flex-col" style={{ minHeight: 'calc(100vh - 60px)' }}>
       {/* Logo and Collapse Button */}
@@ -98,11 +115,16 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
         <div className="p-4 border-b border-white">
           <div className={`flex ${isCollapsed ? 'flex-col' : 'flex-row'} items-center gap-3`}>
             <div className="flex-shrink-0">
-              <img
-                src="content/images/jhipster_family_member_1.svg"
-                alt={account.login}
-                className="rounded-full border-2 border-blue-500 w-12 h-12"
-              />
+              {userImage ? (
+                <img src={userImage} alt={account.login} className="rounded-full border-2 border-gray-300 w-14 h-14 object-cover" />
+              ) : (
+                <div
+                  className="flex items-center justify-center w-12 h-12 rounded-full text-white font-semibold text-lg border-2 border-gray-300"
+                  style={{ backgroundColor: getColorFromName(`${account.firstName || ''} ${account.lastName || ''}`.trim()) }}
+                >
+                  {getInitial(account.firstName)}
+                </div>
+              )}
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
@@ -132,9 +154,12 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
                   <NavLink
                     to={item.to}
                     className={({ isActive }) =>
-                      `flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                      }`
+                      [
+                        'flex items-center gap-3 px-3 py-2 text-sm font-medium transition-colors',
+                        isCollapsed ? 'justify-center' : 'justify-start',
+                        isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
+                        isCollapsed ? 'rounded-md' : 'rounded-[20px]',
+                      ].join(' ')
                     }
                     title={translate(item.label)}
                   >

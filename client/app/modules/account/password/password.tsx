@@ -49,7 +49,7 @@ export const PasswordPage = () => {
         </h2>
       </div>
       <div className="bg-white shadow-md rounded-lg p-6">
-        <ValidatedForm id="password-form" onSubmit={handleValidSubmit}>
+        <ValidatedForm id="password-form" onSubmit={handleValidSubmit} className="space-y-4">
           <ValidatedField
             name="currentPassword"
             label={translate('global.form.currentpassword.label')}

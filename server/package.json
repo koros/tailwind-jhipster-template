@@ -20,6 +20,7 @@
     "typeorm": "typeorm-ts-node-commonjs -d src/config/migration-data-source.ts"
   },
   "dependencies": {
+    "@types/multer": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
@@ -33,6 +34,7 @@
     "html-to-text": "^9.0.5",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "multer": "^2.0.2",
     "nodemailer": "^7.0.11",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",

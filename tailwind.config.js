@@ -5,15 +5,15 @@ module.exports = {
     extend: {
       colors: {
         // Theme-aware colors using CSS variables
-        primary: 'var(--color-primary, #667eea)',
-        secondary: 'var(--color-secondary, #764ba2)',
-        accent: 'var(--color-accent, #f093fb)',
+        primary: 'var(--color-primary, #2563eb)',
+        secondary: 'var(--color-secondary, #7c3aed)',
+        accent: 'var(--color-accent, #f97316)',
 
         // Semantic colors
-        success: 'var(--color-success, #48bb78)',
-        warning: 'var(--color-warning, #ed8936)',
-        error: 'var(--color-error, #f56565)',
-        info: 'var(--color-info, #4299e1)',
+        success: 'var(--color-success, #16a34a)',
+        warning: 'var(--color-warning, #f59e0b)',
+        error: 'var(--color-error, #dc2626)',
+        info: 'var(--color-info, #2563eb)',
 
         // Legacy brand colors for backwards compatibility
         brand: '#533f03',
@@ -22,32 +22,32 @@ module.exports = {
       },
       backgroundColor: {
         primary: 'var(--color-background, #ffffff)',
-        surface: 'var(--color-surface, #f8f9fa)',
+        surface: 'var(--color-surface, #f3f4f6)',
         card: 'var(--color-cardBg, #ffffff)',
         input: 'var(--color-inputBg, #ffffff)',
-        hover: 'var(--color-hoverBg, #f7fafc)',
+        hover: 'var(--color-hoverBg, #e5e7eb)',
 
         // Button backgrounds
-        'btn-primary': 'var(--color-buttonPrimary, #667eea)',
-        'btn-secondary': 'var(--color-buttonSecondary, #718096)',
+        'btn-primary': 'var(--color-buttonPrimary, #2563eb)',
+        'btn-secondary': 'var(--color-buttonSecondary, #4b5563)',
       },
       textColor: {
-        primary: 'var(--color-text, #1a202c)',
-        secondary: 'var(--color-textSecondary, #718096)',
+        primary: 'var(--color-text, #0f172a)',
+        secondary: 'var(--color-textSecondary, #4b5563)',
       },
       borderColor: {
-        primary: 'var(--color-border, #e2e8f0)',
-        input: 'var(--color-inputBorder, #e2e8f0)',
-        focus: 'var(--color-inputFocus, #667eea)',
+        primary: 'var(--color-border, #e5e7eb)',
+        input: 'var(--color-inputBorder, #e5e7eb)',
+        focus: 'var(--color-inputFocus, #2563eb)',
       },
       boxShadow: {
-        sm: 'var(--shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05))',
-        md: 'var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1))',
-        lg: 'var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1))',
+        sm: 'var(--shadow-sm, 0 1px 2px 0 rgba(15, 23, 42, 0.08))',
+        md: 'var(--shadow-md, 0 4px 8px rgba(15, 23, 42, 0.08))',
+        lg: 'var(--shadow-lg, 0 20px 25px -5px rgba(15, 23, 42, 0.10), 0 8px 10px -6px rgba(15, 23, 42, 0.10))',
         app: '0 1px 6px rgba(0,0,0,0.12),0 1px 4px rgba(0,0,0,0.12)',
       },
       ringColor: {
-        focus: 'var(--color-focusRing, #667eea)',
+        focus: 'var(--color-focusRing, rgba(37, 99, 235, 0.35))',
       },
     },
   },

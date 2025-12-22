@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { DataSource } from 'typeorm';
 import { User } from '../entities/User';
 import { Todo } from '../entities/Todo';
+import { UserImage } from '../entities/UserImage';
 
 // Reuse same env var strategy as runtime DataSource
 const getDatabaseConfig = () => {
@@ -27,7 +28,7 @@ export const MigrationDataSource = new DataSource({
   ...getDatabaseConfig(),
   synchronize: false,
   logging: true,
-  entities: [User, Todo],
+  entities: [User, Todo, UserImage],
   migrations: ['src/migrations/**/*.ts'],
   subscribers: [],
 });

@@ -19,6 +19,7 @@ export interface IHeaderProps {
   isOpenAPIEnabled: boolean;
   currentLocale: string;
   account?: any;
+  userImage?: string | null;
 }
 
 const Header = (props: IHeaderProps) => {
@@ -55,7 +56,7 @@ const Header = (props: IHeaderProps) => {
   }, [location.pathname]);
 
   const navbarBg = isHomePage ? 'bg-transparent' : '';
-  const navbarStyle = isHomePage ? (scrolled ? { backgroundColor: '#9c27b0' } : {}) : { backgroundColor: '#353d47' };
+  const navbarStyle = isHomePage ? (scrolled ? { backgroundColor: 'var(--navbar-scroll-bg)' } : {}) : { backgroundColor: '#353d47' };
 
   /* jhipster-needle-add-element-to-menu - JHipster will add new menu items here */
 
@@ -87,9 +88,7 @@ const Header = (props: IHeaderProps) => {
                 <ThemeSwitcher />
               </li>
               <LocaleMenu currentLocale={props.currentLocale} onClick={handleLocaleChange} />
-              {props.isAuthenticated && props.isAdmin && <AdminMenu showOpenAPI={props.isOpenAPIEnabled} />}
-              {props.isAuthenticated && <EntitiesMenu />}
-              <AccountMenu isAuthenticated={props.isAuthenticated} account={props.account} />
+              <AccountMenu isAuthenticated={props.isAuthenticated} account={props.account} userImage={props.userImage} />
               {!props.isAuthenticated && (
                 <>
                   <li className="md:hidden">

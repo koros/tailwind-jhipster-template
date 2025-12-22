@@ -28,16 +28,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ loggedIn, accountLogin
           {!loggedIn && (
             <Link
               to="/login"
-              className="px-8 py-3 rounded-full border-2 font-medium transition flex items-center gap-2"
-              style={{ borderColor: '#ffc107', backgroundColor: '#ffc107', color: '#1e3a8a' }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = '#e6ad06';
-                e.currentTarget.style.borderColor = '#e6ad06';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = '#ffc107';
-                e.currentTarget.style.borderColor = '#ffc107';
-              }}
+              className="px-8 py-3 rounded-full border-2 font-medium transition flex items-center gap-2 bg-warning border-warning text-blue-900 hover:opacity-90"
             >
               <span>
                 <Translate contentKey="home.hero.login" />
@@ -69,13 +60,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ loggedIn, accountLogin
           )}
         </div>
         <div className="mt-10 flex flex-wrap justify-center gap-8 slide-up" style={{ animationDelay: '0.55s' }}>
-          <a href="#about" className="underline hover:text-indigo-200 text-white">
+          <a href="#about" className="underline hover:opacity-80 text-white">
             <Translate contentKey="home.hero.learnMore" />
           </a>
-          <a href="#pricing" className="underline hover:text-indigo-200 text-white">
+          <a href="#pricing" className="underline hover:opacity-80 text-white">
             <Translate contentKey="home.hero.pricing" />
           </a>
-          <a href="#contact" className="underline hover:text-indigo-200 text-white">
+          <a href="#contact" className="underline hover:opacity-80 text-white">
             <Translate contentKey="home.hero.contact" />
           </a>
         </div>
@@ -191,7 +182,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ loggedIn, accountLogin
           </g>
           {/* Curved bottom fill matching the next section background */}
           <path
-            fill="#f9fafb"
+            fill="var(--color-surface)"
             fillOpacity="1"
             d="M0,224L80,234.7C160,245,320,267,480,282.7C640,299,800,309,960,309.3C1120,309,1280,299,1360,293.3L1440,288L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
           />

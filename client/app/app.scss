@@ -21,9 +21,9 @@
   input[type='time'],
   select,
   textarea {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm;
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
-    @apply disabled:bg-gray-100 disabled:cursor-not-allowed;
+    @apply w-full px-3 py-2 border border-input rounded-md shadow-sm;
+    @apply focus:outline-none focus:ring-2 focus:ring-focus focus:border-focus;
+    @apply disabled:bg-surface disabled:cursor-not-allowed;
     @apply transition-colors duration-200;
   }
 
@@ -34,7 +34,7 @@
 
   /* Select dropdown */
   select {
-    @apply bg-white cursor-pointer;
+    @apply bg-input cursor-pointer;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -48,14 +48,14 @@
   /* Checkbox and Radio */
   input[type='checkbox'],
   input[type='radio'] {
-    @apply w-4 h-4 text-blue-600 border-gray-300 rounded;
-    @apply focus:ring-2 focus:ring-blue-500;
+    @apply w-4 h-4 text-primary border-input rounded;
+    @apply focus:ring-2 focus:ring-focus;
     @apply cursor-pointer;
   }
 
   /* Form labels */
   label {
-    @apply block text-sm font-medium text-gray-700 mb-1;
+    @apply block text-sm font-medium text-primary mb-1;
   }
 
   /* Valid field styling */
@@ -63,7 +63,7 @@
   input.valid,
   select.valid,
   textarea.valid {
-    @apply border-green-500 focus:ring-green-500 focus:border-green-500;
+    @apply border-success focus:ring-success focus:border-success;
   }
 
   /* Invalid field styling */
@@ -71,7 +71,8 @@
   input.invalid,
   select.invalid,
   textarea.invalid {
-    @apply border-red-500 focus:ring-red-500 focus:border-red-500 bg-red-50;
+    @apply border-error focus:ring-error focus:border-error;
+    background-color: color-mix(in srgb, var(--color-error) 15%, transparent);
   }
 
   /* Form group spacing */
@@ -84,42 +85,46 @@
 Theme-aware global styles
 ========================================================================== */
 :root {
-  // Default theme colors (Light theme)
-  --color-primary: #667eea;
-  --color-secondary: #764ba2;
-  --color-accent: #f093fb;
+  // Default theme colors (Light theme) — kept as initial fallback, overridden by ThemeContext
+  --color-primary: #2563eb;
+  --color-secondary: #7c3aed;
+  --color-accent: #f97316;
   --color-background: #ffffff;
-  --color-surface: #f8f9fa;
-  --color-text: #1a202c;
-  --color-textSecondary: #718096;
-  --color-border: #e2e8f0;
+  --color-surface: #f3f4f6;
+  --color-text: #0f172a;
+  --color-textSecondary: #4b5563;
+  --color-border: #e5e7eb;
 
   // Button states
-  --color-buttonPrimary: #667eea;
-  --color-buttonPrimaryHover: #5568d3;
-  --color-buttonSecondary: #718096;
-  --color-buttonSecondaryHover: #4a5568;
+  --color-buttonPrimary: #2563eb;
+  --color-buttonPrimaryHover: #1d4ed8;
+  --color-buttonSecondary: #4b5563;
+  --color-buttonSecondaryHover: #374151;
 
   // Semantic colors
-  --color-success: #48bb78;
-  --color-warning: #ed8936;
-  --color-error: #f56565;
-  --color-info: #4299e1;
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-error: #dc2626;
+  --color-info: #2563eb;
 
   // Additional surfaces
   --color-cardBg: #ffffff;
   --color-inputBg: #ffffff;
-  --color-inputBorder: #e2e8f0;
-  --color-inputFocus: #667eea;
+  --color-inputBorder: #e5e7eb;
+  --color-inputFocus: #2563eb;
 
   // Hover and focus states
-  --color-hoverBg: #f7fafc;
-  --color-focusRing: #667eea;
+  --color-hoverBg: #e5e7eb;
+  --color-focusRing: rgba(37, 99, 235, 0.35);
+
+  // Hero and navbar
+  --hero-gradient: linear-gradient(135deg, #1e3a8a, #7c3aed, #9333ea);
+  --navbar-scroll-bg: #7c3aed;
 
   // Shadows
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 4px 8px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
 }
 
 body {
@@ -132,7 +137,7 @@ body {
 }
 
 a {
-  color: #533f03;
+  color: var(--color-primary);
   font-weight: bold;
 }
 
@@ -180,8 +185,8 @@ Browser Upgrade Prompt
 
 .browserupgrade {
   margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
+  background: var(--color-surface);
+  color: var(--color-text);
   padding: 0.2em 0;
 }
 
@@ -213,7 +218,7 @@ Generic styles
 /* Temporary workaround for availity-reactstrap-validation */
 .invalid-feedback {
   display: inline;
-  color: #dc2626 !important;
+  color: var(--color-error) !important;
   font-size: 0.875rem;
   margin-top: 0.25rem;
 }
@@ -222,7 +227,7 @@ Generic styles
 .text-danger,
 .error-message,
 .error-text {
-  color: #dc2626 !important;
+  color: var(--color-error) !important;
 }
 
 /* other generic styles */
@@ -245,8 +250,8 @@ Generic styles
 }
 
 .error {
-  color: white;
-  background-color: red;
+  color: var(--color-background);
+  background-color: var(--color-error);
 }
 
 .break {
@@ -289,7 +294,7 @@ a.anchor-btn:hover {
 }
 
 .readonly {
-  background-color: #eee;
+  background-color: var(--color-surface);
   opacity: 1;
 }
 

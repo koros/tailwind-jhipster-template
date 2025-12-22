@@ -2,7 +2,9 @@ import 'dotenv/config';
 import { DataSource } from 'typeorm';
 import { User } from '../entities/User';
 import { Todo } from '../entities/Todo';
+import { UserImage } from '../entities/UserImage';
 import { CreateInitialSchema1733000000000 } from '../migrations/1733000000000-CreateInitialSchema';
+import { CreateUserImageTable1766268308536 } from '../migrations/1766268308536-CreateUserImageTable';
 
 // Support both DATABASE_URL and individual environment variables
 const getDatabaseConfig = () => {
@@ -28,8 +30,11 @@ export const AppDataSource = new DataSource({
   ...getDatabaseConfig(),
   synchronize: false, // Disabled - use migrations instead
   logging: process.env.NODE_ENV === 'development',
-  entities: [User, Todo],
-  migrations: process.env.NODE_ENV === 'production' ? ['dist/migrations/**/*.js'] : [CreateInitialSchema1733000000000],
+  entities: [User, Todo, UserImage],
+  migrations:
+    process.env.NODE_ENV === 'production'
+      ? ['dist/migrations/**/*.js']
+      : [CreateInitialSchema1733000000000, CreateUserImageTable1766268308536],
   subscribers: [],
   migrationsRun: true, // Auto-run pending migrations on startup
 });

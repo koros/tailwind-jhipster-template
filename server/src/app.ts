@@ -10,6 +10,7 @@ import authRoutes from './routes/auth.routes';
 import accountRoutes from './routes/account.routes';
 import userRoutes from './routes/user.routes';
 import todoRoutes from './routes/todo.routes';
+import userImageRoutes from './routes/user-image.routes';
 import { errorHandler } from './middleware/error.middleware';
 import { openApiSpec } from './config/openapi.config';
 import { AppDataSource } from './config/database';
@@ -158,6 +159,7 @@ app.use('/api', authRoutes);
 app.use('/api', accountRoutes);
 app.use('/api/admin', userRoutes);
 app.use('/api', todoRoutes);
+app.use('/api/user-images', userImageRoutes);
 
 // Error handling middleware (must be last)
 app.use(errorHandler);

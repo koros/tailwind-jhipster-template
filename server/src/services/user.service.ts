@@ -20,14 +20,39 @@ export class UserService {
     const [sortField, sortOrder] = sort.split(',');
     const skip = page * size;
 
-    const [users, total] = await userRepository.findAndCount({
-      skip,
-      take: size,
-      order: { [sortField]: sortOrder.toUpperCase() as 'ASC' | 'DESC' },
-    });
+    const query = userRepository
+      .createQueryBuilder('user')
+      .leftJoin('user.userImage', 'userImage')
+      .select([
+        'user.id',
+        'user.login',
+        'user.firstName',
+        'user.lastName',
+        'user.email',
+        'user.activated',
+        'user.langKey',
+        'user.imageUrl',
+        'user.createdDate',
+        'user.lastModifiedBy',
+        'user.lastModifiedDate',
+        'user.authorities',
+      ])
+      .addSelect('userImage.id')
+      .skip(skip)
+      .take(size)
+      .orderBy(`user.${sortField}`, sortOrder.toUpperCase() as 'ASC' | 'DESC');
 
-    // Remove passwords and format authorities
-    const formattedUsers = users.map(user => this.formatUser(user));
+    const [users, total] = await query.getManyAndCount();
+
+    // Remove passwords and format authorities, and set imageUrl
+    const formattedUsers = users.map(user => {
+      const formatted = this.formatUser(user);
+      // @ts-ignore
+      if (user.userImage && user.userImage.id) {
+        formatted.imageUrl = `/api/user-images/${user.userImage.id}`;
+      }
+      return formatted;
+    });
 
     return {
       users: formattedUsers,
@@ -38,13 +63,21 @@ export class UserService {
   }
 
   async getUserByLogin(login: string) {
-    const user = await userRepository.findOne({ where: { login } });
+    const user = await userRepository.findOne({
+      where: { login },
+      relations: ['userImage'],
+    });
 
     if (!user) {
       throw new AppError('User not found', 404);
     }
 
-    return this.formatUser(user);
+    const formatted = this.formatUser(user);
+    // @ts-ignore
+    if (user.userImage) {
+      formatted.imageUrl = `/api/user-images/${user.login}`;
+    }
+    return formatted;
   }
 
   async createUser(userData: {

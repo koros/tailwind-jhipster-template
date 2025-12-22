@@ -31,7 +31,7 @@ const accountMenuItems = () => (
   </>
 );
 
-export const AccountMenu = ({ isAuthenticated = false, account = null }) => (
+export const AccountMenu = ({ isAuthenticated = false, account = null, userImage = null }) => (
   <NavDropdown
     icon={!isAuthenticated ? 'user-slash' : undefined}
     name={undefined}
@@ -40,6 +40,7 @@ export const AccountMenu = ({ isAuthenticated = false, account = null }) => (
     data-cy="accountMenu"
     showUserCard={isAuthenticated}
     account={account}
+    userImage={userImage}
   >
     {isAuthenticated && accountMenuItemsAuthenticated()}
     {!isAuthenticated && accountMenuItems()}

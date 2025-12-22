@@ -14,6 +14,7 @@ Main page styles
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -24,6 +25,7 @@ Main page styles
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -40,7 +42,7 @@ Main page styles
 
 /* Hero */
 .hero-gradient {
-  background: linear-gradient(135deg, #1e3a8a, #9c27b0, #9333ea);
+  background: var(--hero-gradient);
   background-size: 200% 200%;
   animation:
     fadeIn 1.2s ease,
@@ -52,9 +54,11 @@ Main page styles
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -85,11 +89,11 @@ Main page styles
 }
 
 .feature-card {
-  background-color: #ffffff;
+  background-color: var(--color-cardBg);
   border-radius: 0.5rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
-  border: 1px solid #f3f4f6;
+  border: 1px solid var(--color-surface);
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
@@ -97,9 +101,7 @@ Main page styles
 }
 
 .feature-card:hover {
-  box-shadow:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
   transform: translateY(-2px);
 }
 
@@ -115,18 +117,18 @@ Main page styles
 }
 
 .pricing-card {
-  background-color: #ffffff;
+  background-color: var(--color-cardBg);
   border-radius: 0.75rem;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
   animation: fadeIn 0.8s ease;
 }
 
 .pricing-card.highlight {
-  box-shadow: 0 0 0 2px #6366f1 inset;
+  box-shadow: 0 0 0 2px var(--color-primary) inset;
 }
 
 .pricing-price {
@@ -148,5 +150,5 @@ Main page styles
   padding-top: 2rem;
   padding-bottom: 2rem;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--color-textSecondary);
 }

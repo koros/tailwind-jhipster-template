@@ -16,7 +16,7 @@ export const PricingSection: React.FC = () => {
             <div className="pricing-price">
               <Translate contentKey="home.pricing.starter.price" />
             </div>
-            <ul className="text-gray-600 text-sm flex-grow space-y-2 text-left">
+            <ul className="text-secondary text-sm flex-grow space-y-2 text-left">
               <li>
                 • <Translate contentKey="home.pricing.starter.features.0" />
               </li>
@@ -27,7 +27,7 @@ export const PricingSection: React.FC = () => {
                 • <Translate contentKey="home.pricing.starter.features.2" />
               </li>
             </ul>
-            <button className="mt-4 px-4 py-2 rounded bg-gray-800 text-white text-sm hover:bg-gray-700">
+            <button className="mt-4 px-4 py-2 rounded bg-btn-secondary text-white text-sm hover:opacity-80">
               <Translate contentKey="home.pricing.starter.cta" />
             </button>
           </div>
@@ -38,7 +38,7 @@ export const PricingSection: React.FC = () => {
             <div className="pricing-price">
               <Translate contentKey="home.pricing.pro.price" />
             </div>
-            <ul className="text-gray-600 text-sm flex-grow space-y-2 text-left">
+            <ul className="text-secondary text-sm flex-grow space-y-2 text-left">
               <li>
                 • <Translate contentKey="home.pricing.pro.features.0" />
               </li>
@@ -52,7 +52,7 @@ export const PricingSection: React.FC = () => {
                 • <Translate contentKey="home.pricing.pro.features.3" />
               </li>
             </ul>
-            <button className="mt-4 px-4 py-2 rounded bg-indigo-600 text-white text-sm hover:bg-indigo-500">
+            <button className="mt-4 px-4 py-2 rounded bg-btn-primary text-white text-sm hover:bg-primary">
               <Translate contentKey="home.pricing.pro.cta" />
             </button>
           </div>
@@ -63,7 +63,7 @@ export const PricingSection: React.FC = () => {
             <div className="pricing-price">
               <Translate contentKey="home.pricing.enterprise.price" />
             </div>
-            <ul className="text-gray-600 text-sm flex-grow space-y-2 text-left">
+            <ul className="text-secondary text-sm flex-grow space-y-2 text-left">
               <li>
                 • <Translate contentKey="home.pricing.enterprise.features.0" />
               </li>
@@ -77,7 +77,7 @@ export const PricingSection: React.FC = () => {
                 • <Translate contentKey="home.pricing.enterprise.features.3" />
               </li>
             </ul>
-            <button className="mt-4 px-4 py-2 rounded bg-gray-800 text-white text-sm hover:bg-gray-700">
+            <button className="mt-4 px-4 py-2 rounded bg-btn-secondary text-white text-sm hover:opacity-80">
               <Translate contentKey="home.pricing.enterprise.cta" />
             </button>
           </div>

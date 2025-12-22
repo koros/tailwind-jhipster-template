@@ -27,17 +27,26 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   };
 
   useEffect(() => {
-    // Apply theme by setting CSS custom properties on the document root
+    // Apply theme by setting CSS custom properties on the document root.
+    // This is the single place that knows how to translate Theme.tokens
+    // into concrete CSS variables, so adding a new theme is just data.
     const root = document.documentElement;
     root.setAttribute('data-theme', currentTheme.id);
 
     // Set color CSS variables
-    Object.entries(currentTheme.colors).forEach(([key, value]) => {
-      root.style.setProperty(`--color-${key}`, value);
+    Object.entries(currentTheme.tokens.colors).forEach(([key, value]) => {
+      // Handle special hero and navbar properties separately
+      if (key === 'heroGradient') {
+        root.style.setProperty('--hero-gradient', value);
+      } else if (key === 'navbarScrollBg') {
+        root.style.setProperty('--navbar-scroll-bg', value);
+      } else {
+        root.style.setProperty(`--color-${key}`, value);
+      }
     });
 
     // Set shadow CSS variables
-    Object.entries(currentTheme.shadows).forEach(([key, value]) => {
+    Object.entries(currentTheme.tokens.shadows).forEach(([key, value]) => {
       root.style.setProperty(`--shadow-${key}`, value);
     });
   }, [currentTheme]);

@@ -6,7 +6,7 @@ export const NavDropdown = props => {
   const [isOpen, setIsOpen] = useState(false);
   const iconOnly = !props.name;
   const containerRef = useRef<HTMLLIElement>(null);
-  const { showUserCard, account } = props;
+  const { showUserCard, account, userImage } = props;
 
   const getInitial = (firstName: string) => {
     return firstName?.charAt(0)?.toUpperCase() || '';
@@ -48,12 +48,20 @@ export const NavDropdown = props => {
         }
       >
         {showUserCard && account ? (
-          <div
-            className="flex items-center justify-center w-9 h-9 rounded-full text-white font-semibold text-sm transition-opacity duration-150 group-hover:opacity-80"
-            style={{ backgroundColor: getColorFromName(`${account.firstName || ''} ${account.lastName || ''}`.trim()) }}
-          >
-            {getInitial(account.firstName)}
-          </div>
+          userImage ? (
+            <img
+              src={userImage}
+              alt="Profile"
+              className="w-9 h-9 rounded-full object-cover border border-gray-600 transition-opacity duration-150 group-hover:opacity-80"
+            />
+          ) : (
+            <div
+              className="flex items-center justify-center w-9 h-9 rounded-full text-white font-semibold text-sm transition-opacity duration-150 group-hover:opacity-80"
+              style={{ backgroundColor: getColorFromName(`${account.firstName || ''} ${account.lastName || ''}`.trim()) }}
+            >
+              {getInitial(account.firstName)}
+            </div>
+          )
         ) : (
           <>
             {props.icon && <FontAwesomeIcon icon={props.icon} />}
@@ -74,11 +82,17 @@ export const NavDropdown = props => {
         >
           {showUserCard && account && (
             <div className="flex items-center gap-3 px-4 py-3">
-              <div
-                className="relative flex items-center justify-center w-10 h-10 rounded-full text-white font-semibold text-sm"
-                style={{ backgroundColor: getColorFromName(`${account.firstName || ''} ${account.lastName || ''}`.trim()) }}
-              >
-                {getInitial(account.firstName)}
+              <div className="relative flex items-center justify-center w-10 h-10 rounded-full">
+                {userImage ? (
+                  <img src={userImage} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
+                ) : (
+                  <div
+                    className="flex items-center justify-center w-10 h-10 rounded-full text-white font-semibold text-sm"
+                    style={{ backgroundColor: getColorFromName(`${account.firstName || ''} ${account.lastName || ''}`.trim()) }}
+                  >
+                    {getInitial(account.firstName)}
+                  </div>
+                )}
                 <span className="absolute -right-0.5 -top-0.5 block h-3.5 w-3.5 rounded-full border-2 border-white bg-green-500"></span>
               </div>
               <div className="flex-1 min-w-0">

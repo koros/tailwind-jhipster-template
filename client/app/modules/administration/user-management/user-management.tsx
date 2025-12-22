@@ -15,6 +15,20 @@ import { getUsersAsAdmin, updateUser } from './user-management.reducer';
 export const UserManagement = () => {
   const dispatch = useAppDispatch();
 
+  const getInitial = (firstName: string) => {
+    return firstName?.charAt(0)?.toUpperCase() || '';
+  };
+
+  const getColorFromName = (fullName: string) => {
+    let hash = 0;
+    for (let i = 0; i < fullName.length; i++) {
+      // eslint-disable-next-line no-bitwise
+      hash = fullName.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash % 360);
+    return `hsl(${hue}, 65%, 50%)`;
+  };
+
   const pageLocation = useLocation();
   const navigate = useNavigate();
 
@@ -112,61 +126,82 @@ export const UserManagement = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('id')}>
-                <Translate contentKey="global.field.id">ID</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
-              </th>
-              <th className="hand" onClick={sort('login')}>
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" />
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('login')}>
                 <Translate contentKey="userManagement.login">Login</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('login')} />
               </th>
-              <th className="hand" onClick={sort('email')}>
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('email')}>
                 <Translate contentKey="userManagement.email">Email</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('email')} />
               </th>
-              <th />
-              <th className="hand" onClick={sort('langKey')}>
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" />
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('langKey')}>
                 <Translate contentKey="userManagement.langKey">Lang Key</Translate>{' '}
                 <FontAwesomeIcon icon={getSortIconByFieldName('langKey')} />
               </th>
-              <th>
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 <Translate contentKey="userManagement.profiles">Profiles</Translate>
               </th>
-              <th className="hand" onClick={sort('createdDate')}>
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('createdDate')}>
                 <Translate contentKey="userManagement.createdDate">Created Date</Translate>{' '}
                 <FontAwesomeIcon icon={getSortIconByFieldName('createdDate')} />
               </th>
-              <th className="hand" onClick={sort('lastModifiedBy')}>
+              <th
+                className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand"
+                onClick={sort('lastModifiedBy')}
+              >
                 <Translate contentKey="userManagement.lastModifiedBy">Last Modified By</Translate>{' '}
                 <FontAwesomeIcon icon={getSortIconByFieldName('lastModifiedBy')} />
               </th>
-              <th id="modified-date-sort" className="hand" onClick={sort('lastModifiedDate')}>
+              <th
+                id="modified-date-sort"
+                className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand"
+                onClick={sort('lastModifiedDate')}
+              >
                 <Translate contentKey="userManagement.lastModifiedDate">Last Modified Date</Translate>{' '}
                 <FontAwesomeIcon icon={getSortIconByFieldName('lastModifiedDate')} />
               </th>
-              <th />
+              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" />
             </tr>
           </thead>
           <tbody>
             {users.map((user, i) => (
-              <tr id={user.login} key={`user-${i}`}>
-                <td>
-                  <Button tag={Link} to={user.login} color="link" size="sm">
-                    {user.id}
-                  </Button>
+              <tr id={user.login} key={`user-${i}`} className="border-b border-gray-200">
+                <td className="py-4">
+                  <div className="flex items-center">
+                    {user.imageUrl ? (
+                      <img src={user.imageUrl} alt={user.login} className="w-10 h-10 rounded-full object-cover border-2 border-gray-200" />
+                    ) : (
+                      <div
+                        className="flex items-center justify-center w-10 h-10 rounded-full text-white font-bold text-sm border-2 border-gray-200"
+                        style={{ backgroundColor: getColorFromName(`${user.firstName || ''} ${user.lastName || ''}`.trim() || user.login) }}
+                      >
+                        {getInitial(user.firstName || user.login)}
+                      </div>
+                    )}
+                  </div>
                 </td>
-                <td>{user.login}</td>
-                <td>{user.email}</td>
-                <td>
-                  {user.activated ? (
-                    <Button variant="success" onClick={toggleActive(user)}>
-                      <Translate contentKey="userManagement.activated">Activated</Translate>
-                    </Button>
-                  ) : (
-                    <Button variant="danger" onClick={toggleActive(user)}>
-                      <Translate contentKey="userManagement.deactivated">Deactivated</Translate>
-                    </Button>
-                  )}
+                <td className="py-4">{user.login}</td>
+                <td className="py-4">{user.email}</td>
+                <td className="py-4">
+                  <button
+                    onClick={toggleActive(user)}
+                    disabled={account.login === user.login}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
+                      user.activated ? 'bg-green-500' : 'bg-gray-200'
+                    } ${account.login === user.login ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                    title={
+                      account.login === user.login ? 'You cannot deactivate your own account' : user.activated ? 'Deactivate' : 'Activate'
+                    }
+                  >
+                    <span
+                      className={`${
+                        user.activated ? 'translate-x-6' : 'translate-x-1'
+                      } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
+                    />
+                  </button>
                 </td>
-                <td>{user.langKey}</td>
-                <td>
+                <td className="py-4 text-center">{user.langKey}</td>
+                <td className="py-4">
                   {user.authorities
                     ? user.authorities.map((authority, j) => (
                         <div key={`user-auth-${i}-${j}`}>
@@ -175,30 +210,43 @@ export const UserManagement = () => {
                       ))
                     : null}
                 </td>
-                <td>
+                <td className="py-4">
                   {user.createdDate ? <TextFormat value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid /> : null}
                 </td>
-                <td>{user.lastModifiedBy}</td>
-                <td>
+                <td className="py-4">{user.lastModifiedBy}</td>
+                <td className="py-4">
                   {user.lastModifiedDate ? (
                     <TextFormat value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
                   ) : null}
                 </td>
-                <td className="text-end">
-                  <div className="btn-group flex-btn-group-container">
-                    <Button tag={Link} to={user.login} variant="info" size="sm">
+                <td className="py-4 text-end">
+                  <div className="inline-flex space-x-2">
+                    <Button tag={Link} to={user.login} variant="info" size="sm" style={{ borderRadius: '15px', padding: '4px 15px' }}>
                       <FontAwesomeIcon icon="eye" />{' '}
                       <span className="hidden md:inline">
                         <Translate contentKey="entity.action.view">View</Translate>
                       </span>
                     </Button>
-                    <Button tag={Link} to={`${user.login}/edit`} variant="primary" size="sm">
+                    <Button
+                      tag={Link}
+                      to={`${user.login}/edit`}
+                      variant="primary"
+                      size="sm"
+                      style={{ borderRadius: '15px', padding: '4px 15px' }}
+                    >
                       <FontAwesomeIcon icon="pencil-alt" />{' '}
                       <span className="hidden md:inline">
                         <Translate contentKey="entity.action.edit">Edit</Translate>
                       </span>
                     </Button>
-                    <Button tag={Link} to={`${user.login}/delete`} variant="danger" size="sm" disabled={account.login === user.login}>
+                    <Button
+                      tag={Link}
+                      to={`${user.login}/delete`}
+                      variant="danger"
+                      size="sm"
+                      disabled={account.login === user.login}
+                      style={{ borderRadius: '15px', padding: '4px 15px' }}
+                    >
                       <FontAwesomeIcon icon="trash" />{' '}
                       <span className="hidden md:inline">
                         <Translate contentKey="entity.action.delete">Delete</Translate>

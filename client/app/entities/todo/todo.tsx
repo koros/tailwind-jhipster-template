@@ -184,7 +184,14 @@ export const Todo = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm">{todo.completed ? 'true' : 'false'}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-right">
                     <div className="inline-flex space-x-2">
-                      <Button tag={Link} to={`/todo/${todo.id}`} variant="info" size="sm" data-cy="entityDetailsButton">
+                      <Button
+                        tag={Link}
+                        to={`/todo/${todo.id}`}
+                        variant="info"
+                        size="sm"
+                        data-cy="entityDetailsButton"
+                        style={{ borderRadius: '15px', padding: '4px 15px' }}
+                      >
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="hidden md:inline">
                           <Translate contentKey="entity.action.view">View</Translate>
@@ -196,6 +203,7 @@ export const Todo = () => {
                         variant="primary"
                         size="sm"
                         data-cy="entityEditButton"
+                        style={{ borderRadius: '15px', padding: '4px 15px' }}
                       >
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="hidden md:inline">
@@ -209,6 +217,7 @@ export const Todo = () => {
                         variant="danger"
                         size="sm"
                         data-cy="entityDeleteButton"
+                        style={{ borderRadius: '15px', padding: '4px 15px' }}
                       >
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="hidden md:inline">
