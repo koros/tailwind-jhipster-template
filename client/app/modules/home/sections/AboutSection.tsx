@@ -59,12 +59,12 @@ export const AboutSection: React.FC = () => {
             <div className="space-y-8">
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-btn-primary text-white rounded-full flex items-center justify-center text-xl font-bold">
+                  <div className="w-12 h-12 bg-btn-primary text-white rounded-full flex items-center justify-center text-xl font-normal">
                     1
                   </div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-2 text-primary">
+                  <h3 className="text-xl mb-2 text-primary font-medium">
                     <Translate contentKey="home.howItWorks.step1.title" />
                   </h3>
                   <p className="text-secondary">
@@ -75,10 +75,12 @@ export const AboutSection: React.FC = () => {
 
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center text-xl font-bold">2</div>
+                  <div className="w-12 h-12 bg-secondary text-white rounded-full flex items-center justify-center text-xl font-normal">
+                    2
+                  </div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-2 text-primary">
+                  <h3 className="text-xl font-medium mb-2 text-primary">
                     <Translate contentKey="home.howItWorks.step2.title" />
                   </h3>
                   <p className="text-secondary">
@@ -89,10 +91,10 @@ export const AboutSection: React.FC = () => {
 
               <div className="flex flex-col md:flex-row gap-6 items-start">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center text-xl font-bold">3</div>
+                  <div className="w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center text-xl font-normal">3</div>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-semibold mb-2 text-primary">
+                  <h3 className="text-xl font-medium mb-2 text-primary">
                     <Translate contentKey="home.howItWorks.step3.title" />
                   </h3>
                   <p className="text-secondary">

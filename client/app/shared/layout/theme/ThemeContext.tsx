@@ -11,20 +11,72 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const THEME_STORAGE_KEY = 'app-theme';
 
+const getThemeById = (themeId?: string | null): Theme | undefined => themes.find(t => t.id === themeId);
+
+const getStoredThemePreference = (): Theme | undefined => {
+  if (typeof window === 'undefined') {
+    return undefined;
+  }
+  return getThemeById(localStorage.getItem(THEME_STORAGE_KEY));
+};
+
+const getSystemPreferredTheme = (): Theme | undefined => {
+  if (typeof window === 'undefined' || !window.matchMedia) {
+    return undefined;
+  }
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return getThemeById(prefersDark ? 'dark' : 'light');
+};
+
+const resolveInitialTheme = (): Theme => getStoredThemePreference() || getSystemPreferredTheme() || defaultTheme;
+
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentTheme, setCurrentTheme] = useState<Theme>(() => {
-    // Load theme from localStorage on initial render
-    const savedThemeId = localStorage.getItem(THEME_STORAGE_KEY);
-    return themes.find(t => t.id === savedThemeId) || defaultTheme;
-  });
+  const [currentTheme, setCurrentTheme] = useState<Theme>(() => resolveInitialTheme());
+  const [userSelectedTheme, setUserSelectedTheme] = useState<boolean>(() => !!getStoredThemePreference());
 
   const setTheme = (themeId: string) => {
-    const theme = themes.find(t => t.id === themeId);
+    const theme = getThemeById(themeId);
     if (theme) {
       setCurrentTheme(theme);
-      localStorage.setItem(THEME_STORAGE_KEY, themeId);
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(THEME_STORAGE_KEY, themeId);
+      }
+      setUserSelectedTheme(true);
     }
   };
+
+  useEffect(() => {
+    if (userSelectedTheme) {
+      return undefined;
+    }
+
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const handlePreferenceChange = (event: MediaQueryListEvent) => {
+      const theme = getThemeById(event.matches ? 'dark' : 'light');
+      if (theme) {
+        setCurrentTheme(theme);
+      }
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handlePreferenceChange);
+    } else {
+      mediaQuery.addListener(handlePreferenceChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handlePreferenceChange);
+      } else {
+        mediaQuery.removeListener(handlePreferenceChange);
+      }
+    };
+  }, [userSelectedTheme]);
 
   useEffect(() => {
     // Apply theme by setting CSS custom properties on the document root.

@@ -49,6 +49,9 @@ module.exports = {
       ringColor: {
         focus: 'var(--color-focusRing, rgba(37, 99, 235, 0.35))',
       },
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+      },
     },
   },
   plugins: [],
