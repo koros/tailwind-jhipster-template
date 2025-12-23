@@ -109,14 +109,14 @@ export const TodoUpdate = () => {
     <div className="max-w-4xl mx-auto px-4 py-6">
       <div className="mb-6">
         <h2
-          className="text-2xl font-bold text-gray-900"
+          className="text-2xl font-bold text-primary"
           id="myTailwindJhipsterApp.todo.home.createOrEditLabel"
           data-cy="TodoCreateUpdateHeading"
         >
           <Translate contentKey="myTailwindJhipsterApp.todo.home.createOrEditLabel">Create or edit a Todo</Translate>
         </h2>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-card shadow-md rounded-lg p-6">
         {loading ? (
           <p>Loading...</p>
         ) : (

@@ -20,31 +20,20 @@ const accountMenuItemsAuthenticated = () => (
   </>
 );
 
-const accountMenuItems = () => (
-  <>
-    <MenuItem id="login-item" icon="sign-in-alt" to="/login" data-cy="login">
-      <Translate contentKey="global.menu.account.login">Sign in</Translate>
-    </MenuItem>
-    <MenuItem icon="user-plus" to="/account/register" data-cy="register">
-      <Translate contentKey="global.menu.account.register">Register</Translate>
-    </MenuItem>
-  </>
-);
-
-export const AccountMenu = ({ isAuthenticated = false, account = null, userImage = null }) => (
-  <NavDropdown
-    icon={!isAuthenticated ? 'user-slash' : undefined}
-    name={undefined}
-    ariaLabel={translate(isAuthenticated ? 'global.menu.account.main' : 'global.menu.account.login')}
-    id="account-menu"
-    data-cy="accountMenu"
-    showUserCard={isAuthenticated}
-    account={account}
-    userImage={userImage}
-  >
-    {isAuthenticated && accountMenuItemsAuthenticated()}
-    {!isAuthenticated && accountMenuItems()}
-  </NavDropdown>
-);
+export const AccountMenu = ({ isAuthenticated = false, account = null, userImage = null }) =>
+  isAuthenticated ? (
+    <NavDropdown
+      icon={undefined}
+      name={undefined}
+      ariaLabel={translate('global.menu.account.main')}
+      id="account-menu"
+      data-cy="accountMenu"
+      showUserCard={true}
+      account={account}
+      userImage={userImage}
+    >
+      {accountMenuItemsAuthenticated()}
+    </NavDropdown>
+  ) : null;
 
 export default AccountMenu;

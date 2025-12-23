@@ -42,13 +42,13 @@ export const PasswordPage = () => {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900" id="password-title">
+        <h2 className="text-2xl font-bold text-primary" id="password-title">
           <Translate contentKey="password.title" interpolate={{ username: account.login }}>
             Password for {account.login}
           </Translate>
         </h2>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-card shadow-md rounded-lg p-6">
         <ValidatedForm id="password-form" onSubmit={handleValidSubmit} className="space-y-4">
           <ValidatedField
             name="currentPassword"

@@ -24,7 +24,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ loggedIn, accountLogin
         <p className="mt-4 text-xl md:text-2xl max-w-2xl mx-auto slide-up font-extralight" style={{ animationDelay: '0.25s' }}>
           <Translate contentKey="home.hero.subtitle" />
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4 slide-up" style={{ animationDelay: '0.4s' }}>
+        <div className="mt-8 pb-16 flex flex-wrap justify-center gap-4 slide-up" style={{ animationDelay: '0.4s' }}>
           {!loggedIn && (
             <Link
               to="/login"
@@ -58,17 +58,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ loggedIn, accountLogin
               <FontAwesomeIcon icon={faArrowRight} aria-hidden="true" />
             </Link>
           )}
-        </div>
-        <div className="mt-10 flex flex-wrap justify-center gap-8 slide-up" style={{ animationDelay: '0.55s' }}>
-          <a href="#about" className="underline hover:opacity-80 text-white">
-            <Translate contentKey="home.hero.learnMore" />
-          </a>
-          <a href="#pricing" className="underline hover:opacity-80 text-white">
-            <Translate contentKey="home.hero.pricing" />
-          </a>
-          <a href="#contact" className="underline hover:opacity-80 text-white">
-            <Translate contentKey="home.hero.contact" />
-          </a>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0] pointer-events-none" style={{ marginBottom: '-1px' }}>

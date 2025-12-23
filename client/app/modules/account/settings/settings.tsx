@@ -118,7 +118,7 @@ export const SettingsPage = () => {
     <div className="max-w-2xl mx-auto px-4 py-6">
       {showCropper && imageSrc && <ImageCropper imageSrc={imageSrc} onCropComplete={onCropComplete} onCancel={onCancelCrop} />}
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900" id="settings-title">
+        <h2 className="text-2xl font-bold text-primary" id="settings-title">
           <Translate contentKey="settings.title" interpolate={{ username: account.login }}>
             User settings for {account.login}
           </Translate>
@@ -127,11 +127,11 @@ export const SettingsPage = () => {
 
       <div className="rounded-lg p-6 mb-6 flex flex-col items-center">
         <div className="relative group cursor-pointer" onClick={triggerFileInput}>
-          <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-gray-100 shadow-sm relative">
+          <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-surface shadow-sm relative">
             {profileImageUrl ? (
               <img src={profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">
+              <div className="w-full h-full bg-surface flex items-center justify-center text-gray-400">
                 <FontAwesomeIcon icon={faUser} size="4x" />
               </div>
             )}
@@ -139,15 +139,15 @@ export const SettingsPage = () => {
               <FontAwesomeIcon icon={faCamera} className="text-white opacity-0 group-hover:opacity-100 text-2xl" />
             </div>
           </div>
-          <div className="absolute bottom-0 right-0 bg-white rounded-full p-2 shadow-md border border-gray-200 text-gray-600 hover:text-indigo-600 w-[35px] h-[35px] flex items-center justify-center cursor-pointer">
+          <div className="absolute bottom-0 right-0 bg-card rounded-full p-2 shadow-md border border-primary text-secondary hover:text-primary w-[35px] h-[35px] flex items-center justify-center cursor-pointer">
             <FontAwesomeIcon icon={faCamera} className="text-sm" />
           </div>
         </div>
-        <p className="mt-2 text-sm text-gray-500">Click to change profile image</p>
+        <p className="mt-2 text-sm text-secondary">Click to change profile image</p>
         <input type="file" accept="image/*" ref={fileInputRef} onChange={onFileChange} className="hidden" />
       </div>
 
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-card shadow-md rounded-lg p-6">
         <ValidatedForm id="settings-form" onSubmit={handleValidSubmit} defaultValues={account}>
           <ValidatedField
             name="firstName"

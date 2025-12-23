@@ -112,7 +112,7 @@ export const UserManagement = () => {
     <div>
       <h2 id="user-management-page-heading" data-cy="userManagementPageHeading">
         <Translate contentKey="userManagement.home.title">Users</Translate>
-        <div className="d-flex justify-content-end">
+        <div className="flex justify-end">
           <Button className="mr-2" variant="info" onClick={handleSyncList} disabled={loading}>
             <FontAwesomeIcon icon="sync" spin={loading} />{' '}
             <Translate contentKey="userManagement.home.refreshListLabel">Refresh List</Translate>
@@ -123,30 +123,33 @@ export const UserManagement = () => {
         </div>
       </h2>
       <div className="overflow-x-auto">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+        <table className="min-w-full divide-y divide-primary">
+          <thead className="bg-surface">
             <tr>
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" />
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('login')}>
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider" />
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider hand" onClick={sort('login')}>
                 <Translate contentKey="userManagement.login">Login</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('login')} />
               </th>
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('email')}>
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider hand" onClick={sort('email')}>
                 <Translate contentKey="userManagement.email">Email</Translate> <FontAwesomeIcon icon={getSortIconByFieldName('email')} />
               </th>
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" />
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('langKey')}>
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider hand" onClick={sort('activated')}>
+                <Translate contentKey="userManagement.activated">Activated</Translate>{' '}
+                <FontAwesomeIcon icon={getSortIconByFieldName('activated')} />
+              </th>
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider hand" onClick={sort('langKey')}>
                 <Translate contentKey="userManagement.langKey">Lang Key</Translate>{' '}
                 <FontAwesomeIcon icon={getSortIconByFieldName('langKey')} />
               </th>
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider">
                 <Translate contentKey="userManagement.profiles">Profiles</Translate>
               </th>
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand" onClick={sort('createdDate')}>
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider hand" onClick={sort('createdDate')}>
                 <Translate contentKey="userManagement.createdDate">Created Date</Translate>{' '}
                 <FontAwesomeIcon icon={getSortIconByFieldName('createdDate')} />
               </th>
               <th
-                className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand"
+                className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider hand"
                 onClick={sort('lastModifiedBy')}
               >
                 <Translate contentKey="userManagement.lastModifiedBy">Last Modified By</Translate>{' '}
@@ -154,25 +157,25 @@ export const UserManagement = () => {
               </th>
               <th
                 id="modified-date-sort"
-                className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider hand"
+                className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider hand"
                 onClick={sort('lastModifiedDate')}
               >
                 <Translate contentKey="userManagement.lastModifiedDate">Last Modified Date</Translate>{' '}
                 <FontAwesomeIcon icon={getSortIconByFieldName('lastModifiedDate')} />
               </th>
-              <th className="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" />
+              <th className="py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider" />
             </tr>
           </thead>
           <tbody>
             {users.map((user, i) => (
-              <tr id={user.login} key={`user-${i}`} className="border-b border-gray-200">
+              <tr id={user.login} key={`user-${i}`} className="border-b border-primary hover:bg-surface transition-colors">
                 <td className="py-4">
                   <div className="flex items-center">
                     {user.imageUrl ? (
-                      <img src={user.imageUrl} alt={user.login} className="w-10 h-10 rounded-full object-cover border-2 border-gray-200" />
+                      <img src={user.imageUrl} alt={user.login} className="w-10 h-10 rounded-full object-cover border-2 border-primary" />
                     ) : (
                       <div
-                        className="flex items-center justify-center w-10 h-10 rounded-full text-white font-bold text-sm border-2 border-gray-200"
+                        className="flex items-center justify-center w-10 h-10 rounded-full text-white font-bold text-sm border-2 border-primary"
                         style={{ backgroundColor: getColorFromName(`${user.firstName || ''} ${user.lastName || ''}`.trim() || user.login) }}
                       >
                         {getInitial(user.firstName || user.login)}
@@ -180,13 +183,13 @@ export const UserManagement = () => {
                     )}
                   </div>
                 </td>
-                <td className="py-4">{user.login}</td>
-                <td className="py-4">{user.email}</td>
+                <td className="py-4 text-primary">{user.login}</td>
+                <td className="py-4 text-secondary">{user.email}</td>
                 <td className="py-4">
                   <button
                     onClick={toggleActive(user)}
                     disabled={account.login === user.login}
-                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
+                    className={`relative inline-flex items-center h-6 w-11 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${
                       user.activated ? 'bg-green-500' : 'bg-gray-200'
                     } ${account.login === user.login ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
                     title={
@@ -195,12 +198,12 @@ export const UserManagement = () => {
                   >
                     <span
                       className={`${
-                        user.activated ? 'translate-x-6' : 'translate-x-1'
-                      } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
+                        user.activated ? 'translate-x-6 rtl:-translate-x-6' : 'translate-x-1 rtl:-translate-x-1'
+                      } inline-block h-4 w-4 rounded-full bg-white transition-transform`}
                     />
                   </button>
                 </td>
-                <td className="py-4 text-center">{user.langKey}</td>
+                <td className="py-4 text-secondary">{user.langKey}</td>
                 <td className="py-4">
                   {user.authorities
                     ? user.authorities.map((authority, j) => (
@@ -210,11 +213,11 @@ export const UserManagement = () => {
                       ))
                     : null}
                 </td>
-                <td className="py-4">
+                <td className="py-4 text-secondary">
                   {user.createdDate ? <TextFormat value={user.createdDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid /> : null}
                 </td>
-                <td className="py-4">{user.lastModifiedBy}</td>
-                <td className="py-4">
+                <td className="py-4 text-secondary">{user.lastModifiedBy}</td>
+                <td className="py-4 text-secondary">
                   {user.lastModifiedDate ? (
                     <TextFormat value={user.lastModifiedDate} type="date" format={APP_DATE_FORMAT} blankOnInvalid />
                   ) : null}
@@ -261,7 +264,7 @@ export const UserManagement = () => {
       </div>
       {totalItems ? (
         <div className={users?.length > 0 ? 'mt-4 space-y-4' : 'hidden'}>
-          <div className="flex justify-center text-sm text-gray-600">
+          <div className="flex justify-center text-sm text-secondary">
             <JhiItemCount page={pagination.activePage} total={totalItems} itemsPerPage={pagination.itemsPerPage} i18nEnabled />
           </div>
           <div className="flex justify-center">

@@ -93,33 +93,33 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
   };
 
   return (
-    <div className="bg-gray-200 overflow-y-auto flex flex-col" style={{ minHeight: 'calc(100vh - 60px)' }}>
+    <div className="bg-surface overflow-y-auto flex flex-col" style={{ height: 'calc(100vh - 60px)' }}>
       {/* Logo and Collapse Button */}
-      <div className={`flex ${isCollapsed ? 'flex-col' : 'flex-row'} items-center justify-between py-4 px-4 border-b border-white gap-2`}>
+      <div className={`flex ${isCollapsed ? 'flex-col' : 'flex-row'} items-center justify-between py-4 px-4 border-b border-primary gap-2`}>
         <Link to="/" className={`flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-2`}>
           <img src="content/images/logo-jhipster.png" alt="JHipster" className="w-8 h-8 object-contain flex-shrink-0" />
-          {!isCollapsed && <span className="font-bold text-gray-900">JHipster</span>}
+          {!isCollapsed && <span className="font-bold text-primary">JHipster</span>}
         </Link>
         <button
           type="button"
           onClick={handleToggle}
-          className="p-2 rounded-md hover:bg-gray-300 transition-colors"
+          className="p-2 rounded-md hover:bg-hover transition-colors"
           aria-label="Toggle sidebar"
         >
-          <FontAwesomeIcon icon={isCollapsed ? 'bars' : 'angles-left'} className="w-4 h-4 text-gray-700" />
+          <FontAwesomeIcon icon={isCollapsed ? 'bars' : 'angles-left'} className="w-4 h-4 text-secondary" />
         </button>
       </div>
 
       {/* User Card */}
       {account && (
-        <div className="p-4 border-b border-white">
+        <div className="p-4 border-b border-primary">
           <div className={`flex ${isCollapsed ? 'flex-col' : 'flex-row'} items-center gap-3`}>
             <div className="flex-shrink-0">
               {userImage ? (
-                <img src={userImage} alt={account.login} className="rounded-full border-2 border-gray-300 w-14 h-14 object-cover" />
+                <img src={userImage} alt={account.login} className="rounded-full border-2 border-primary w-14 h-14 object-cover" />
               ) : (
                 <div
-                  className="flex items-center justify-center w-12 h-12 rounded-full text-white font-semibold text-lg border-2 border-gray-300"
+                  className="flex items-center justify-center w-12 h-12 rounded-full text-white font-semibold text-lg border-2 border-primary"
                   style={{ backgroundColor: getColorFromName(`${account.firstName || ''} ${account.lastName || ''}`.trim()) }}
                 >
                   {getInitial(account.firstName)}
@@ -128,15 +128,15 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
             </div>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 truncate">
+                <p className="text-sm font-semibold text-primary truncate">
                   {account.firstName && account.lastName
                     ? `${account.firstName.charAt(0).toUpperCase() + account.firstName.slice(1)} ${account.lastName.charAt(0).toUpperCase() + account.lastName.slice(1)}`
                     : account.login}
                 </p>
-                <p className="text-xs text-gray-600 truncate">{account.email}</p>
+                <p className="text-xs text-secondary truncate">{account.email}</p>
                 <div className="flex items-center gap-1 mt-1">
                   <span className="text-sm">{languages[currentLocale || 'en']?.flag || '🇺🇸'}</span>
-                  <span className="text-xs text-gray-600">{languages[currentLocale || 'en']?.name || 'English'}</span>
+                  <span className="text-xs text-secondary">{languages[currentLocale || 'en']?.name || 'English'}</span>
                 </div>
               </div>
             )}
@@ -147,7 +147,7 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
       <nav className="p-4 space-y-6 flex-1">
         {navGroups.map((group, groupIndex) => (
           <div key={groupIndex}>
-            {!isCollapsed && <h3 className="text-xs font-semibold text-gray-500 uppercase mb-2 px-2">{group.title}</h3>}
+            {!isCollapsed && <h3 className="text-xs font-semibold text-secondary uppercase mb-2 px-2">{group.title}</h3>}
             <ul className="space-y-1">
               {group.items.map((item, itemIndex) => (
                 <li key={itemIndex}>
@@ -157,7 +157,7 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
                       [
                         'flex items-center gap-3 px-3 py-2 text-sm font-medium transition-colors',
                         isCollapsed ? 'justify-center' : 'justify-start',
-                        isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900',
+                        isActive ? 'bg-hover text-[color:var(--color-primary)]' : 'text-primary hover:bg-hover hover:text-primary',
                         isCollapsed ? 'rounded-md' : 'rounded-[20px]',
                       ].join(' ')
                     }

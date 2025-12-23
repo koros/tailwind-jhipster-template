@@ -107,53 +107,53 @@ export const Todo = () => {
       </h2>
       <div className="overflow-x-auto">
         {todoList && todoList.length > 0 ? (
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-primary">
+            <thead className="bg-surface">
               <tr>
                 <th
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider cursor-pointer"
                   onClick={sort('id')}
                 >
                   <Translate contentKey="myTailwindJhipsterApp.todo.id">ID</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('id')} />
                 </th>
                 <th
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider cursor-pointer"
                   onClick={sort('title')}
                 >
                   <Translate contentKey="myTailwindJhipsterApp.todo.title">Title</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('title')} />
                 </th>
                 <th
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider cursor-pointer"
                   onClick={sort('description')}
                 >
                   <Translate contentKey="myTailwindJhipsterApp.todo.description">Description</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('description')} />
                 </th>
                 <th
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider cursor-pointer"
                   onClick={sort('status')}
                 >
                   <Translate contentKey="myTailwindJhipsterApp.todo.status">Status</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('status')} />
                 </th>
                 <th
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider cursor-pointer"
                   onClick={sort('priority')}
                 >
                   <Translate contentKey="myTailwindJhipsterApp.todo.priority">Priority</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('priority')} />
                 </th>
                 <th
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider cursor-pointer"
                   onClick={sort('dueDate')}
                 >
                   <Translate contentKey="myTailwindJhipsterApp.todo.dueDate">Due Date</Translate>{' '}
                   <FontAwesomeIcon icon={getSortIconByFieldName('dueDate')} />
                 </th>
                 <th
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                  className="px-6 py-3 text-left text-xs font-medium text-secondary uppercase tracking-wider cursor-pointer"
                   onClick={sort('completed')}
                 >
                   <Translate contentKey="myTailwindJhipsterApp.todo.completed">Completed</Translate>{' '}
@@ -162,26 +162,26 @@ export const Todo = () => {
                 <th className="px-6 py-3"></th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-card divide-y divide-primary">
               {todoList.map((todo, i) => (
-                <tr key={`entity-${i}`} data-cy="entityTable">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                <tr key={`entity-${i}`} data-cy="entityTable" className="hover:bg-surface transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary">
                     <Button tag={Link} to={`/todo/${todo.id}`} variant="link" size="sm">
                       {todo.id}
                     </Button>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">{todo.title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">{todo.description}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-primary">{todo.title}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary">{todo.description}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary">
                     <Translate contentKey={`myTailwindJhipsterApp.TodoStatus.${todo.status}`} />
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary">
                     <Translate contentKey={`myTailwindJhipsterApp.Priority.${todo.priority}`} />
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary">
                     {todo.dueDate ? <TextFormat type="date" value={todo.dueDate} format={APP_DATE_FORMAT} /> : null}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">{todo.completed ? 'true' : 'false'}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-secondary">{todo.completed ? 'true' : 'false'}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-right">
                     <div className="inline-flex space-x-2">
                       <Button
@@ -240,7 +240,7 @@ export const Todo = () => {
       </div>
       {totalItems ? (
         <div className={todoList && todoList.length > 0 ? 'mt-4 space-y-4' : 'hidden'}>
-          <div className="flex justify-center text-sm text-gray-600">
+          <div className="flex justify-center text-sm text-secondary">
             <JhiItemCount page={paginationState.activePage} total={totalItems} itemsPerPage={paginationState.itemsPerPage} i18nEnabled />
           </div>
           <div className="flex justify-center">

@@ -79,12 +79,12 @@ const LoginModal = (props: ILoginModalProps) => {
             </div>
           </div>
           <div className="mt-4 space-y-2">
-            <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+            <div className="bg-info/10 border border-info/30 text-info px-4 py-3 rounded">
               <Link to="/account/reset/request" data-cy="forgetYourPasswordSelector" className="font-semibold underline">
                 <Translate contentKey="login.password.forgot">Did you forget your password?</Translate>
               </Link>
             </div>
-            <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+            <div className="bg-info/10 border border-info/30 text-info px-4 py-3 rounded">
               <span>
                 <Translate contentKey="global.messages.info.register.noaccount">You don&apos;t have an account yet?</Translate>
               </span>{' '}

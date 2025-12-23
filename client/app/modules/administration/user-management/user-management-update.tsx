@@ -58,11 +58,11 @@ export const UserManagementUpdate = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-primary">
           <Translate contentKey="userManagement.home.createOrEditLabel">Create or edit a User</Translate>
         </h1>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-card shadow-md rounded-lg p-6">
         {loading ? (
           <p>Loading...</p>
         ) : (

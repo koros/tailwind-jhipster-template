@@ -12,13 +12,13 @@ const Dashboard = () => {
   const currentLocale = useAppSelector(state => state.locale.currentLocale);
 
   return (
-    <div className="flex" style={{ minHeight: 'calc(100vh - 60px)' }}>
+    <div className="flex h-screen overflow-hidden" style={{ height: 'calc(100vh - 60px)' }}>
       {/* Sidebar */}
-      <div className={`transition-all duration-300 ${isSidebarCollapsed ? 'w-20' : 'w-64'}`}>
+      <div className={`transition-all duration-300 flex-shrink-0 ${isSidebarCollapsed ? 'w-20' : 'w-64'}`}>
         <Sidebar isAdmin={isAdmin} account={account} currentLocale={currentLocale} onCollapsedChange={setIsSidebarCollapsed} />
       </div>
       {/* Main Content */}
-      <div className="flex-1 bg-gray-50 overflow-auto">
+      <div className="flex-1 bg-primary overflow-y-auto">
         <div className="p-6">
           <Outlet />
         </div>

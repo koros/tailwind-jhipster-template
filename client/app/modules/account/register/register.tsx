@@ -41,11 +41,11 @@ export const RegisterPage = () => {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900" id="register-title" data-cy="registerTitle">
+        <h1 className="text-3xl font-bold text-primary" id="register-title" data-cy="registerTitle">
           <Translate contentKey="register.title">Registration</Translate>
         </h1>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-6">
+      <div className="bg-surface shadow-md rounded-lg p-6">
         <ValidatedForm id="register-form" onSubmit={handleValidSubmit}>
           <ValidatedField
             name="username"
@@ -139,11 +139,11 @@ export const RegisterPage = () => {
           </Button>
         </ValidatedForm>
         <p>&nbsp;</p>
-        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+        <div className="bg-info/10 border border-info/30 text-info px-4 py-3 rounded">
           <span>
             <Translate contentKey="global.messages.info.authenticated.prefix">If you want to</Translate>{' '}
           </span>
-          <Link to="/login" className="text-yellow-700 underline hover:text-yellow-800">
+          <Link to="/login" className="text-info underline hover:text-info/80">
             <Translate contentKey="global.messages.info.authenticated.link">sign in</Translate>
           </Link>
           <span>

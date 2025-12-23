@@ -113,7 +113,7 @@ export const themes: Theme[] = [
         secondary: '#a855f7', // purple-500
         accent: '#f97316', // orange-500
         background: '#020617', // slate-950
-        surface: '#0f172a', // slate-900
+        surface: '#172036', // slate-900
         text: '#e5e7eb', // gray-200
         textSecondary: '#9ca3af', // gray-400
         border: '#1f2937', // gray-800
@@ -126,7 +126,7 @@ export const themes: Theme[] = [
         error: '#f97373',
         info: '#38bdf8',
         cardBg: '#020617',
-        inputBg: '#020617',
+        inputBg: '#374151',
         inputBorder: '#1f2937',
         inputFocus: '#3b82f6',
         hoverBg: '#020617',
@@ -138,9 +138,9 @@ export const themes: Theme[] = [
         navbarScrollBg: '#0f172a',
       },
       shadows: {
-        sm: '0 1px 2px 0 rgba(15, 23, 42, 0.8)',
-        md: '0 4px 8px rgba(15, 23, 42, 0.85)',
-        lg: '0 20px 30px -15px rgba(15, 23, 42, 0.95)',
+        sm: '0 1px 2px 0 #6e86b4',
+        md: '0 4px 8px #6e86b4',
+        lg: '0 20px 30px -15px #6e86b4',
       },
     },
   },

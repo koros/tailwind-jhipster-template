@@ -31,12 +31,12 @@ export const PasswordResetInit = () => {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-primary">
           <Translate contentKey="reset.request.title">Reset your password</Translate>
         </h1>
       </div>
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <div className="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded-md mb-6">
+      <div className="bg-surface shadow-md rounded-lg p-6">
+        <div className="bg-info/10 border border-info/30 text-info px-4 py-3 rounded-md mb-6">
           <p>
             <Translate contentKey="reset.request.messages.info">Enter the email address you used to register</Translate>
           </p>
