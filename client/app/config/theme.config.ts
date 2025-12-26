@@ -64,8 +64,8 @@ export const themes: Theme[] = [
         primary: '#2563eb', // blue-600
         secondary: '#7c3aed', // violet-600
         accent: '#f97316', // orange-500
-        background: '#ffffff',
-        surface: '#f9fafb', // gray-50
+        background: '#f9fafb',
+        surface: '#f3f4f6', // gray-50
         text: '#0f172a', // slate-900
         textSecondary: '#4b5563', // gray-600
         border: '#e5e7eb', // gray-200
