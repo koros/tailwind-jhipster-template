@@ -10,3 +10,6 @@ export type { CardProps } from './card';
 export { Modal, ModalHeader, ModalBody, ModalFooter } from './modal';
 
 export { Pagination } from './pagination';
+
+export { FloatingValidatedField } from './form/FloatingValidatedField';
+export { FloatingMultiSelect } from './form/FloatingMultiSelect';

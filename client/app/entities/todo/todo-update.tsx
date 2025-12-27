@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Translate, ValidatedField, ValidatedForm, translate } from 'react-jhipster';
+import { Translate, translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from 'app/shared/components';
+import { Button, FloatingValidatedField } from 'app/shared/components';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -105,6 +106,13 @@ export const TodoUpdate = () => {
           dueDate: convertDateTimeFromServer(todoEntity.dueDate),
         };
 
+  const methods = useForm({ defaultValues: defaultValues(), mode: 'onTouched' });
+  const { handleSubmit, reset: resetForm } = methods;
+
+  useEffect(() => {
+    resetForm(defaultValues());
+  }, [todoEntity, isNew]);
+
   return (
     <div className="max-w-4xl mx-auto px-4 py-6">
       <div className="mb-6">
@@ -120,85 +128,93 @@ export const TodoUpdate = () => {
         {loading ? (
           <p>Loading...</p>
         ) : (
-          <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
-            {!isNew ? (
-              <ValidatedField name="id" required readOnly id="todo-id" label={translate('global.field.id')} validate={{ required: true }} />
-            ) : null}
-            <ValidatedField
-              label={translate('myTailwindJhipsterApp.todo.title')}
-              id="todo-title"
-              name="title"
-              data-cy="title"
-              type="text"
-              validate={{
-                required: { value: true, message: translate('entity.validation.required') },
-                minLength: { value: 1, message: translate('entity.validation.minlength', { min: 1 }) },
-                maxLength: { value: 140, message: translate('entity.validation.maxlength', { max: 140 }) },
-              }}
-            />
-            <ValidatedField
-              label={translate('myTailwindJhipsterApp.todo.description')}
-              id="todo-description"
-              name="description"
-              data-cy="description"
-              type="textarea"
-            />
-            <ValidatedField
-              label={translate('myTailwindJhipsterApp.todo.status')}
-              id="todo-status"
-              name="status"
-              data-cy="status"
-              type="select"
-            >
-              {todoStatusValues.map(todoStatus => (
-                <option value={todoStatus} key={todoStatus}>
-                  {translate(`myTailwindJhipsterApp.TodoStatus.${todoStatus}`)}
-                </option>
-              ))}
-            </ValidatedField>
-            <ValidatedField
-              label={translate('myTailwindJhipsterApp.todo.priority')}
-              id="todo-priority"
-              name="priority"
-              data-cy="priority"
-              type="select"
-            >
-              {priorityValues.map(priority => (
-                <option value={priority} key={priority}>
-                  {translate(`myTailwindJhipsterApp.Priority.${priority}`)}
-                </option>
-              ))}
-            </ValidatedField>
-            <ValidatedField
-              label={translate('myTailwindJhipsterApp.todo.dueDate')}
-              id="todo-dueDate"
-              name="dueDate"
-              data-cy="dueDate"
-              type="datetime-local"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-            <ValidatedField
-              label={translate('myTailwindJhipsterApp.todo.completed')}
-              id="todo-completed"
-              name="completed"
-              data-cy="completed"
-              check
-              type="checkbox"
-            />
-            <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/todo" replace variant="info">
-              <FontAwesomeIcon icon="arrow-left" />
+          <FormProvider {...methods}>
+            <form onSubmit={handleSubmit(saveEntity)}>
+              {!isNew ? (
+                <FloatingValidatedField
+                  name="id"
+                  type="text"
+                  required
+                  readOnly
+                  label={translate('global.field.id')}
+                  validate={{ required: true }}
+                  data-cy="todo-id"
+                />
+              ) : null}
+              <FloatingValidatedField
+                label={translate('myTailwindJhipsterApp.todo.title')}
+                id="todo-title"
+                name="title"
+                data-cy="title"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                  minLength: { value: 1, message: translate('entity.validation.minlength', { min: 1 }) },
+                  maxLength: { value: 140, message: translate('entity.validation.maxlength', { max: 140 }) },
+                }}
+              />
+              <FloatingValidatedField
+                label={translate('myTailwindJhipsterApp.todo.description')}
+                id="todo-description"
+                name="description"
+                data-cy="description"
+                type="textarea"
+              />
+              <FloatingValidatedField
+                label={translate('myTailwindJhipsterApp.todo.status')}
+                id="todo-status"
+                name="status"
+                data-cy="status"
+                type="select"
+              >
+                {todoStatusValues.map(todoStatus => (
+                  <option value={todoStatus} key={todoStatus}>
+                    {translate(`myTailwindJhipsterApp.TodoStatus.${todoStatus}`)}
+                  </option>
+                ))}
+              </FloatingValidatedField>
+              <FloatingValidatedField
+                label={translate('myTailwindJhipsterApp.todo.priority')}
+                id="todo-priority"
+                name="priority"
+                data-cy="priority"
+                type="select"
+              >
+                {priorityValues.map(priority => (
+                  <option value={priority} key={priority}>
+                    {translate(`myTailwindJhipsterApp.Priority.${priority}`)}
+                  </option>
+                ))}
+              </FloatingValidatedField>
+              <FloatingValidatedField
+                label={translate('myTailwindJhipsterApp.todo.dueDate')}
+                id="todo-dueDate"
+                name="dueDate"
+                data-cy="dueDate"
+                type="datetime-local"
+              />
+              <FloatingValidatedField
+                label={translate('myTailwindJhipsterApp.todo.completed')}
+                id="todo-completed"
+                name="completed"
+                data-cy="completed"
+                type="checkbox"
+              />
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/todo" replace variant="info">
+                <FontAwesomeIcon icon="arrow-left" />
+                &nbsp;
+                <span className="hidden md:inline">
+                  <Translate contentKey="entity.action.back">Back</Translate>
+                </span>
+              </Button>
               &nbsp;
-              <span className="hidden md:inline">
-                <Translate contentKey="entity.action.back">Back</Translate>
-              </span>
-            </Button>
-            &nbsp;
-            <Button variant="primary" id="save-entity" data-cy="entityCreateSaveButton" type="submit" disabled={updating}>
-              <FontAwesomeIcon icon="save" />
-              &nbsp;
-              <Translate contentKey="entity.action.save">Save</Translate>
-            </Button>
-          </ValidatedForm>
+              <Button variant="primary" id="save-entity" data-cy="entityCreateSaveButton" type="submit" disabled={updating}>
+                <FontAwesomeIcon icon="save" />
+                &nbsp;
+                <Translate contentKey="entity.action.save">Save</Translate>
+              </Button>
+            </form>
+          </FormProvider>
         )}
       </div>
     </div>

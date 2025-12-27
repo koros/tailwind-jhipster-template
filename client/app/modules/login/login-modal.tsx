@@ -1,8 +1,8 @@
 import React from 'react';
 import { Translate, ValidatedField, translate } from 'react-jhipster';
 import { Link } from 'react-router-dom';
-import { type FieldError, useForm } from 'react-hook-form';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'app/shared/components';
+import { type FieldError, useForm, FormProvider } from 'react-hook-form';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FloatingValidatedField } from 'app/shared/components';
 
 export interface ILoginModalProps {
   showModal: boolean;
@@ -16,11 +16,12 @@ const LoginModal = (props: ILoginModalProps) => {
     props.handleLogin(username, password, rememberMe);
   };
 
+  const methods = useForm({ mode: 'onTouched' });
   const {
     handleSubmit,
     register,
     formState: { errors, touchedFields },
-  } = useForm({ mode: 'onTouched' });
+  } = methods;
 
   const { loginError, handleClose } = props;
 
@@ -44,38 +45,32 @@ const LoginModal = (props: ILoginModalProps) => {
               </div>
             ) : null}
             <div className="space-y-4">
-              <ValidatedField
-                name="username"
-                label={translate('global.form.username.label')}
-                placeholder={translate('global.form.username.placeholder')}
-                required
-                autoFocus
-                data-cy="username"
-                validate={{ required: 'Username cannot be empty!' }}
-                register={register}
-                error={errors.username as FieldError}
-                isTouched={touchedFields.username}
-              />
-              <ValidatedField
-                name="password"
-                type="password"
-                label={translate('login.form.password')}
-                placeholder={translate('login.form.password.placeholder')}
-                required
-                data-cy="password"
-                validate={{ required: 'Password cannot be empty!' }}
-                register={register}
-                error={errors.password as FieldError}
-                isTouched={touchedFields.password}
-              />
-              <ValidatedField
-                name="rememberMe"
-                type="checkbox"
-                check
-                label={translate('login.form.rememberme')}
-                value={true}
-                register={register}
-              />
+              <FormProvider {...methods}>
+                <FloatingValidatedField
+                  name="username"
+                  label={translate('global.form.username.label')}
+                  required
+                  autoFocus
+                  data-cy="username"
+                  validate={{ required: 'Username cannot be empty!' }}
+                />
+                <FloatingValidatedField
+                  name="password"
+                  type="password"
+                  label={translate('login.form.password')}
+                  required
+                  data-cy="password"
+                  validate={{ required: 'Password cannot be empty!' }}
+                />
+                <ValidatedField
+                  name="rememberMe"
+                  type="checkbox"
+                  check
+                  label={translate('login.form.rememberme')}
+                  value={true}
+                  register={register}
+                />
+              </FormProvider>
             </div>
           </div>
           <div className="mt-4 space-y-2">

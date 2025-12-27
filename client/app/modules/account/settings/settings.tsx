@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Translate, ValidatedField, ValidatedForm, isEmail, translate } from 'react-jhipster';
+import { Translate, ValidatedField, isEmail, translate } from 'react-jhipster';
+import { useForm, FormProvider } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { Button } from 'app/shared/components';
+import { Button, FloatingValidatedField } from 'app/shared/components';
 
 import { languages, locales } from 'app/config/translation';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -114,6 +115,20 @@ export const SettingsPage = () => {
     fileInputRef.current?.click();
   };
 
+  const methods = useForm({
+    defaultValues: account,
+    mode: 'onTouched',
+  });
+  const { handleSubmit, reset: resetForm } = methods;
+
+  useEffect(() => {
+    resetForm(account);
+  }, [account, resetForm]);
+
+  const onSubmit = values => {
+    handleValidSubmit(values);
+  };
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       {showCropper && imageSrc && <ImageCropper imageSrc={imageSrc} onCropComplete={onCropComplete} onCancel={onCancelCrop} />}
@@ -148,65 +163,64 @@ export const SettingsPage = () => {
       </div>
 
       <div className="bg-card shadow-md rounded-lg p-6">
-        <ValidatedForm id="settings-form" onSubmit={handleValidSubmit} defaultValues={account}>
-          <ValidatedField
-            name="firstName"
-            label={translate('settings.form.firstname')}
-            id="firstName"
-            placeholder={translate('settings.form.firstname.placeholder')}
-            validate={{
-              required: { value: true, message: translate('settings.messages.validate.firstname.required') },
-              minLength: { value: 1, message: translate('settings.messages.validate.firstname.minlength') },
-              maxLength: { value: 50, message: translate('settings.messages.validate.firstname.maxlength') },
-            }}
-            data-cy="firstname"
-            className="mb-4"
-          />
-          <ValidatedField
-            name="lastName"
-            label={translate('settings.form.lastname')}
-            id="lastName"
-            placeholder={translate('settings.form.lastname.placeholder')}
-            validate={{
-              required: { value: true, message: translate('settings.messages.validate.lastname.required') },
-              minLength: { value: 1, message: translate('settings.messages.validate.lastname.minlength') },
-              maxLength: { value: 50, message: translate('settings.messages.validate.lastname.maxlength') },
-            }}
-            data-cy="lastname"
-            className="mb-4"
-          />
-          <ValidatedField
-            name="email"
-            label={translate('global.form.email.label')}
-            placeholder={translate('global.form.email.placeholder')}
-            type="email"
-            validate={{
-              required: { value: true, message: translate('global.messages.validate.email.required') },
-              minLength: { value: 5, message: translate('global.messages.validate.email.minlength') },
-              maxLength: { value: 254, message: translate('global.messages.validate.email.maxlength') },
-              validate: v => isEmail(v) || translate('global.messages.validate.email.invalid'),
-            }}
-            data-cy="email"
-            className="mb-4"
-          />
-          <ValidatedField
-            type="select"
-            id="langKey"
-            name="langKey"
-            label={translate('settings.form.language')}
-            data-cy="langKey"
-            className="mb-6"
-          >
-            {locales.map(locale => (
-              <option value={locale} key={locale}>
-                {languages[locale].flag} {languages[locale].name}
-              </option>
-            ))}
-          </ValidatedField>
-          <Button variant="primary" type="submit" data-cy="submit">
-            <Translate contentKey="settings.form.button">Save</Translate>
-          </Button>
-        </ValidatedForm>
+        <FormProvider {...methods}>
+          <form id="settings-form" onSubmit={handleSubmit(onSubmit)}>
+            <FloatingValidatedField
+              name="firstName"
+              label={translate('settings.form.firstname')}
+              id="firstName"
+              validate={{
+                required: { value: true, message: translate('settings.messages.validate.firstname.required') },
+                minLength: { value: 1, message: translate('settings.messages.validate.firstname.minlength') },
+                maxLength: { value: 50, message: translate('settings.messages.validate.firstname.maxlength') },
+              }}
+              data-cy="firstname"
+              className="mb-4"
+            />
+            <FloatingValidatedField
+              name="lastName"
+              label={translate('settings.form.lastname')}
+              id="lastName"
+              validate={{
+                required: { value: true, message: translate('settings.messages.validate.lastname.required') },
+                minLength: { value: 1, message: translate('settings.messages.validate.lastname.minlength') },
+                maxLength: { value: 50, message: translate('settings.messages.validate.lastname.maxlength') },
+              }}
+              data-cy="lastname"
+              className="mb-4"
+            />
+            <FloatingValidatedField
+              name="email"
+              label={translate('global.form.email.label')}
+              type="email"
+              validate={{
+                required: { value: true, message: translate('global.messages.validate.email.required') },
+                minLength: { value: 5, message: translate('global.messages.validate.email.minlength') },
+                maxLength: { value: 254, message: translate('global.messages.validate.email.maxlength') },
+                validate: v => isEmail(v) || translate('global.messages.validate.email.invalid'),
+              }}
+              data-cy="email"
+              className="mb-4"
+            />
+            <FloatingValidatedField
+              type="select"
+              id="langKey"
+              name="langKey"
+              label={translate('settings.form.language')}
+              data-cy="langKey"
+              className="mb-6"
+            >
+              {locales.map(locale => (
+                <option value={locale} key={locale}>
+                  {languages[locale].flag} {languages[locale].name}
+                </option>
+              ))}
+            </FloatingValidatedField>
+            <Button variant="primary" type="submit" data-cy="submit">
+              <Translate contentKey="settings.form.button">Save</Translate>
+            </Button>
+          </form>
+        </FormProvider>
       </div>
     </div>
   );

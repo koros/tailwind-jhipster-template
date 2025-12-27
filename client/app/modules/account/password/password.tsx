@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Translate, ValidatedField, ValidatedForm, translate } from 'react-jhipster';
+import { Translate, ValidatedField, translate } from 'react-jhipster';
 import { toast } from 'react-toastify';
-import { Button } from 'app/shared/components';
+import { Button, FloatingValidatedField } from 'app/shared/components';
+import { useForm, FormProvider } from 'react-hook-form';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { getSession } from 'app/shared/reducers/authentication';
@@ -39,6 +40,13 @@ export const PasswordPage = () => {
     dispatch(reset());
   }, [successMessage, errorMessage]);
 
+  const methods = useForm({ mode: 'onTouched' });
+  const { handleSubmit } = methods;
+
+  const onSubmit = values => {
+    handleValidSubmit(values);
+  };
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="mb-6">
@@ -49,48 +57,47 @@ export const PasswordPage = () => {
         </h2>
       </div>
       <div className="bg-card shadow-md rounded-lg p-6">
-        <ValidatedForm id="password-form" onSubmit={handleValidSubmit} className="space-y-4">
-          <ValidatedField
-            name="currentPassword"
-            label={translate('global.form.currentpassword.label')}
-            placeholder={translate('global.form.currentpassword.placeholder')}
-            type="password"
-            validate={{
-              required: { value: true, message: translate('global.messages.validate.newpassword.required') },
-            }}
-            data-cy="currentPassword"
-          />
-          <ValidatedField
-            name="newPassword"
-            label={translate('global.form.newpassword.label')}
-            placeholder={translate('global.form.newpassword.placeholder')}
-            type="password"
-            validate={{
-              required: { value: true, message: translate('global.messages.validate.newpassword.required') },
-              minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
-              maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
-            }}
-            onChange={updatePassword}
-            data-cy="newPassword"
-          />
-          <PasswordStrengthBar password={password} />
-          <ValidatedField
-            name="confirmPassword"
-            label={translate('global.form.confirmpassword.label')}
-            placeholder={translate('global.form.confirmpassword.placeholder')}
-            type="password"
-            validate={{
-              required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
-              minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
-              maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
-              validate: v => v === password || translate('global.messages.error.dontmatch'),
-            }}
-            data-cy="confirmPassword"
-          />
-          <Button variant="success" type="submit" data-cy="submit">
-            <Translate contentKey="password.form.button">Save</Translate>
-          </Button>
-        </ValidatedForm>
+        <FormProvider {...methods}>
+          <form id="password-form" onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <FloatingValidatedField
+              name="currentPassword"
+              label={translate('global.form.currentpassword.label')}
+              type="password"
+              validate={{
+                required: { value: true, message: translate('global.messages.validate.newpassword.required') },
+              }}
+              data-cy="currentPassword"
+            />
+            <FloatingValidatedField
+              name="newPassword"
+              label={translate('global.form.newpassword.label')}
+              type="password"
+              validate={{
+                required: { value: true, message: translate('global.messages.validate.newpassword.required') },
+                minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
+                maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
+              }}
+              onChange={updatePassword}
+              data-cy="newPassword"
+            />
+            <PasswordStrengthBar password={password} />
+            <FloatingValidatedField
+              name="confirmPassword"
+              label={translate('global.form.confirmpassword.label')}
+              type="password"
+              validate={{
+                required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
+                minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
+                maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
+                validate: v => v === password || translate('global.messages.error.dontmatch'),
+              }}
+              data-cy="confirmPassword"
+            />
+            <Button variant="success" type="submit" data-cy="submit">
+              <Translate contentKey="password.form.button">Save</Translate>
+            </Button>
+          </form>
+        </FormProvider>
       </div>
     </div>
   );

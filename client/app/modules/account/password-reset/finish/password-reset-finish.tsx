@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Translate, ValidatedField, ValidatedForm, translate } from 'react-jhipster';
+import { Translate, ValidatedField, translate } from 'react-jhipster';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Button } from 'app/shared/components';
+import { Button, FloatingValidatedField } from 'app/shared/components';
+import { useForm, FormProvider } from 'react-hook-form';
 
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -27,40 +28,49 @@ export const PasswordResetFinishPage = () => {
 
   const updatePassword = event => setPassword(event.target.value);
 
+  const methods = useForm({ mode: 'onTouched' });
+  const { handleSubmit } = methods;
+
+  const onSubmit = values => {
+    handleValidSubmit(values);
+  };
+
   const getResetForm = () => {
     return (
-      <ValidatedForm onSubmit={handleValidSubmit}>
-        <ValidatedField
-          name="newPassword"
-          label={translate('global.form.newpassword.label')}
-          placeholder={translate('global.form.newpassword.placeholder')}
-          type="password"
-          validate={{
-            required: { value: true, message: translate('global.messages.validate.newpassword.required') },
-            minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
-            maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
-          }}
-          onChange={updatePassword}
-          data-cy="resetPassword"
-        />
-        <PasswordStrengthBar password={password} />
-        <ValidatedField
-          name="confirmPassword"
-          label={translate('global.form.confirmpassword.label')}
-          placeholder={translate('global.form.confirmpassword.placeholder')}
-          type="password"
-          validate={{
-            required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
-            minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
-            maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
-            validate: v => v === password || translate('global.messages.error.dontmatch'),
-          }}
-          data-cy="confirmResetPassword"
-        />
-        <Button variant="success" type="submit" data-cy="submit">
-          <Translate contentKey="reset.finish.form.button">Validate new password</Translate>
-        </Button>
-      </ValidatedForm>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FloatingValidatedField
+            name="newPassword"
+            label={translate('global.form.newpassword.label')}
+            placeholder={translate('global.form.newpassword.placeholder')}
+            type="password"
+            validate={{
+              required: { value: true, message: translate('global.messages.validate.newpassword.required') },
+              minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
+              maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
+            }}
+            onChange={updatePassword}
+            data-cy="resetPassword"
+          />
+          <PasswordStrengthBar password={password} />
+          <FloatingValidatedField
+            name="confirmPassword"
+            label={translate('global.form.confirmpassword.label')}
+            placeholder={translate('global.form.confirmpassword.placeholder')}
+            type="password"
+            validate={{
+              required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
+              minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
+              maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
+              validate: v => v === password || translate('global.messages.error.dontmatch'),
+            }}
+            data-cy="confirmResetPassword"
+          />
+          <Button variant="success" type="submit" data-cy="submit">
+            <Translate contentKey="reset.finish.form.button">Validate new password</Translate>
+          </Button>
+        </form>
+      </FormProvider>
     );
   };
 

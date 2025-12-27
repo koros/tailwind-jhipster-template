@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Translate, ValidatedField, ValidatedForm, isEmail, translate } from 'react-jhipster';
+import { Translate, ValidatedField, isEmail, translate } from 'react-jhipster';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from 'app/shared/components';
+import { Button, FloatingValidatedField } from 'app/shared/components';
+import { useForm, FormProvider } from 'react-hook-form';
 
 import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
@@ -38,6 +39,13 @@ export const RegisterPage = () => {
     }
   }, [successMessage, navigate]);
 
+  const methods = useForm({ mode: 'onTouched' });
+  const { handleSubmit } = methods;
+
+  const onSubmit = values => {
+    handleValidSubmit(values);
+  };
+
   return (
     <div className="max-w-2xl mx-auto px-4 py-6">
       <div className="mb-6">
@@ -46,98 +54,94 @@ export const RegisterPage = () => {
         </h1>
       </div>
       <div className="bg-surface shadow-md rounded-lg p-6">
-        <ValidatedForm id="register-form" onSubmit={handleValidSubmit}>
-          <ValidatedField
-            name="username"
-            label={translate('global.form.username.label')}
-            placeholder={translate('global.form.username.placeholder')}
-            validate={{
-              required: { value: true, message: translate('register.messages.validate.login.required') },
-              pattern: {
-                value: /^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$/,
-                message: translate('register.messages.validate.login.pattern'),
-              },
-              minLength: { value: 1, message: translate('register.messages.validate.login.minlength') },
-              maxLength: { value: 50, message: translate('register.messages.validate.login.maxlength') },
-            }}
-            data-cy="username"
-          />
-          <ValidatedField
-            name="firstName"
-            label={translate('settings.form.firstname')}
-            placeholder={translate('settings.form.firstname.placeholder')}
-            validate={{
-              required: { value: true, message: translate('settings.messages.validate.firstname.required') },
-              minLength: { value: 1, message: translate('settings.messages.validate.firstname.minlength') },
-              maxLength: { value: 50, message: translate('settings.messages.validate.firstname.maxlength') },
-            }}
-            data-cy="firstName"
-          />
-          <ValidatedField
-            name="lastName"
-            label={translate('settings.form.lastname')}
-            placeholder={translate('settings.form.lastname.placeholder')}
-            validate={{
-              required: { value: true, message: translate('settings.messages.validate.lastname.required') },
-              minLength: { value: 1, message: translate('settings.messages.validate.lastname.minlength') },
-              maxLength: { value: 50, message: translate('settings.messages.validate.lastname.maxlength') },
-            }}
-            data-cy="lastName"
-          />
-          <ValidatedField
-            name="email"
-            label={translate('global.form.email.label')}
-            placeholder={translate('global.form.email.placeholder')}
-            type="email"
-            validate={{
-              required: { value: true, message: translate('global.messages.validate.email.required') },
-              minLength: { value: 5, message: translate('global.messages.validate.email.minlength') },
-              maxLength: { value: 254, message: translate('global.messages.validate.email.maxlength') },
-              validate: v => isEmail(v) || translate('global.messages.validate.email.invalid'),
-            }}
-            data-cy="email"
-          />
-          <ValidatedField
-            name="firstPassword"
-            label={translate('global.form.newpassword.label')}
-            placeholder={translate('global.form.newpassword.placeholder')}
-            type="password"
-            onChange={updatePassword}
-            validate={{
-              required: { value: true, message: translate('global.messages.validate.newpassword.required') },
-              minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
-              maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
-            }}
-            data-cy="firstPassword"
-          />
-          <PasswordStrengthBar password={password} />
-          <ValidatedField
-            name="secondPassword"
-            label={translate('global.form.confirmpassword.label')}
-            placeholder={translate('global.form.confirmpassword.placeholder')}
-            type="password"
-            validate={{
-              required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
-              minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
-              maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
-              validate: v => v === password || translate('global.messages.error.dontmatch'),
-            }}
-            data-cy="secondPassword"
-          />
-          <Button id="register-submit" className="mt-4" variant="primary" type="submit" data-cy="submit" disabled={loading}>
-            {loading ? (
-              <span className="inline-flex items-center gap-2">
-                <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
-                </svg>
+        <FormProvider {...methods}>
+          <form id="register-form" onSubmit={handleSubmit(onSubmit)}>
+            <FloatingValidatedField
+              name="username"
+              label={translate('global.form.username.label')}
+              validate={{
+                required: { value: true, message: translate('register.messages.validate.login.required') },
+                pattern: {
+                  value: /^[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$|^[_.@A-Za-z0-9-]+$/,
+                  message: translate('register.messages.validate.login.pattern'),
+                },
+                minLength: { value: 1, message: translate('register.messages.validate.login.minlength') },
+                maxLength: { value: 50, message: translate('register.messages.validate.login.maxlength') },
+              }}
+              data-cy="username"
+            />
+            <FloatingValidatedField
+              name="firstName"
+              label={translate('settings.form.firstname')}
+              validate={{
+                required: { value: true, message: translate('settings.messages.validate.firstname.required') },
+                minLength: { value: 1, message: translate('settings.messages.validate.firstname.minlength') },
+                maxLength: { value: 50, message: translate('settings.messages.validate.firstname.maxlength') },
+              }}
+              data-cy="firstName"
+            />
+            <FloatingValidatedField
+              name="lastName"
+              label={translate('settings.form.lastname')}
+              validate={{
+                required: { value: true, message: translate('settings.messages.validate.lastname.required') },
+                minLength: { value: 1, message: translate('settings.messages.validate.lastname.minlength') },
+                maxLength: { value: 50, message: translate('settings.messages.validate.lastname.maxlength') },
+              }}
+              data-cy="lastName"
+            />
+            <FloatingValidatedField
+              name="email"
+              label={translate('global.form.email.label')}
+              type="email"
+              validate={{
+                required: { value: true, message: translate('global.messages.validate.email.required') },
+                minLength: { value: 5, message: translate('global.messages.validate.email.minlength') },
+                maxLength: { value: 254, message: translate('global.messages.validate.email.maxlength') },
+                validate: v => isEmail(v) || translate('global.messages.validate.email.invalid'),
+              }}
+              data-cy="email"
+            />
+            <FloatingValidatedField
+              name="firstPassword"
+              label={translate('global.form.newpassword.label')}
+              type="password"
+              onChange={updatePassword}
+              validate={{
+                required: { value: true, message: translate('global.messages.validate.newpassword.required') },
+                minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
+                maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
+              }}
+              data-cy="firstPassword"
+            />
+            <PasswordStrengthBar password={password} />
+            <FloatingValidatedField
+              name="secondPassword"
+              label={translate('global.form.confirmpassword.label')}
+              type="password"
+              validate={{
+                required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
+                minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
+                maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
+                validate: v => v === password || translate('global.messages.error.dontmatch'),
+              }}
+              data-cy="secondPassword"
+            />
+            <Button id="register-submit" className="mt-4" variant="primary" type="submit" data-cy="submit" disabled={loading}>
+              {loading ? (
+                <span className="inline-flex items-center gap-2">
+                  <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                  <Translate contentKey="register.form.button">Register</Translate>
+                </span>
+              ) : (
                 <Translate contentKey="register.form.button">Register</Translate>
-              </span>
-            ) : (
-              <Translate contentKey="register.form.button">Register</Translate>
-            )}
-          </Button>
-        </ValidatedForm>
+              )}
+            </Button>
+          </form>
+        </FormProvider>
         <p>&nbsp;</p>
         <div className="bg-info/10 border border-info/30 text-info px-4 py-3 rounded">
           <span>

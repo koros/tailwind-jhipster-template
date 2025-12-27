@@ -333,3 +333,94 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
+
+/* ==========================================================================
+   Floating Label Styles (Imported from User Request)
+   ========================================================================== */
+
+.form-area {
+  background-color: #fff;
+  box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
+  padding: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-area .form-inner {
+  width: 100%;
+}
+.form-group.floating-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+.form-control.floating-control {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 8px 19px;
+  padding-top: 21px;
+  min-height: 55px;
+  font-size: 1rem;
+  color: #475f7b;
+  background-color: #fff;
+  border: 1px solid #dfe3e7;
+  border-radius: 0.267rem;
+  -webkit-transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+select.form-control.floating-control {
+  padding-top: 10px;
+  transition: 0.15s;
+}
+.form-control.floating-control:focus {
+  color: #475f7b;
+  background-color: #fff;
+  border-color: #5a8dee;
+  outline: 0;
+  box-shadow: none;
+}
+.floating-label {
+  font-size: 16px;
+  font-weight: 400;
+  color: #475f7b;
+  opacity: 1;
+  top: 16px;
+  left: 20px;
+  pointer-events: none;
+  position: absolute;
+  transition: 240ms;
+  margin-bottom: 0;
+  z-index: 1;
+}
+.floating-diff .floating-label {
+  opacity: 0;
+}
+.floating-diff.focused .floating-label {
+  opacity: 1;
+}
+.form-group.floating-group.focused .floating-label {
+  opacity: 1;
+  color: #7b7f82;
+  top: 4px;
+  left: 19px;
+  font-size: 12px;
+}
+.form-group.floating-group.focused select.form-control.floating-control {
+  padding-top: 21px;
+}
+.float-checkradio {
+  background-color: #fff;
+  border: 1px solid #dfe3e7;
+  border-radius: 0.267rem;
+  padding: 8px 19px;
+  transition: 0.3s;
+  min-height: 55px;
+}
+.float-checkradio.focused {
+  padding-top: 21px;
+}
