@@ -103,7 +103,7 @@ const Sidebar = ({ isAdmin, account, currentLocale, onCollapsedChange }: Sidebar
         <button
           type="button"
           onClick={handleToggle}
-          className="p-2 rounded-md hover:bg-hover transition-colors"
+          className="sidebar-toggle-btn hover:bg-hover transition-colors"
           aria-label="Toggle sidebar"
         >
           <FontAwesomeIcon icon={isCollapsed ? 'bars' : 'angles-left'} className="w-4 h-4 text-secondary" />
