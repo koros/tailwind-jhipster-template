@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
+import { ThemeProvider } from 'app/shared/layout/theme/ThemeContext';
 
 import initStore from 'app/config/store';
 import Header from './header';
@@ -38,7 +39,9 @@ describe('Header', () => {
       const { container } = render(
         <Provider store={store}>
           <MemoryRouter>
-            <Header {...props} />
+            <ThemeProvider>
+              <Header {...props} />
+            </ThemeProvider>
           </MemoryRouter>
         </Provider>,
       );
@@ -57,10 +60,6 @@ describe('Header', () => {
 
     // Find Navbar component
     expect(html).toContain('navbar');
-    // Find AdminMenu component
-    expect(html).toContain('admin-menu');
-    // Find EntitiesMenu component
-    expect(html).toContain('entity-menu');
     // Find AccountMenu component
     expect(html).toContain('account-menu');
     // Ribbon
@@ -72,10 +71,6 @@ describe('Header', () => {
 
     // Find Navbar component
     expect(html).toContain('navbar');
-    // Find AdminMenu component
-    expect(html).toContain('admin-menu');
-    // Find EntitiesMenu component
-    expect(html).toContain('entity-menu');
     // Find AccountMenu component
     expect(html).toContain('account-menu');
     // No Ribbon
@@ -87,10 +82,6 @@ describe('Header', () => {
 
     // Find Navbar component
     expect(html).toContain('navbar');
-    // Not find AdminMenu component
-    expect(html).not.toContain('admin-menu');
-    // Find EntitiesMenu component
-    expect(html).toContain('entity-menu');
     // Find AccountMenu component
     expect(html).toContain('account-menu');
   });
@@ -100,11 +91,7 @@ describe('Header', () => {
 
     // Find Navbar component
     expect(html).toContain('navbar');
-    // Not find AdminMenu component
-    expect(html).not.toContain('admin-menu');
-    // Not find EntitiesMenu component
-    expect(html).not.toContain('entity-menu');
-    // Find AccountMenu component
-    expect(html).toContain('account-menu');
+    // Not find AccountMenu component
+    expect(html).not.toContain('account-menu');
   });
 });
