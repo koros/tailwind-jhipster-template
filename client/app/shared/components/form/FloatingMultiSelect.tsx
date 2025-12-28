@@ -71,12 +71,12 @@ export const FloatingMultiSelect: React.FC<FloatingMultiSelectProps> = ({
         const isFocused = isOpen || selectedValues.length > 0;
 
         return (
-          <div ref={containerRef} className={`form-group floating-group w-100 ${isFocused ? 'focused' : ''}`}>
+          <div ref={containerRef} className={`floating-multi-select form-group floating-group w-100 ${isFocused ? 'focused' : ''}`}>
             <label className="floating-label">{label}</label>
             <div
-              className={`floating-control min-h-[55px] border rounded-md px-3 pt-4 pb-2 cursor-pointer flex flex-wrap gap-2 items-center ${
-                fieldState.error ? 'border-red-500' : 'border-gray-300'
-              } ${disabled ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white text-gray-900'}`}
+              className={`floating-control floating-multi-select-control min-h-[55px] border rounded-md px-3 pt-4 pb-2 cursor-pointer flex flex-wrap gap-2 items-center ${
+                fieldState.error ? 'has-error' : ''
+              } ${disabled ? 'is-disabled' : ''} ${isOpen ? 'is-open' : ''}`}
               onClick={() => {
                 if (!disabled) {
                   setIsOpen(prev => !prev);
@@ -84,18 +84,18 @@ export const FloatingMultiSelect: React.FC<FloatingMultiSelectProps> = ({
               }}
             >
               {selectedValues.length === 0 && placeholder ? (
-                <span className="text-sm text-gray-400">{placeholder}</span>
+                <span className="floating-multi-select-placeholder text-sm">{placeholder}</span>
               ) : (
                 selectedValues.map(value => (
                   <span
                     key={value}
-                    className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 mt-2"
+                    className="floating-multi-select-chip inline-flex items-center gap-1 rounded-full text-xs font-medium px-3 py-1 mt-2"
                   >
                     {selectedMap.get(value) || value}
                     {!disabled && (
                       <button
                         type="button"
-                        className="text-gray-500 hover:text-red-500"
+                        className="floating-multi-select-chip-remove"
                         onClick={e => {
                           e.stopPropagation();
                           removeValue(value);
@@ -110,36 +110,31 @@ export const FloatingMultiSelect: React.FC<FloatingMultiSelectProps> = ({
               )}
             </div>
             {isOpen && !disabled && (
-              <div className="mt-2 w-full rounded-md border border-gray-200 bg-white shadow-lg z-20 max-h-60 overflow-auto">
-                <div className="p-2 border-b border-gray-100">
+              <div className="floating-multi-select-dropdown mt-2 w-full rounded-md border shadow-lg z-20 max-h-60 overflow-auto">
+                <div className="floating-multi-select-search-wrapper p-2">
                   <input
                     type="text"
-                    className="w-full border border-gray-200 rounded-md px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary"
+                    className="floating-multi-select-search w-full rounded-md px-2 py-1 text-sm focus:outline-none"
                     placeholder="Search..."
                     value={search}
                     onChange={event => setSearch(event.target.value)}
                   />
                 </div>
-                <ul className="max-h-48 overflow-y-auto">
+                <ul className="floating-multi-select-options max-h-48 overflow-y-auto">
                   {filteredOptions.length === 0 ? (
-                    <li className="px-4 py-2 text-sm text-gray-500">No options</li>
+                    <li className="floating-multi-select-empty px-4 py-2 text-sm">No options</li>
                   ) : (
                     filteredOptions.map(option => {
                       const checked = selectedValues.includes(option.value);
                       return (
                         <li
                           key={option.value}
-                          className={`px-4 py-2 text-sm flex items-center gap-3 cursor-pointer transition-colors ${
-                            checked ? 'bg-primary/10 text-primary font-semibold' : 'hover:bg-gray-50'
+                          className={`floating-multi-select-option px-4 py-2 text-sm flex items-center gap-3 cursor-pointer transition-colors ${
+                            checked ? 'is-selected' : ''
                           }`}
                           onClick={() => toggleValue(option.value)}
                         >
-                          <input
-                            type="checkbox"
-                            readOnly
-                            checked={checked}
-                            className="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
-                          />
+                          <input type="checkbox" readOnly checked={checked} className="floating-multi-select-checkbox h-4 w-4 rounded" />
                           <span>{option.label}</span>
                         </li>
                       );

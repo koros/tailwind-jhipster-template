@@ -339,21 +339,24 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
    ========================================================================== */
 
 .form-area {
-  background-color: #fff;
-  box-shadow: 0px 5px 10px rgba(90, 116, 148, 0.3);
+  background-color: var(--color-cardBg);
+  box-shadow: var(--shadow-md);
   padding: 40px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .form-area .form-inner {
   width: 100%;
 }
+
 .form-group.floating-group {
   position: relative;
   margin-bottom: 30px;
 }
+
 .form-control.floating-control {
   display: block;
   width: 100%;
@@ -362,9 +365,9 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
   padding-top: 21px;
   min-height: 55px;
   font-size: 1rem;
-  color: #475f7b;
-  background-color: #fff;
-  border: 1px solid #dfe3e7;
+  color: var(--color-text);
+  background-color: var(--color-inputBg);
+  border: 1px solid var(--color-inputBorder);
   border-radius: 0.267rem;
   -webkit-transition:
     border-color 0.15s ease-in-out,
@@ -373,21 +376,24 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
 }
+
 select.form-control.floating-control {
   padding-top: 10px;
   transition: 0.15s;
 }
+
 .form-control.floating-control:focus {
-  color: #475f7b;
-  background-color: #fff;
-  border-color: #5a8dee;
+  color: var(--color-text);
+  background-color: var(--color-inputBg);
+  border-color: var(--color-inputFocus);
   outline: 0;
-  box-shadow: none;
+  box-shadow: 0 0 0 3px var(--color-focusRing);
 }
+
 .floating-label {
   font-size: 16px;
   font-weight: 400;
-  color: #475f7b;
+  color: var(--color-textSecondary);
   opacity: 1;
   top: 16px;
   left: 20px;
@@ -397,30 +403,188 @@ select.form-control.floating-control {
   margin-bottom: 0;
   z-index: 1;
 }
+
 .floating-diff .floating-label {
   opacity: 0;
 }
+
 .floating-diff.focused .floating-label {
   opacity: 1;
 }
+
 .form-group.floating-group.focused .floating-label {
   opacity: 1;
-  color: #7b7f82;
+  color: var(--color-primary);
   top: 4px;
   left: 19px;
   font-size: 12px;
 }
+
 .form-group.floating-group.focused select.form-control.floating-control {
   padding-top: 21px;
 }
+
 .float-checkradio {
-  background-color: #fff;
-  border: 1px solid #dfe3e7;
+  background-color: var(--color-inputBg);
+  border: 1px solid var(--color-inputBorder);
   border-radius: 0.267rem;
   padding: 8px 19px;
   transition: 0.3s;
   min-height: 55px;
 }
+
 .float-checkradio.focused {
   padding-top: 21px;
+}
+
+/* Password Toggle Styles */
+.passwrd-svgs {
+  width: 35px;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  height: 35px;
+  border-radius: 50%;
+  pointer-events: auto;
+  /* Changed to auto so the span catches the click */
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwrd-svgs:hover {
+  background-color: var(--color-hoverBg);
+}
+
+.passwrd-svgs::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--color-textSecondary);
+  display: block;
+  transform: scale(0);
+  opacity: 0.2;
+  border-radius: 50%;
+}
+
+.passwrd-svgs.ripple-active::before {
+  transform: scale(3);
+  opacity: 0;
+  transition:
+    transform 0.5s ease-out,
+    opacity 0.5s ease-out;
+}
+
+.passwrd-close-svg,
+.passwrd-open-svg {
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  /* Let the parent span handle clicks */
+}
+
+/* Optional: change input border on hover over eye */
+.form-control.floating-control:has(+ .passwrd-svgs:hover) {
+  border-color: var(--color-textSecondary);
+}
+
+.floating-multi-select {
+  .floating-multi-select-control {
+    background-color: var(--color-inputBg);
+    border-color: var(--color-inputBorder);
+    color: var(--color-text);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &.is-open {
+      border-color: var(--color-inputFocus);
+      box-shadow: 0 0 0 3px var(--color-focusRing);
+    }
+
+    &.has-error {
+      border-color: var(--color-error);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-error) 30%, transparent);
+    }
+
+    &.is-disabled {
+      background-color: var(--color-surface);
+      color: var(--color-textSecondary);
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+  }
+
+  .floating-multi-select-placeholder {
+    color: var(--color-textSecondary);
+  }
+
+  .floating-multi-select-chip {
+    background-color: color-mix(in srgb, var(--color-primary) 10%, var(--color-cardBg));
+    color: var(--color-text);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+  }
+
+  .floating-multi-select-chip-remove {
+    color: var(--color-textSecondary);
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--color-error);
+    }
+  }
+
+  .floating-multi-select-dropdown {
+    background-color: var(--color-cardBg);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+
+  .floating-multi-select-search-wrapper {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .floating-multi-select-search {
+    background-color: var(--color-inputBg);
+    border: 1px solid var(--color-inputBorder);
+    color: var(--color-text);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: var(--color-inputFocus);
+      box-shadow: 0 0 0 2px var(--color-focusRing);
+    }
+  }
+
+  .floating-multi-select-option {
+    color: var(--color-text);
+
+    &:hover:not(.is-selected) {
+      background-color: var(--color-hoverBg);
+    }
+
+    &.is-selected {
+      background-color: color-mix(in srgb, var(--color-primary) 12%, transparent);
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  }
+
+  .floating-multi-select-checkbox {
+    accent-color: var(--color-primary);
+    border-color: var(--color-inputBorder);
+  }
+
+  .floating-multi-select-empty {
+    color: var(--color-textSecondary);
+    text-align: center;
+  }
 }
