@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../app';
+import app from './app';
 
 describe('App Integration Tests', () => {
   describe('Health and Info Endpoints', () => {

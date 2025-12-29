@@ -12,7 +12,7 @@ module.exports = {
     '!src/config/migration-data-source.ts',
   ],
   coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov', 'html'],
+  coverageReporters: ['text', 'lcov', 'json-summary', 'html'],
   coverageThreshold: {
     global: {
       branches: 70,

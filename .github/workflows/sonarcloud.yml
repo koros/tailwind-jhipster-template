@@ -33,7 +33,9 @@ jobs:
       - name: Run tests with coverage
         run: |
           npm test -- --coverage --watchAll=false
-        continue-on-error: true
+
+      - name: Enforce coverage threshold
+        run: npm run coverage:check
 
       # - name: SonarCloud Scan
       #   uses: SonarSource/sonarcloud-github-action@master

@@ -13,12 +13,14 @@ jest.mock('../config/database', () => ({
   },
 }));
 
-jest.mock('./mail.service', () => ({
+jest.mock('./mail.service.js', () => ({
   __esModule: true,
   default: {
     sendActivationEmail: jest.fn(),
   },
 }));
+
+const mockMailService = require('./mail.service.js').default;
 
 // NOW import the service after mocks are set up
 import { AuthService } from './auth.service';
@@ -26,7 +28,6 @@ import { User } from '../entities/User';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AppError } from '../middleware/error.middleware';
-import mailService from './mail.service';
 
 describe('AuthService', () => {
   let authService: AuthService;
@@ -214,7 +215,7 @@ describe('AuthService', () => {
       expect(result).toBeDefined();
       expect((result as any).password).toBeUndefined(); // Password should be excluded
       expect(mockUserRepository.save).toHaveBeenCalled();
-      expect(mailService.sendActivationEmail).toHaveBeenCalled();
+      expect(mockMailService.sendActivationEmail).toHaveBeenCalled();
     });
 
     it('should throw error for duplicate activated user', async () => {
@@ -244,7 +245,7 @@ describe('AuthService', () => {
       mockUserRepository.findOne.mockResolvedValue(null);
       mockUserRepository.create.mockReturnValue({ id: 1, login: 'user', activated: false });
       mockUserRepository.save.mockResolvedValue({ id: 1, login: 'user', activated: false });
-      (mailService.sendActivationEmail as jest.Mock).mockRejectedValue(new Error('Email failed'));
+      mockMailService.sendActivationEmail.mockRejectedValue(new Error('Email failed'));
 
       const result = await authService.register({ login: 'user', email: 'user@example.com', password: 'pass123' });
 

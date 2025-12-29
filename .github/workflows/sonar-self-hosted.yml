@@ -12,6 +12,8 @@ jobs:
   sonar-analysis:
     name: SonarQube Scan
     runs-on: ubuntu-latest
+    env:
+      RUN_SONAR: 'false'
 
     steps:
       - name: Checkout code
@@ -33,12 +35,16 @@ jobs:
       - name: Run tests with coverage
         run: |
           npm test -- --coverage --watchAll=false
-        continue-on-error: true
+
+      - name: Enforce coverage threshold
+        run: npm run coverage:check
 
       - name: Install SonarQube Scanner
+        if: ${{ env.RUN_SONAR == 'true' }}
         run: npm install -g sonar-scanner
 
       - name: Run SonarQube Analysis
+        if: ${{ env.RUN_SONAR == 'true' }}
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
@@ -50,6 +56,6 @@ jobs:
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
       - name: Check Quality Gate (optional)
-        if: always()
+        if: ${{ env.RUN_SONAR == 'true' }}
         run: |
           echo "Check quality gate status at: ${{ secrets.SONAR_HOST_URL }}/dashboard?id=myTailwindJhipster"

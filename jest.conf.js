@@ -17,6 +17,7 @@ module.exports = {
   },
   cacheDirectory: '<rootDir>/target/jest-cache',
   coverageDirectory: '<rootDir>/target/test-results/',
+  coverageReporters: ['text', 'lcov', 'json-summary', 'html'],
   testMatch: ['<rootDir>/client/app/**/@(*.)@(spec.ts?(x))'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   coveragePathIgnorePatterns: ['<rootDir>/src/test/javascript/'],

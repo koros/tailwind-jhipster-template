@@ -6,6 +6,7 @@ const mockUserRepository = {
   save: jest.fn(),
   create: jest.fn(),
   remove: jest.fn(),
+  createQueryBuilder: jest.fn(),
 };
 
 jest.mock('../config/database', () => ({
@@ -15,17 +16,18 @@ jest.mock('../config/database', () => ({
   },
 }));
 
-jest.mock('./mail.service', () => ({
+jest.mock('./mail.service.js', () => ({
   __esModule: true,
   default: {
     sendCreationEmail: jest.fn(),
   },
 }));
 
+const mockMailService = require('./mail.service.js').default;
+
 import { UserService } from './user.service';
 import { AppError } from '../middleware/error.middleware';
 import bcrypt from 'bcryptjs';
-import mailService from './mail.service';
 
 describe('UserService', () => {
   let userService: UserService;
@@ -36,34 +38,48 @@ describe('UserService', () => {
   });
 
   describe('getAllUsers', () => {
+    const createQueryBuilderMock = () => {
+      const builder = {
+        leftJoin: jest.fn().mockReturnThis(),
+        select: jest.fn().mockReturnThis(),
+        addSelect: jest.fn().mockReturnThis(),
+        skip: jest.fn().mockReturnThis(),
+        take: jest.fn().mockReturnThis(),
+        orderBy: jest.fn().mockReturnThis(),
+        getManyAndCount: jest.fn(),
+      };
+      mockUserRepository.createQueryBuilder.mockReturnValue(builder);
+      return builder;
+    };
+
     it('should return paginated users without passwords', async () => {
       const mockUsers = [
-        { id: 1, login: 'user1', email: 'user1@example.com', password: 'hashed', authorities: 'ROLE_USER' },
-        { id: 2, login: 'user2', email: 'user2@example.com', password: 'hashed', authorities: 'ROLE_ADMIN' },
+        { id: 1, login: 'user1', email: 'user1@example.com', password: 'hashed', authorities: 'ROLE_USER', userImage: { id: 5 } },
+        { id: 2, login: 'user2', email: 'user2@example.com', password: 'hashed', authorities: 'ROLE_ADMIN', userImage: null },
       ];
-
-      mockUserRepository.findAndCount.mockResolvedValue([mockUsers, 2]);
+      const builder = createQueryBuilderMock();
+      builder.getManyAndCount.mockResolvedValue([mockUsers as any, 2]);
 
       const result = await userService.getAllUsers(0, 20, 'id,asc');
 
       expect(result.users).toHaveLength(2);
       expect(result.total).toBe(2);
       expect(result.users[0]).not.toHaveProperty('password');
-      expect(mockUserRepository.findAndCount).toHaveBeenCalled();
+      expect(result.users[0].imageUrl).toBe('/api/user-images/5');
+      expect(builder.orderBy).toHaveBeenCalledWith('user.id', 'ASC');
     });
 
     it('should handle pagination correctly', async () => {
-      mockUserRepository.findAndCount.mockResolvedValue([[], 0]);
+      const builder = createQueryBuilderMock();
+      builder.getManyAndCount.mockResolvedValue([[], 0]);
 
       const result = await userService.getAllUsers(1, 10, 'id,desc');
 
       expect(result.page).toBe(1);
       expect(result.size).toBe(10);
-      expect(mockUserRepository.findAndCount).toHaveBeenCalledWith({
-        skip: 10,
-        take: 10,
-        order: { id: 'DESC' },
-      });
+      expect(builder.skip).toHaveBeenCalledWith(10);
+      expect(builder.take).toHaveBeenCalledWith(10);
+      expect(builder.orderBy).toHaveBeenCalledWith('user.id', 'DESC');
     });
   });
 
@@ -112,7 +128,7 @@ describe('UserService', () => {
       expect(result.login).toBe('newuser');
       expect(result).not.toHaveProperty('password');
       expect(mockUserRepository.save).toHaveBeenCalled();
-      expect(mailService.sendCreationEmail).toHaveBeenCalled();
+      expect(mockMailService.sendCreationEmail).toHaveBeenCalled();
     });
 
     it('should throw error for missing required fields', async () => {
@@ -145,7 +161,7 @@ describe('UserService', () => {
       mockUserRepository.findOne.mockResolvedValue(null);
       mockUserRepository.create.mockReturnValue({ ...userData, id: 1 });
       mockUserRepository.save.mockResolvedValue({ ...userData, id: 1 });
-      (mailService.sendCreationEmail as jest.Mock).mockRejectedValue(new Error('Email failed'));
+      mockMailService.sendCreationEmail.mockRejectedValue(new Error('Email failed'));
 
       const result = await userService.createUser(userData);
 
