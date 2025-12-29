@@ -2,6 +2,9 @@
 
 ## Code Quality
 
+[![Frontend Coverage](https://img.shields.io/badge/Frontend%20Coverage-83.6%25-brightgreen)](#test-suite)
+[![Backend Coverage](https://img.shields.io/badge/Backend%20Coverage-94.1%25-brightgreen)](#test-suite)
+
 <!-- Uncomment and update these badges after setting up SonarCloud -->
 <!-- Replace YOUR_PROJECT_KEY with your actual SonarCloud project key -->
 
